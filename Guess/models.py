@@ -33,7 +33,7 @@ class Game(models.Model):
 
 	outcome = models.BooleanField()   # True means home wins and vice versa
 
-	better = models.ManyToManyField(Person,related_name='better')
+	# better = models.ManyToManyField(Person,related_name='better')
 
 	class Meta:
 		ordering = ('expire',)

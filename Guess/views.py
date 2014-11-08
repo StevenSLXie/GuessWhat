@@ -38,7 +38,8 @@ def signup(request):
 		User.objects.create_user(request.POST['username'],request.POST['email'],request.POST['password'])
 		cur_user = User.objects.get(username=request.POST['username'])
 		Person.objects.create(user=cur_user)
-		auth_login(request,cur_user)
+		user = authenticate(username=request.POST['username'],password=request.POST['password'])
+		auth_login(request,user)
 		return redirect('/home')
 	else:
 		return render(request,'signup.html')
