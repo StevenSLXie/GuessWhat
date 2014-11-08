@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User
-from Guess.models import Person,Game
+from Guess.models import Person,Game, Betting
 
 
 # Create your views here.
@@ -44,5 +44,22 @@ def signup(request):
 	else:
 		return render(request,'signup.html')
 
+
 def home(request):
-	return render(request,'home.html')
+	if request.method == 'POST':
+		cur_person = Person.objects.get(user=request.user)
+		cur_game = Game.objects.get(pk=1)
+
+		if 'home' in request.POST:
+			cur_price = getattr(cur_game, 'price_home')
+			cur_person.point -= cur_price
+			cur_person.save()
+			Betting.objects.create(better=cur_person, game=cur_game, side=True, num=1, price_at_buy=cur_price)
+		elif 'away' in request.POST:
+			cur_price = getattr(cur_game,'price_away')
+			cur_person.point -= cur_price
+			cur_person.save()
+			Betting.objects.create(better=cur_person, game=cur_game, side=False, num=1, price_at_buy=cur_price)
+		return redirect('/home')
+	else:
+		return render(request,'home.html')
