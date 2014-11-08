@@ -14,7 +14,6 @@ def login(request):
 		password = request.POST['password']
 		user = authenticate(username=username,password=password)
 	else:
-		# return render(request, 'login.html')
 		return render(request,'signup_login.html')
 	if user is not None:
 		if user.is_active:

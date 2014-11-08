@@ -19,6 +19,7 @@ class Person(models.Model):
 	class Meta:
 		ordering = ('point','point_per_game',)
 
+
 class Game(models.Model):
 	index = models.IntegerField()
 	headline = models.TextField()
@@ -26,7 +27,9 @@ class Game(models.Model):
 	expire = models.DateTimeField()
 
 	price_home = models.IntegerField(default=50)
+	num_home = models.IntegerField(default=0)
 	price_away = models.IntegerField(default=50)
+	num_away = models.IntegerField(default=0)
 
 	outcome = models.BooleanField()   # True means home wins and vice versa
 
@@ -34,5 +37,15 @@ class Game(models.Model):
 
 	class Meta:
 		ordering = ('expire',)
+
+
+class Betting(models.Model):
+	better = models.ForeignKey(Person)
+	game = models.ForeignKey(Game)
+	side = models.BooleanField()  # True means home wins and vice versa
+	num = models.IntegerField(default=1)
+	price_at_buy = models.FloatField()
+
+
 
 
