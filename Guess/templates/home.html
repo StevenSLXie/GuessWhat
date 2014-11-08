@@ -3,31 +3,30 @@
 <link href='static/bootstrap/css/bootstrap.min.css' rel='stylesheet'>
 <title>盖世 - 向世界展示你的判断力</title>
 
+{% include "nav_bar.html" %}
 
-<div class="span6">
-  <h5>Poll: Where do you usually browse</h5>
-  <strong>Windows PC</strong><span class="pull-right">30%</span>
-  <div class="progress progress-danger active">
-      <div class="bar" style="width: 30%;"></div>
-  </div>
-  <strong>Mac</strong><span class="pull-right">40%</span>
-  <div class="progress progress-info active">
-      <div class="bar" style="width: 40%;"></div>
-  </div>
-  <strong>iPad/iPhone</strong><span class="pull-right">10%</span>
-  <div class="progress progress-striped active">
-      <div class="bar" style="width: 10%;"></div>
-  </div>
-  <strong>Android</strong><span class="pull-right">5%</span>
-  <div class="progress progress-success active">
-      <div class="bar" style="width: 5%;"></div>
-  </div>
-  <strong>Others</strong><span class="pull-right">15%</span>
-  <div class="progress progress-warning active">
-      <div class="bar" style="width: 15%;"></div>
-  </div>
-  <p>
-      <a href="#" class="btn btn-large btn-success">Vote</a>
-    <a href="#" class="pull-right">View detailed results</a>
-  </p>
+<div class = "row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="progress">
+            <div class="progress-bar progress-bar-success" style="width: 35%">35%</div>
+            <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 65%">65%</div>
+        </div>
+    </div>
 </div>
+
+
+<div class="row">
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="controls">
+            <div class="col-md-1 col-md-offset-3"><input class="btn btn-success" type="submit" value="曼联" name="home"/></div>
+            <div class="col-md-1 col-md-offset-4"><input class="btn btn-warning" type="submit" value="切尔西" name="away"/></div>
+        </div>
+
+
+    </form>
+
+</div>
+
+
