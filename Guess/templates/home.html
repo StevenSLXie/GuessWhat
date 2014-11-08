@@ -5,28 +5,42 @@
 
 {% include "nav_bar.html" %}
 
+
+<style type='text/css'>
+.spacer {
+    margin-bottom: 40px;
+}
+</style>
+
+{% for game in games %}
+
 <div class = "row">
     <div class="col-md-6 col-md-offset-3">
         <div class="progress">
-            <div class="progress-bar progress-bar-success" style="width: 35%">35%</div>
-            <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 65%">65%</div>
+            <div class="progress-bar progress-bar-success" style="width: {{ game.price_home }}%">{{ game.price_home }}</div>
+            <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
         </div>
     </div>
 </div>
 
 
-<div class="row">
+<div class="row spacer">
     <form method="POST">
         {% csrf_token %}
 
         <div class="controls">
-            <div class="col-md-1 col-md-offset-3"><input class="btn btn-success" type="submit" value="曼联" name="home"/></div>
-            <div class="col-md-1 col-md-offset-4"><input class="btn btn-warning" type="submit" value="切尔西" name="away"/></div>
+            <div class="col-md-1 col-md-offset-3"><input class="btn btn-success" type="submit" value={{ game.name_home }} name="home"/></div>
+            <div class="col-md-1 col-md-offset-4"><input class="btn btn-warning" type="submit" value={{ game.name_away }} name="away"/></div>
         </div>
 
 
     </form>
 
 </div>
+
+{% endfor %}
+
+
+
 
 

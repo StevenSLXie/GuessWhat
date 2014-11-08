@@ -46,9 +46,15 @@ def signup(request):
 
 
 def home(request):
+	para = []
+	for i in range(1,4):
+		cur_game = Game.objects.get(pk=i)
+		# p = {'home':cur_game.name_home,'away':cur_game.name_away}
+		para.append(cur_game)
+
 	if request.method == 'POST':
 		cur_person = Person.objects.get(user=request.user)
-		cur_game = Game.objects.get(pk=1)
+
 
 		if 'home' in request.POST:
 			cur_price = getattr(cur_game, 'price_home')
@@ -62,4 +68,4 @@ def home(request):
 			Betting.objects.create(better=cur_person, game=cur_game, side=False, num=1, price_at_buy=cur_price)
 		return redirect('/home')
 	else:
-		return render(request,'home.html')
+		return render(request,'home.html',{'games':para})

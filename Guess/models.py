@@ -26,8 +26,10 @@ class Game(models.Model):
 	begin = models.DateTimeField()
 	expire = models.DateTimeField()
 
+	name_home = models.CharField(max_length=30)
 	price_home = models.IntegerField(default=50)
 	num_home = models.IntegerField(default=0)
+	name_away = models.CharField(max_length=30)
 	price_away = models.IntegerField(default=50)
 	num_away = models.IntegerField(default=0)
 
