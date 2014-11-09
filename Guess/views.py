@@ -86,4 +86,8 @@ def profile(request):
 
 
 def leaderboard(request):
-	return render(request,'leaderboard.html')
+	persons = []
+	for i in range(1,2):
+		p = Person.objects.get(user=request.user)
+		persons.append(p)
+	return render(request,'leaderboard.html',{'persons':persons})
