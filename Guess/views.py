@@ -65,7 +65,7 @@ def home(request):
 				cur_game.num_home += 1
 				cur_game.save()
 				price_change(i)
-				Betting.objects.create(better=cur_person, game=cur_game, side=True, num=1, price_at_buy=cur_price)
+				Betting.objects.create(better=cur_person, game=cur_game, side=True, num=1, price_at_buy=cur_price, price_at_sell=cur_price)
 			elif 'a:'+str(i) in request.POST:
 				cur_game = Game.objects.get(pk=i)
 				cur_price = getattr(cur_game,'price_away')
@@ -74,7 +74,7 @@ def home(request):
 				cur_game.num_away += 1
 				cur_game.save()
 				price_change(i)
-				Betting.objects.create(better=cur_person, game=cur_game, side=False, num=1, price_at_buy=cur_price)
+				Betting.objects.create(better=cur_person, game=cur_game, side=False, num=1, price_at_buy=cur_price, price_at_sell=cur_price)
 		return redirect('/home')
 	else:
 		return render(request, 'home.html', {'games': para})
@@ -82,7 +82,11 @@ def home(request):
 
 def profile(request):
 	person = Person.objects.get(user=request.user)
-	return render(request,'profile.html',{'person': person})
+	games = []
+	for b in Betting.objects.filter(better=person):
+		if not  b.cleared:
+			games.append(b.game)
+	return render(request,'profile.html',{'person': person,'games': games})
 
 
 def leaderboard(request):

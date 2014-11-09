@@ -35,7 +35,6 @@ class Game(models.Model):
 
 	outcome = models.BooleanField()   # True means home wins and vice versa
 
-	# better = models.ManyToManyField(Person,related_name='better')
 
 	class Meta:
 		ordering = ('expire',)
@@ -44,10 +43,36 @@ class Game(models.Model):
 class Betting(models.Model):
 	better = models.ForeignKey(Person)
 	game = models.ForeignKey(Game)
+
 	side = models.BooleanField()  # True means home wins and vice versa
 	num = models.IntegerField(default=1)
-	price_at_buy = models.FloatField()
+	outcome = models.BooleanField(default=False)
 
+	price_at_buy = models.FloatField()
+	price_at_sell = models.FloatField()
+
+	end_when_clear = models.BooleanField(default=False) # when the bet is clear, is the game over?
+	cleared = models.BooleanField(default=False)  # cleared means the result of the betting has been updated to the person profile
+
+'''
+	def clear(self):
+		if self.end_when_clear:
+			if self.side == self.outcome:
+				self.better.point += 100
+				self.better.win += 1
+			else:
+				self.better.lose += 1
+
+		else:
+			self.better.point += self.price_at_sell
+			if self.price_at_buy-1 < self.price_at_sell:
+				self.better.win += 1
+			else:
+				self.better.lose += 1
+
+		self.cleared = True
+		self.better.save()
+'''
 
 
 
