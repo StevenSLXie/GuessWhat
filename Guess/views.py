@@ -81,4 +81,5 @@ def home(request):
 
 
 def profile(request):
-	return render(request,'profile.html')
+	person = Person.objects.get(user=request.user)
+	return render(request,'profile.html',{'person':person})
