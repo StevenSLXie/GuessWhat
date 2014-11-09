@@ -77,9 +77,13 @@ def home(request):
 				Betting.objects.create(better=cur_person, game=cur_game, side=False, num=1, price_at_buy=cur_price)
 		return redirect('/home')
 	else:
-		return render(request, 'home.html', {'games':para})
+		return render(request, 'home.html', {'games': para})
 
 
 def profile(request):
 	person = Person.objects.get(user=request.user)
-	return render(request,'profile.html',{'person':person})
+	return render(request,'profile.html',{'person': person})
+
+
+def leaderboard(request):
+	return render(request,'leaderboard.html')
