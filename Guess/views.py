@@ -3,7 +3,8 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User
-from Guess.models import Person,Game, Betting
+from Guess.models import Person, Game, Betting
+from algorithm.data_processing import price_change
 
 
 # Create your views here.
@@ -18,7 +19,7 @@ def login(request):
 	if user is not None:
 		if user.is_active:
 			auth_login(request,user)
-			if not request.POST.get('remember_me',None):
+			if not request.POST.get('remember_me', None):
 				request.session.set_expiry(0)
 
 			return redirect('/home')
@@ -61,12 +62,18 @@ def home(request):
 				cur_price = getattr(cur_game, 'price_home')
 				cur_person.point -= cur_price
 				cur_person.save()
+				cur_game.num_home += 1
+				cur_game.save()
+				price_change(i)
 				Betting.objects.create(better=cur_person, game=cur_game, side=True, num=1, price_at_buy=cur_price)
 			elif 'a:'+str(i) in request.POST:
 				cur_game = Game.objects.get(pk=i)
 				cur_price = getattr(cur_game,'price_away')
 				cur_person.point -= cur_price
 				cur_person.save()
+				cur_game.num_away += 1
+				cur_game.save()
+				price_change(i)
 				Betting.objects.create(better=cur_person, game=cur_game, side=False, num=1, price_at_buy=cur_price)
 		return redirect('/home')
 	else:
