@@ -1,4 +1,5 @@
 {% load bootstrap3 %}
+{% load profile_tag %}
 
 <link href='static/bootstrap/css/bootstrap.min.css' rel='stylesheet'>
 <title>盖世 - 向世界展示你的判断力</title>
@@ -13,11 +14,11 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-2 col-md-2 col-md-offset-3"">
+        <div class="col-sm-2 col-md-2 col-md-offset-3">
             <img src="/static/me.jpg"
             alt="" class="img-rounded img-responsive" />
         </div>
-        <div class="col-sm-4 col-md-4 col-md-offset-1"">
+        <div class="col-sm-4 col-md-4 col-md-offset-1">
             <blockquote>
                 <p>彼岸</p> <small><cite title="Source Title">广东，潮州  <i class="glyphicon glyphicon-map-marker"></i></cite></small>
             </blockquote>
@@ -30,15 +31,25 @@
     </div>
 </div>
 
-{% for game in games %}
+{% for b in bets %}
 
 <div class = "row">
+    <form method="POST">
+    {% csrf_token %}
     <div class="col-md-6 col-md-offset-3">
+        <h4 class="text-center">{{ b.game.name_home }} 对 {{ b.game.name_away }}</h4>
         <div class="progress">
-            <div class="progress-bar progress-bar-success" style="width: {{ game.price_home }}%">{{ game.price_home }}</div>
-            <div class="progress-bar progress-bar-warning" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
+            <div class="progress-bar progress-bar-success" style="width: {{ b.game.price_home }}%">{{ b.game.price_home }}</div>
+            <div class="progress-bar progress-bar-warning" style="width: {{ b.game.price_away }}%">{{ b.game.price_away }}</div>
         </div>
+        {% if b.side %}
+            <div><p>您之前推测{{ b.game.name_home }}会赢，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_home b.price_at_buy %}</p></div>
+        {% else %}
+            <div><p>您之前推测{{ b.game.name_away }}会赢，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_home b.price_at_buy %}</p></div>
+        {% endif %}
+        <div class="col-md-1 col-md-offset-5"><input class="btn btn-danger" type="submit" value="现在结算" name="a:{{ b.game.pk }}"/></div>
     </div>
+    </form>
 </div>
 
 
@@ -46,10 +57,6 @@
     <form method="POST">
         {% csrf_token %}
 
-        <div class="controls">
-            <div class="col-md-1 col-md-offset-3"><input class="btn btn-success" type="submit" value={{ game.name_home }} name="h:{{ game.pk }}"/></div>
-            <div class="col-md-1 col-md-offset-4"><input class="btn btn-warning" type="submit" value={{ game.name_away }} name="a:{{ game.pk }}"/></div>
-        </div>
 
 
     </form>

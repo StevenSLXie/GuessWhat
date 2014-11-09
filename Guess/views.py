@@ -82,11 +82,13 @@ def home(request):
 
 def profile(request):
 	person = Person.objects.get(user=request.user)
-	games = []
+	# games = []
+	bets = []
 	for b in Betting.objects.filter(better=person):
-		if not  b.cleared:
-			games.append(b.game)
-	return render(request,'profile.html',{'person': person,'games': games})
+		if not b.cleared:
+			bets.append(b)
+			# games.append(b.game)
+	return render(request,'profile.html',{'person': person,'bets': bets})
 
 
 def leaderboard(request):

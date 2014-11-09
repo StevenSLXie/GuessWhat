@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 os.path.join(BASE_DIR,'Guess/algorithm')
+os.path.join(BASE_DIR,'Guess/templatetags')
 
 
 # Quick-start development settings - unsuitable for production
@@ -39,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'Guess',
 	'bootstrap3',
+	'Guess.templatetags',
 )
 
 MIDDLEWARE_CLASSES = (
