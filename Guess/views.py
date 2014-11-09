@@ -77,4 +77,8 @@ def home(request):
 				Betting.objects.create(better=cur_person, game=cur_game, side=False, num=1, price_at_buy=cur_price)
 		return redirect('/home')
 	else:
-		return render(request,'home.html',{'games':para})
+		return render(request, 'home.html', {'games':para})
+
+
+def profile(request):
+	return render(request,'profile.html')
