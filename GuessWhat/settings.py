@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'Guess',
 	'bootstrap3',
 	'Guess.templatetags',
+	'south',
 )
 
 MIDDLEWARE_CLASSES = (
