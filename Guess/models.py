@@ -54,8 +54,8 @@ class Betting(models.Model):
 	end_when_clear = models.BooleanField(default=False) # when the bet is clear, is the game over?
 	cleared = models.BooleanField(default=False)  # cleared means the result of the betting has been updated to the person profile
 
-'''
 	def clear(self):
+		# clear this deal when game over or when the player ends the game earlier.
 		if self.end_when_clear:
 			if self.side == self.outcome:
 				self.better.point += 100
@@ -64,6 +64,10 @@ class Betting(models.Model):
 				self.better.lose += 1
 
 		else:
+			if self.side:
+				self.price_at_sell = self.game.price_home
+			else:
+				self.price_at_sell = self.game.price_away
 			self.better.point += self.price_at_sell
 			if self.price_at_buy-1 < self.price_at_sell:
 				self.better.win += 1
@@ -72,7 +76,8 @@ class Betting(models.Model):
 
 		self.cleared = True
 		self.better.save()
-'''
+		self.save()
+
 
 
 

@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7bea3e3-1277-4e1b-acfb-758256ad8cac" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Guess/templatetags/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Guess/templatetags/profile_tag.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/models.py" afterPath="$PROJECT_DIR$/Guess/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/templates/nav_bar.html" afterPath="$PROJECT_DIR$/Guess/templates/nav_bar.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/templates/profile.html" afterPath="$PROJECT_DIR$/Guess/templates/profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GuessWhat/settings.py" afterPath="$PROJECT_DIR$/GuessWhat/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/views.py" afterPath="$PROJECT_DIR$/Guess/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -40,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Guess/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1260">
-              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <state vertical-scroll-proportion="1.390625" vertical-offset="516" max-vertical-offset="1335">
+              <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -68,8 +68,8 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Guess/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1161" max-vertical-offset="1575">
-              <caret line="90" column="71" selection-start-line="90" selection-start-column="71" selection-end-line="90" selection-end-column="71" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1116" max-vertical-offset="1680">
+              <caret line="92" column="25" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
               <folding>
                 <element signature="e#0#63#0" expanded="true" />
               </folding>
@@ -90,22 +90,12 @@
       <file leaf-file-name="profile.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Guess/templates/profile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="1065">
-              <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+            <state vertical-scroll-proportion="-11.25" vertical-offset="495" max-vertical-offset="1095">
+              <caret line="51" column="114" selection-start-line="51" selection-start-column="114" selection-end-line="51" selection-end-column="114" />
               <folding>
                 <element signature="e#1380#1419#0#HTML" expanded="true" />
                 <element signature="e#1509#1548#0#HTML" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profile_tag.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Guess/templatetags/profile_tag.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.15037593" vertical-offset="0" max-vertical-offset="399">
-              <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -132,13 +122,13 @@
         <option value="$PROJECT_DIR$/Guess/algorithm/data_processing.py" />
         <option value="$PROJECT_DIR$/GuessWhat/urls.py" />
         <option value="$PROJECT_DIR$/Guess/templates/leaderboard.html" />
-        <option value="$PROJECT_DIR$/Guess/templates/nav_bar.html" />
-        <option value="$PROJECT_DIR$/Guess/models.py" />
-        <option value="$PROJECT_DIR$/Guess/views.py" />
-        <option value="$PROJECT_DIR$/Guess/templates/profile.html" />
         <option value="$PROJECT_DIR$/Guess/custom_tag/profile_tag.py" />
         <option value="$PROJECT_DIR$/GuessWhat/settings.py" />
         <option value="$PROJECT_DIR$/Guess/templatetags/profile_tag.py" />
+        <option value="$PROJECT_DIR$/Guess/templates/nav_bar.html" />
+        <option value="$PROJECT_DIR$/Guess/templates/profile.html" />
+        <option value="$PROJECT_DIR$/Guess/views.py" />
+        <option value="$PROJECT_DIR$/Guess/models.py" />
       </list>
     </option>
   </component>
@@ -146,7 +136,7 @@
     <option name="x" value="10" />
     <option name="y" value="22" />
     <option name="width" value="1260" />
-    <option name="height" value="708" />
+    <option name="height" value="706" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -501,7 +491,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="22" width="1260" height="708" extended-state="0" />
+    <frame x="10" y="22" width="1260" height="706" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -514,7 +504,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3317684" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33281004" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -586,39 +576,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="546" max-vertical-offset="1260">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Guess/templatetags/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="376">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/templates/nav_bar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49723756" vertical-offset="0" max-vertical-offset="690">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1161" max-vertical-offset="1575">
-          <caret line="90" column="71" selection-start-line="90" selection-start-column="71" selection-end-line="90" selection-end-column="71" />
-          <folding>
-            <element signature="e#0#63#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -646,14 +608,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/templates/profile.html">
+    <entry file="file://$PROJECT_DIR$/Guess/templates/nav_bar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="1065">
-          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-          <folding>
-            <element signature="e#1380#1419#0#HTML" expanded="true" />
-            <element signature="e#1509#1548#0#HTML" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.75" vertical-offset="150" max-vertical-offset="690">
+          <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Guess/templatetags/profile_tag.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22670025" vertical-offset="0" max-vertical-offset="397">
+          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -668,11 +635,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/templatetags/profile_tag.py">
+    <entry file="file://$PROJECT_DIR$/Guess/templates/profile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15037593" vertical-offset="0" max-vertical-offset="399">
-          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-          <folding />
+        <state vertical-scroll-proportion="-11.25" vertical-offset="495" max-vertical-offset="1095">
+          <caret line="51" column="114" selection-start-line="51" selection-start-column="114" selection-end-line="51" selection-end-column="114" />
+          <folding>
+            <element signature="e#1380#1419#0#HTML" expanded="true" />
+            <element signature="e#1509#1548#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Guess/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1116" max-vertical-offset="1680">
+          <caret line="92" column="25" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Guess/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.390625" vertical-offset="516" max-vertical-offset="1335">
+          <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

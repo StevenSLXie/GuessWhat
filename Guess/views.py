@@ -84,11 +84,18 @@ def profile(request):
 	person = Person.objects.get(user=request.user)
 	# games = []
 	bets = []
-	for b in Betting.objects.filter(better=person):
-		if not b.cleared:
-			bets.append(b)
-			# games.append(b.game)
-	return render(request,'profile.html',{'person': person,'bets': bets})
+	for b in Betting.objects.filter(better=person, cleared=False):
+		bets.append(b)
+	print '234'
+	if request.method == 'POST':
+		for b in bets:
+			if str(b.pk) in request.POST:
+				b.clear()
+				break
+		return redirect('/profile')
+
+	else:
+		return render(request,'profile.html',{'person': person,'bets': bets})
 
 
 def leaderboard(request):

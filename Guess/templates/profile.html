@@ -42,12 +42,14 @@
             <div class="progress-bar progress-bar-success" style="width: {{ b.game.price_home }}%">{{ b.game.price_home }}</div>
             <div class="progress-bar progress-bar-warning" style="width: {{ b.game.price_away }}%">{{ b.game.price_away }}</div>
         </div>
+        <div class="col-md-offset-2">
         {% if b.side %}
-            <div><p>您之前推测{{ b.game.name_home }}会赢，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_home b.price_at_buy %}</p></div>
+            <div><p>您之前推测{{ b.game.name_home }}会赢，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_home b.price_at_buy %}。</p></div>
         {% else %}
-            <div><p>您之前推测{{ b.game.name_away }}会赢，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_home b.price_at_buy %}</p></div>
+            <div><p>您之前推测{{ b.game.name_away }}会赢，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_away b.price_at_buy %}。</p></div>
         {% endif %}
-        <div class="col-md-1 col-md-offset-5"><input class="btn btn-danger" type="submit" value="现在结算" name="a:{{ b.game.pk }}"/></div>
+        </div>
+        <div class="col-md-1 col-md-offset-5"><input class="btn btn-danger" type="submit" value="现在结算" name="{{ b.pk }}"/></div>
     </div>
     </form>
 </div>
