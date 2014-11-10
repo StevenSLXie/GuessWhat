@@ -47,34 +47,28 @@ def signup(request):
 
 
 def home(request):
-	para = []
-	for i in range(1,4):
-		cur_game = Game.objects.get(pk=i)
-		# p = {'home':cur_game.name_home,'away':cur_game.name_away}
-		para.append(cur_game)
 
+	para = Game.objects.filter(ended=False)
 	if request.method == 'POST':
 		cur_person = Person.objects.get(user=request.user)
 
-		for i in range(1,4):
-			if 'h:'+str(i) in request.POST:
-				cur_game = Game.objects.get(pk=i)
-				cur_price = getattr(cur_game, 'price_home')
-				cur_person.point -= cur_price
+		for cur_game in Game.objects.filter(ended=False):
+			if 'h:'+str(cur_game.pk) in request.POST:
+				cur_person.point -= cur_game.price_home
 				cur_person.save()
 				cur_game.num_home += 1
 				cur_game.save()
-				price_change(i)
-				Betting.objects.create(better=cur_person, game=cur_game, side=True, num=1, price_at_buy=cur_price, price_at_sell=cur_price)
-			elif 'a:'+str(i) in request.POST:
-				cur_game = Game.objects.get(pk=i)
-				cur_price = getattr(cur_game,'price_away')
-				cur_person.point -= cur_price
+				Betting.objects.create(better=cur_person, game=cur_game, side=True, num=1, price_at_buy=cur_game.price_home, price_at_sell=cur_game.price_home)
+				price_change(cur_game.pk)
+
+			elif 'a:'+str(cur_game.pk) in request.POST:
+				cur_person.point -= cur_game.price_away
 				cur_person.save()
 				cur_game.num_away += 1
 				cur_game.save()
-				price_change(i)
-				Betting.objects.create(better=cur_person, game=cur_game, side=False, num=1, price_at_buy=cur_price, price_at_sell=cur_price)
+				Betting.objects.create(better=cur_person, game=cur_game, side=False, num=1, price_at_buy=cur_game.price_away, price_at_sell=cur_game.price_away)
+				price_change(cur_game.pk)
+
 		return redirect('/home')
 	else:
 		return render(request, 'home.html', {'games': para})
@@ -82,11 +76,12 @@ def home(request):
 
 def profile(request):
 	person = Person.objects.get(user=request.user)
-	# games = []
 	bets = []
 	for b in Betting.objects.filter(better=person, cleared=False):
-		bets.append(b)
-	print '234'
+		if not b.game.ended:
+			bets.append(b)
+		else:
+			b.clear()
 	if request.method == 'POST':
 		for b in bets:
 			if str(b.pk) in request.POST:
@@ -95,12 +90,12 @@ def profile(request):
 		return redirect('/profile')
 
 	else:
-		return render(request,'profile.html',{'person': person,'bets': bets})
+		person = Person.objects.get(user=request.user)
+		return render(request,'profile.html',{'person': person, 'bets': bets})
 
 
 def leaderboard(request):
-	persons = []
-	for i in range(1,3):
-		p = Person.objects.get(pk=i)
-		persons.append(p)
+	#persons = []
+	persons = Person.objects.all()
+	#persons.append(p)
 	return render(request,'leaderboard.html',{'persons':persons})

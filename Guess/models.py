@@ -23,7 +23,7 @@ class Person(models.Model):
 class Game(models.Model):
 	index = models.IntegerField()
 	headline = models.TextField()
-	begin = models.DateTimeField()
+	begin = models.DateTimeField(auto_now_add=True)
 	expire = models.DateTimeField()
 
 	name_home = models.CharField(max_length=30)
@@ -33,8 +33,9 @@ class Game(models.Model):
 	price_away = models.IntegerField(default=50)
 	num_away = models.IntegerField(default=0)
 
-	outcome = models.BooleanField()   # True means home wins and vice versa
+	outcome = models.BooleanField(default=False)   # True means home wins and vice versa
 
+	ended = models.BooleanField(default=False)
 
 	class Meta:
 		ordering = ('expire',)
@@ -51,12 +52,12 @@ class Betting(models.Model):
 	price_at_buy = models.FloatField()
 	price_at_sell = models.FloatField()
 
-	end_when_clear = models.BooleanField(default=False) # when the bet is clear, is the game over?
+	# end_when_clear = models.BooleanField(default=False) # when the bet is clear, is the game over?
 	cleared = models.BooleanField(default=False)  # cleared means the result of the betting has been updated to the person profile
 
 	def clear(self):
 		# clear this deal when game over or when the player ends the game earlier.
-		if self.end_when_clear:
+		if self.game.ended:
 			if self.side == self.outcome:
 				self.better.point += 100
 				self.better.win += 1
