@@ -16,4 +16,5 @@ urlpatterns = patterns('',
 	url(r'^leaderboard', 'Guess.views.leaderboard', name='leaderboard'),
 	url(r'^more', 'Guess.views.more', name='more'),
 	url(r'^logout','Guess.views.logout', name='logout'),
+	#url(r'^profile/(?P<username>\w+)/$', 'Guess.views.other_profile',name='other_profile'),
 )

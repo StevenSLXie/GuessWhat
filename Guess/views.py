@@ -124,3 +124,13 @@ def more(request):
 		return render(request,'more_info.html')
 	else:
 		return render(request,'more_info.html')
+
+'''
+def other_profile(request,username):
+	if not request.user.is_authenticated():
+		return redirect('/')
+
+	person = Person.objects.get(user__username=username)
+
+	return render(request,'other_profile.html',{'person': person})
+'''
