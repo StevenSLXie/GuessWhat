@@ -5,6 +5,13 @@
 
 {% include "nav_bar.html" %}
 
+<script>
+function on_submit(e) {
+    if (confirm("确定投注？") == false)
+        e.preventDefault();
+}
+</script>
+
 
 <style type='text/css'>
 .spacer {
@@ -29,8 +36,8 @@
         {% csrf_token %}
 
         <div class="controls">
-            <div class="col-md-1 col-md-offset-3"><input class="btn btn-success" type="submit" value={{ game.name_home }} name="h:{{ game.pk }}"/></div>
-            <div class="col-md-1 col-md-offset-4"><input class="btn btn-warning" type="submit" value={{ game.name_away }} name="a:{{ game.pk }}"/></div>
+            <div class="col-md-1 col-md-offset-3"><input class="btn btn-success" type="submit" value={{ game.name_home }} name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
+            <div class="col-md-1 col-md-offset-4"><input class="btn btn-warning" type="submit" value={{ game.name_away }} name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
         </div>
          <p class="col-md-3 col-lg-offset-4"><i class="glyphicon glyphicon-play"></i> 开球时间：{{ game.begin }}</p>
          <p class="col-md-3 col-lg-offset-4"><i class="glyphicon glyphicon-stop"></i> 结束投注时间：{{ game.expire }}</p>

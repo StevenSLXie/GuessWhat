@@ -99,3 +99,9 @@ def leaderboard(request):
 	persons = Person.objects.all()
 	#persons.append(p)
 	return render(request,'leaderboard.html',{'persons':persons})
+
+def more(request):
+	if request.method == 'POST':
+		return render(request,'more_info.html')
+	else:
+		return render(request,'more_info.html')
