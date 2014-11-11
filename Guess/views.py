@@ -13,7 +13,9 @@ def login(request):
 	if request.method == 'POST':
 		username = request.POST['username']
 		password = request.POST['password']
-		user = authenticate(username=username,password=password)
+		user = authenticate(username=username, password=password)
+	elif request.user.is_authenticated():
+		return redirect('/home')
 	else:
 		return render(request,'signup_login.html')
 	if user is not None:
@@ -21,15 +23,21 @@ def login(request):
 			auth_login(request,user)
 			if not request.POST.get('remember_me', None):
 				request.session.set_expiry(0)
-
 			return redirect('/home')
 		else:
 			return render(request, 'signup_login.html')
 	else:
 		return render(request, 'signup_login.html')
 
+def logout(request):
+	auth_logout(request)
+	return redirect('/')
+
+
 
 def signup(request):
+
+
 	if request.method == 'POST':
 		if (not request.POST['email']) or (not request.POST['username']) or (not request.POST['password']) or (not request.POST['password_confirm']):
 			return render(request,'signup.html')
@@ -47,6 +55,8 @@ def signup(request):
 
 
 def home(request):
+	if not request.user.is_authenticated():
+		return redirect('/')
 
 	para = Game.objects.filter(ended=False)
 	if request.method == 'POST':
@@ -75,6 +85,9 @@ def home(request):
 
 
 def profile(request):
+	if not request.user.is_authenticated():
+		return redirect('/')
+
 	person = Person.objects.get(user=request.user)
 	bets = []
 	for b in Betting.objects.filter(better=person, cleared=False):
@@ -95,12 +108,18 @@ def profile(request):
 
 
 def leaderboard(request):
+	if not request.user.is_authenticated():
+		return redirect('/')
+
 	#persons = []
 	persons = Person.objects.all()
 	#persons.append(p)
 	return render(request,'leaderboard.html',{'persons':persons})
 
 def more(request):
+	if not request.user.is_authenticated():
+		return redirect('/')
+
 	if request.method == 'POST':
 		return render(request,'more_info.html')
 	else:

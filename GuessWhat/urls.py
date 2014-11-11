@@ -15,4 +15,5 @@ urlpatterns = patterns('',
 	url(r'^profile', 'Guess.views.profile', name='profile'),
 	url(r'^leaderboard', 'Guess.views.leaderboard', name='leaderboard'),
 	url(r'^more', 'Guess.views.more', name='more'),
+	url(r'^logout','Guess.views.logout', name='logout'),
 )
