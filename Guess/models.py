@@ -15,6 +15,8 @@ class Person(models.Model):
 
 	point_per_game = models.FloatField(default=0.0)
 
+	index = models.IntegerField(default=0)
+
 
 	class Meta:
 		ordering = ('point','point_per_game',)
