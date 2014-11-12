@@ -5,49 +5,12 @@
 
 {% include "nav_bar.html" %}
 
-<script>
-$(document).ready(function() {
-    var panels = $('.user-infos');
-    var panelsButton = $('.dropdown-user');
-    panels.hide();
 
-    //Click dropdown
-    panelsButton.click(function() {
-        //get data-for attribute
-        var dataFor = $(this).attr('data-for');
-        var idFor = $(dataFor);
-
-        //current button
-        var currentButton = $(this);
-        idFor.slideToggle(400, function() {
-            //Completed slidetoggle
-            if(idFor.is(':visible'))
-            {
-                currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
-            }
-            else
-            {
-                currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
-            }
-        })
-    });
-
-
-    $('[data-toggle="tooltip"]').tooltip();
-
-
-});
-
-function on_submit(e) {
-    if (confirm("确定投注？") == false)
-        e.preventDefault();
-}
-</script>
 
 
 <style type='text/css'>
 .spacer {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 </style>
 
@@ -88,27 +51,21 @@ function on_submit(e) {
                                 <table class="table table-user-information">
                                     <tbody>
                                     <tr>
-                                        <div class="progress">
-            <div class="progress-bar progress-bar-success" style="width: {{ game.price_home }}%">{{ game.price_home }}</div>
-            <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
+                                        <p class="text-center">角球个数大于十个？</p>
+
+                                         <div class="progress">
+                                            <div class="progress-bar progress-bar-success" style="width: {{ game.price_home }}%"> {{ game.price_home }}</div>
+                                            <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
+                                        </div>
+                                        <div class="row spacer">
+                                        <div class="col-md-1 col-md-offset-1"><input class="btn btn-success" type="submit" value={{ game.name_home }} name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
+                                        <div class="col-md-1 col-md-offset-4"><input class="btn btn-warning" type="submit" value={{ game.name_away }} name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
                                         </div>
                                     </tr>
                                     <tr>
                                         <div class="progress">
-            <div class="progress-bar progress-bar-success" style="width: {{ game.price_home }}%">{{ game.price_home }}</div>
-            <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
-                                        </div>
-                                    </tr>
-                                    <tr>
-                                        <div class="progress">
-            <div class="progress-bar progress-bar-success" style="width: {{ game.price_home }}%">{{ game.price_home }}</div>
-            <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
-                                        </div>
-                                    </tr>
-                                    <tr>
-                                        <div class="progress">
-            <div class="progress-bar progress-bar-success" style="width: {{ game.price_home }}%">{{ game.price_home }}</div>
-            <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
+                                            <div class="progress-bar progress-bar-success" style="width: {{ game.price_home }}%">{{ game.price_home }}</div>
+                                            <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
                                         </div>
                                     </tr>
                                     </tbody>
@@ -129,6 +86,45 @@ function on_submit(e) {
 </div>
 
 {% endfor %}
+
+<script>
+$(document).ready(function() {
+    var panels = $('.user-infos');
+    var panelsButton = $('.dropdown-user');
+    panels.hide();
+
+    //Click dropdown
+    panelsButton.click(function() {
+        //get data-for attribute
+        var dataFor = $(this).attr('data-for');
+        var idFor = $(dataFor);
+
+        //current button
+        var currentButton = $(this);
+        idFor.slideToggle(100, function() {
+            //Completed slidetoggle
+            if(idFor.is(':visible'))
+            {
+                currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
+            }
+            else
+            {
+                currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
+            }
+        })
+    });
+
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+
+});
+
+function on_submit(e) {
+    if (confirm("确定投注？") == false)
+        e.preventDefault();
+}
+</script>
 
 
 

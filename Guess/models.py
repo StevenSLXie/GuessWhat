@@ -39,6 +39,9 @@ class Game(models.Model):
 
 	ended = models.BooleanField(default=False)
 
+	event = models.IntegerField()
+	is_primary = models.BooleanField(default=False)
+
 	class Meta:
 		ordering = ('expire',)
 
