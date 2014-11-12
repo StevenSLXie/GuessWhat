@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7bea3e3-1277-4e1b-acfb-758256ad8cac" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/templates/home.html" afterPath="$PROJECT_DIR$/Guess/templates/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/views.py" afterPath="$PROJECT_DIR$/Guess/views.py" />
     </list>
     <ignored path="GuessWhat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,8 +62,8 @@
       <file leaf-file-name="home.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Guess/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5833333" vertical-offset="810" max-vertical-offset="2130">
-              <caret line="68" column="35" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.45833334" vertical-offset="885" max-vertical-offset="2130">
+              <caret line="70" column="12" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -141,8 +139,8 @@
         <option value="$PROJECT_DIR$/Guess/templates/leaderboard.html" />
         <option value="$PROJECT_DIR$/Guess/templates/nav_bar.html" />
         <option value="$PROJECT_DIR$/Guess/models.py" />
-        <option value="$PROJECT_DIR$/Guess/templates/home.html" />
         <option value="$PROJECT_DIR$/Guess/views.py" />
+        <option value="$PROJECT_DIR$/Guess/templates/home.html" />
       </list>
     </option>
   </component>
@@ -689,8 +687,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Guess/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5833333" vertical-offset="810" max-vertical-offset="2130">
-          <caret line="68" column="35" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.45833334" vertical-offset="885" max-vertical-offset="2130">
+          <caret line="70" column="12" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />

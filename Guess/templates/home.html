@@ -40,7 +40,7 @@
          <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user" data-for=".cyruxx">
                 <i class="glyphicon glyphicon-chevron-down text-muted"></i>
          </div>
-        {% else %}
+
         <div class="row user-infos cyruxx">
             <div class="col-md-3 col-md-offset-4">
                 <div class="panel panel-default">
@@ -53,7 +53,7 @@
                                 <br>
                                 <table class="table table-user-information">
                                     <tbody>
-
+                                    {% else %}
 
                                     <tr>
                                         <p class="text-center">{{ game.headline }}</p>
@@ -68,7 +68,7 @@
                                         </div>
                                     </tr>
                                     {% endif %}
-
+{% endfor %}
                                     </tbody>
                                 </table>
                             </div>
@@ -85,7 +85,7 @@
 
 </div>
 
-{% endfor %}
+
 </div>
 
 
