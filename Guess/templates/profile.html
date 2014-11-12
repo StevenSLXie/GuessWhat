@@ -5,8 +5,11 @@
 
 <style type='text/css'>
 .spacer {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
+.progress-bar-c1 {background: rgba(233, 137,119 , 1);}
+.progress-bar-c2 {background: rgba(255,196,140,1);}
+.button-clear{background: rgba(255,78,80,0.1);}
 </style>
 
 <script>
@@ -43,8 +46,8 @@ function on_submit(e) {
     <div class="col-md-6 col-md-offset-3">
         <h4 class="text-center">{{ b.game.name_home }} 对 {{ b.game.name_away }}</h4>
         <div class="progress">
-            <div class="progress-bar progress-bar-success" style="width: {{ b.game.price_home }}%">{{ b.game.price_home }}</div>
-            <div class="progress-bar progress-bar-warning" style="width: {{ b.game.price_away }}%">{{ b.game.price_away }}</div>
+            <div class="progress-bar progress-bar-c1" style="width: {{ b.game.price_home }}%">{{ b.game.price_home }}</div>
+            <div class="progress-bar progress-bar-c2" style="width: {{ b.game.price_away }}%">{{ b.game.price_away }}</div>
         </div>
         <div class="col-md-offset-2">
         {% if b.game.is_primary %}
@@ -61,7 +64,7 @@ function on_submit(e) {
             {% endif %}
         {% endif %}
         </div>
-        <div class="col-md-1 col-md-offset-5"><input class="btn btn-danger" type="submit" value="现在结算" name="{{ b.pk }}" onclick="on_submit(event)"/></div>
+        <div class="col-md-1 col-md-offset-5"><input class="btn button-clear" type="submit" value="现在结算" name="{{ b.pk }}" onclick="on_submit(event)"/></div>
     </div>
     </form>
 </div>
