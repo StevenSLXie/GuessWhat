@@ -63,8 +63,8 @@
                                             <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
                                         </div>
                                         <div class="row spacer">
-                                        <div class="col-md-1 col-md-offset-1"><input class="btn btn-success" type="submit" value={{ game.name_home }} name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
-                                        <div class="col-md-1 col-md-offset-4"><input class="btn btn-warning" type="submit" value={{ game.name_away }} name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
+                                        <div class="col-md-1 col-md-offset-1"><input class="btn btn-success" type="submit" value="同意" name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
+                                        <div class="col-md-1 col-md-offset-4"><input class="btn btn-warning" type="submit" value="不同意" name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
                                         </div>
                                     </tr>
                                     {% endif %}
