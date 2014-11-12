@@ -58,6 +58,22 @@ def home(request):
 	if not request.user.is_authenticated():
 		return redirect('/')
 
+	gamess = []
+	flag = 0
+	temps = Game.objects.filter(ended=False).order_by('-event','index')
+	games = []
+	for p in temps:
+		if flag == 0:
+			event = p.event
+			flag = 1
+		elif p.event != event:
+			event = p.event
+			gamess.append(games)
+			games = []
+		games.append(p)
+
+	gamess.append(games)
+
 	para = Game.objects.filter(ended=False)
 	if request.method == 'POST':
 		cur_person = Person.objects.get(user=request.user)
@@ -81,7 +97,7 @@ def home(request):
 
 		return redirect('/home')
 	else:
-		return render(request, 'home.html', {'games': para})
+		return render(request, 'home.html', {'gamess': gamess})
 
 
 def profile(request):

@@ -14,9 +14,12 @@
 }
 </style>
 
-{% for game in games %}
+{% for games in gamess %}
+
 <div class="well">
 
+{% for game in games %}
+{% if forloop.first %}
 <div class = "row">
     <div class="col-md-6 col-md-offset-3">
         <div class="progress">
@@ -37,7 +40,7 @@
          <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user" data-for=".cyruxx">
                 <i class="glyphicon glyphicon-chevron-down text-muted"></i>
          </div>
-
+        {% else %}
         <div class="row user-infos cyruxx">
             <div class="col-md-3 col-md-offset-4">
                 <div class="panel panel-default">
@@ -50,8 +53,10 @@
                                 <br>
                                 <table class="table table-user-information">
                                     <tbody>
+
+
                                     <tr>
-                                        <p class="text-center">角球个数大于十个？</p>
+                                        <p class="text-center">{{ game.headline }}</p>
 
                                          <div class="progress">
                                             <div class="progress-bar progress-bar-success" style="width: {{ game.price_home }}%"> {{ game.price_home }}</div>
@@ -62,12 +67,8 @@
                                         <div class="col-md-1 col-md-offset-4"><input class="btn btn-warning" type="submit" value={{ game.name_away }} name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
                                         </div>
                                     </tr>
-                                    <tr>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" style="width: {{ game.price_home }}%">{{ game.price_home }}</div>
-                                            <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
-                                        </div>
-                                    </tr>
+                                    {% endif %}
+
                                     </tbody>
                                 </table>
                             </div>
@@ -83,7 +84,10 @@
     </form>
 
 </div>
+
+{% endfor %}
 </div>
+
 
 {% endfor %}
 
