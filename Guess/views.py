@@ -60,7 +60,7 @@ def home(request):
 
 	gamess = []
 	flag = 0
-	temps = Game.objects.filter(ended=False).order_by('-event','index')
+	temps = Game.objects.filter(ended=False).order_by('-event','-is_primary')
 	games = []
 	for p in temps:
 		if flag == 0:
@@ -128,7 +128,7 @@ def leaderboard(request):
 		return redirect('/')
 
 	#persons = []
-	persons = Person.objects.all()
+	persons = Person.objects.all().order_by('-point','-win')
 	#persons.append(p)
 	return render(request,'leaderboard.html',{'persons':persons})
 
