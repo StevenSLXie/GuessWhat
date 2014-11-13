@@ -44,11 +44,11 @@
          <p class="col-md-3 col-md-offset-4"><i class="glyphicon glyphicon-play"></i> 开球时间：{{ game.begin }}</p>
          {% endif %}
          <p class="col-md-3 col-md-offset-4"><i class="glyphicon glyphicon-stop"></i> 结束投注时间：{{ game.expire }}</p>
-         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user" data-for=".cyruxx">
+         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user"  data-for=".{{ game.pk }}">
                 <i class="glyphicon glyphicon-chevron-down text-muted"></i>
          </div>
 
-        <div class="row user-infos cyruxx">
+        <div class="row user-infos {{ game.pk }}">
             <div class="col-md-4 col-md-offset-4">
                 <div class="panel panel-default">
                     <div class="panel-heading ">
@@ -110,6 +110,7 @@ $(document).ready(function() {
     panels.hide();
 
     //Click dropdown
+
     panelsButton.click(function() {
         //get data-for attribute
         var dataFor = $(this).attr('data-for');
@@ -117,7 +118,7 @@ $(document).ready(function() {
 
         //current button
         var currentButton = $(this);
-        idFor.slideToggle(100, function() {
+        idFor.slideToggle(1, function() {
             //Completed slidetoggle
             if(idFor.is(':visible'))
             {
@@ -140,6 +141,26 @@ function on_submit(e) {
     if (confirm("确定投注？") == false)
         e.preventDefault();
 }
+/*
+function on_dropdown(){
+    var dataFor = $(this).attr('data-for');
+    var idFor = $(dataFor);
+
+    var currentButton = $(this);
+        idFor.slideToggle(1, function() {
+            //Completed slidetoggle
+            if(idFor.is(':visible'))
+            {
+                currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
+            }
+            else
+            {
+                currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
+            }
+        })
+}
+*/
+
 </script>
 
 
