@@ -18,14 +18,14 @@
 
 {% for games in gamess %}
 
-<div class="well well-frame-c">
+<div class="well well-frame-c col-md-10 col-md-offset-1">
 
 {% for game in games %}
 {% if forloop.first %}
 <div class = "row">
     <div class="col-md-6 col-md-offset-3">
         {% if game.game_type == "财经" %}
-            <p class="text-center">{{ game.headline }}</p>
+            <h4 class="text-center">{{ game.headline }}</h4>
         {% endif %}
         <div class="progress">
             <div class="progress-bar progress-bar-c1" style="width: {{ game.price_home }}%">{{ game.price_home }}</div>
