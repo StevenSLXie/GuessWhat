@@ -1,4 +1,5 @@
-from django.shortcuts import render,redirect,render_to_response
+from django.shortcuts import render,redirect
+from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
@@ -15,7 +16,7 @@ def login(request):
 		password = request.POST['password']
 		user = authenticate(username=username, password=password)
 	elif request.user.is_authenticated():
-		return redirect('/home')
+		return redirect(reverse('home'))
 	else:
 		return render(request,'signup_login.html')
 	if user is not None:
@@ -23,7 +24,7 @@ def login(request):
 			auth_login(request,user)
 			if not request.POST.get('remember_me', None):
 				request.session.set_expiry(0)
-			return redirect('/home')
+			return redirect(reverse('home'))
 		else:
 			return render(request, 'signup_login.html')
 	else:
@@ -31,7 +32,7 @@ def login(request):
 
 def logout(request):
 	auth_logout(request)
-	return redirect('/')
+	return redirect(reverse('login'))
 
 
 
@@ -49,14 +50,14 @@ def signup(request):
 		Person.objects.create(user=cur_user)
 		user = authenticate(username=request.POST['username'],password=request.POST['password'])
 		auth_login(request,user)
-		return redirect('/home')
+		return redirect(reverse('home'))
 	else:
 		return render(request,'signup.html')
 
 
 def home(request):
 	if not request.user.is_authenticated():
-		return redirect('/')
+		return redirect(reverse('login'))
 
 	gamess = []
 	flag = 0
@@ -95,14 +96,14 @@ def home(request):
 				Betting.objects.create(better=cur_person, game=cur_game, side=False, num=1, price_at_buy=cur_game.price_away, price_at_sell=cur_game.price_away)
 				price_change(cur_game.pk)
 
-		return redirect('/home')
+		return redirect(reverse('home'))
 	else:
 		return render(request, 'home.html', {'gamess': gamess})
 
 
 def profile(request):
 	if not request.user.is_authenticated():
-		return redirect('/')
+		return redirect(reverse('login'))
 
 	person = Person.objects.get(user=request.user)
 	bets = []
@@ -116,7 +117,7 @@ def profile(request):
 			if str(b.pk) in request.POST:
 				b.clear()
 				break
-		return redirect('/profile')
+		return redirect(reverse('profile'))
 
 	else:
 		person = Person.objects.get(user=request.user)
@@ -125,7 +126,7 @@ def profile(request):
 
 def leaderboard(request):
 	if not request.user.is_authenticated():
-		return redirect('/')
+		return redirect(reverse('login'))
 
 	#persons = []
 	persons = Person.objects.all().order_by('-point','-win')
@@ -134,7 +135,7 @@ def leaderboard(request):
 
 def more(request):
 	if not request.user.is_authenticated():
-		return redirect('/')
+		return redirect(reverse('login'))
 
 	if request.method == 'POST':
 		return render(request,'more_info.html')
