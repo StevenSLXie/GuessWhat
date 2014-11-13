@@ -1,3 +1,5 @@
+#coding:utf-8
+
 from django.shortcuts import render,redirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate
@@ -59,10 +61,58 @@ def home(request):
 	if not request.user.is_authenticated():
 		return redirect(reverse('login'))
 
-	gamess = []
-	flag = 0
 	temps = Game.objects.filter(ended=False).order_by('-event','-is_primary')
+	gamess = game_choose_and_sort(temps)
+
+	if request.method == 'POST':
+		cur_person = Person.objects.get(user=request.user)
+
+		for cur_game in temps:
+			accept_bet(request,cur_person,cur_game)
+
+		return redirect(reverse('home'))
+	else:
+		return render(request, 'home.html', {'gamess': gamess})
+
+
+def sports(request):
+	if not request.user.is_authenticated():
+		return redirect(reverse('login'))
+
+	temps = Game.objects.filter(ended=False,game_type='体育').order_by('-event','-is_primary')
+	gamess = game_choose_and_sort(temps)
+
+	if request.method == 'POST':
+		cur_person = Person.objects.get(user=request.user)
+
+		for cur_game in temps:
+			accept_bet(request,cur_person,cur_game)
+
+		return redirect(reverse('sports'))
+	else:
+		return render(request, 'home.html', {'gamess': gamess})
+
+def finance(request):
+	if not request.user.is_authenticated():
+		return redirect(reverse('login'))
+
+	temps = Game.objects.filter(ended=False,game_type='财经').order_by('-event','-is_primary')
+	gamess = game_choose_and_sort(temps)
+
+	if request.method == 'POST':
+		cur_person = Person.objects.get(user=request.user)
+
+		for cur_game in temps:
+			accept_bet(request,cur_person,cur_game)
+
+		return redirect(reverse('finance'))
+	else:
+		return render(request, 'home.html', {'gamess': gamess})
+
+def game_choose_and_sort(temps):
+	gamess = []
 	games = []
+	flag = 0
 	for p in temps:
 		if flag == 0:
 			event = p.event
@@ -74,31 +124,25 @@ def home(request):
 		games.append(p)
 
 	gamess.append(games)
+	return gamess
 
-	para = Game.objects.filter(ended=False)
-	if request.method == 'POST':
-		cur_person = Person.objects.get(user=request.user)
 
-		for cur_game in Game.objects.filter(ended=False):
-			if 'h:'+str(cur_game.pk) in request.POST:
-				cur_person.point -= cur_game.price_home
-				cur_person.save()
-				cur_game.num_home += 1
-				cur_game.save()
-				Betting.objects.create(better=cur_person, game=cur_game, side=True, num=1, price_at_buy=cur_game.price_home, price_at_sell=cur_game.price_home)
-				price_change(cur_game.pk)
+def accept_bet(request, cur_person,cur_game):
+	if 'h:'+str(cur_game.pk) in request.POST:
+		cur_person.point -= cur_game.price_home
+		cur_person.save()
+		cur_game.num_home += 1
+		cur_game.save()
+		Betting.objects.create(better=cur_person, game=cur_game, side=True, num=1, price_at_buy=cur_game.price_home, price_at_sell=cur_game.price_home)
+		price_change(cur_game.pk)
 
-			elif 'a:'+str(cur_game.pk) in request.POST:
-				cur_person.point -= cur_game.price_away
-				cur_person.save()
-				cur_game.num_away += 1
-				cur_game.save()
-				Betting.objects.create(better=cur_person, game=cur_game, side=False, num=1, price_at_buy=cur_game.price_away, price_at_sell=cur_game.price_away)
-				price_change(cur_game.pk)
-
-		return redirect(reverse('home'))
-	else:
-		return render(request, 'home.html', {'gamess': gamess})
+	elif 'a:'+str(cur_game.pk) in request.POST:
+		cur_person.point -= cur_game.price_away
+		cur_person.save()
+		cur_game.num_away += 1
+		cur_game.save()
+		Betting.objects.create(better=cur_person, game=cur_game, side=False, num=1, price_at_buy=cur_game.price_away, price_at_sell=cur_game.price_away)
+		price_change(cur_game.pk)
 
 
 def profile(request):

@@ -42,6 +42,8 @@ class Game(models.Model):
 	event = models.IntegerField()
 	is_primary = models.IntegerField(default=0)
 
+	game_type = models.CharField(max_length=50)
+
 	class Meta:
 		ordering = ('expire',)
 
