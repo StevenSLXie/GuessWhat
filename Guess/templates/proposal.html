@@ -70,7 +70,7 @@
                                 </div>
 
                                 <div class="col-md-3 spacer">
-                                     <input type="submit" value="提交" class="btn btn-submit-proposal-c"/>
+                                     <input type="submit" value="提交" onclick="after_submit()" class="btn btn-submit-proposal-c"/>
                                 </div>
                             </div>
                             </form>
@@ -83,3 +83,9 @@
         </div>
     </div>
 </div>
+
+<script>
+function after_submit() {
+    alert("谢谢您！");
+}
+</script>

@@ -195,7 +195,7 @@ def proposal(request):
 		content = request.POST['content']
 		game_type = request.POST['type_select']
 		game_cate = request.POST['cate_select']
-		Proposal.objects.create(proposer=proposer,title=title,content=content,game_type=game_type,game_cate=game_cate)
+		Proposal.objects.create(proposer=proposer, title=title, content=content, game_type=game_type, game_cate=game_cate)
 		return redirect(reverse('home'))
 
 	else:
