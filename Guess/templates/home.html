@@ -23,7 +23,7 @@
 {% for game in games %}
 {% if forloop.first %}
 <div class = "row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-6 col-xs-6 col-lg-offset-3 col-md-offset-3 col-xs-offset-3 col-lg-offset-3">
         {% if game.game_type == "财经" %}
             <h4 class="text-center">{{ game.headline }}</h4>
         {% endif %}
