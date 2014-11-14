@@ -87,5 +87,13 @@ class Betting(models.Model):
 		self.save()
 
 
+class Proposal(models.Model):
+	proposer = models.ForeignKey(Person)
+
+	game_type = models.CharField(max_length=30)
+	game_cate = models.CharField(max_length=30)  # category, means it is a yes or not qns or a guess figure question
+	content = models.TextField()
+
+
 
 
