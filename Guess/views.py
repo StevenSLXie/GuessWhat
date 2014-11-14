@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User
-from Guess.models import Person, Game, Betting
+from Guess.models import Person, Game, Betting, Proposal
 from algorithm.data_processing import price_change
 
 
@@ -177,6 +177,7 @@ def leaderboard(request):
 	#persons.append(p)
 	return render(request,'leaderboard.html',{'persons':persons})
 
+
 def more(request):
 	if not request.user.is_authenticated():
 		return redirect(reverse('login'))
@@ -186,6 +187,17 @@ def more(request):
 	else:
 		return render(request,'more_info.html')
 
+
 def proposal(request):
-	return render(request, 'proposal.html')
+	if request.method == 'POST':
+		proposer = Person.objects.get(user=request.user)
+		title = request.POST['title']
+		content = request.POST['content']
+		game_type = request.POST['type_select']
+		game_cate = request.POST['cate_select']
+		Proposal.objects.create(proposer=proposer,title=title,content=content,game_type=game_type,game_cate=game_cate)
+		return redirect(reverse('home'))
+
+	else:
+		return render(request, 'proposal.html')
 

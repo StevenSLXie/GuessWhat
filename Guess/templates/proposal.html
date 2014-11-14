@@ -37,10 +37,10 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="标题" required />
+                                        <input type="text" class="form-control" placeholder="标题" name="title" required />
                                     </div>
                                     <div class="form-group">
-                                        <textarea class="form-control" placeholder="在此输入你的好点子" rows="8" required></textarea>
+                                        <textarea class="form-control" placeholder="在此输入你的好点子" rows="8" name="content" required></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -49,10 +49,10 @@
                                     <div class="form-group">
                                         <label for="category">
                                             话题类别</label>
-                                        <select class="form-control" id="category">
-                                            <option>体育</option>
-                                            <option>财经</option>
-                                            <option>其它</option>
+                                        <select class="form-control" name="type_select">
+                                            <option name="sports">体育</option>
+                                            <option name="finance">财经</option>
+                                            <option name="other_type">其它</option>
                                         </select>
                                     </div>
                                 </div>
@@ -61,10 +61,10 @@
                                     <div class="form-group">
                                         <label for="category">
                                             题型</label>
-                                        <select class="form-control" id="category">
-                                            <option>是非题</option>
-                                            <option>猜数字</option>
-                                            <option>其它</option>
+                                        <select class="form-control" name="cate_select">
+                                            <option name="yesorno">是非题</option>
+                                            <option name="number">猜数字</option>
+                                            <option name="other_cate">其它</option>
                                         </select>
                                     </div>
                                 </div>
