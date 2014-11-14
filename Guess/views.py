@@ -186,3 +186,6 @@ def more(request):
 	else:
 		return render(request,'more_info.html')
 
+def proposal(request):
+	return render(request, 'proposal.html')
+
