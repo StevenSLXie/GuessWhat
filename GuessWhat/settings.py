@@ -32,40 +32,47 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'Guess',
+	'django.contrib.admin',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.messages',
+	'django.contrib.staticfiles',
+	'Guess',
 	'bootstrap3',
 	'Guess.templatetags',
 	'south',
+	'djcelery',
+	'redis',
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'django.contrib.sessions.middleware.SessionMiddleware',
+	'django.middleware.common.CommonMiddleware',
+	'django.middleware.csrf.CsrfViewMiddleware',
+	'django.contrib.auth.middleware.AuthenticationMiddleware',
+	'django.contrib.messages.middleware.MessageMiddleware',
+	'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 ROOT_URLCONF = 'GuessWhat.urls'
 
 WSGI_APPLICATION = 'GuessWhat.wsgi.application'
 
+import djcelery
+djcelery.setup_loader()
+
+BROKER_URL = 'redis://localhost:6379/0'
+
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+	'default': {
+		'ENGINE': 'django.db.backends.sqlite3',
+		'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+	}
 }
 
 # Internationalization
@@ -88,6 +95,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR,  'templates'),
+	os.path.join(BASE_DIR,  'templates'),
 	os.path.join(BASE_DIR, 'Guess/templates'),
 )
