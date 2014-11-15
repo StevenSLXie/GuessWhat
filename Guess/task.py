@@ -1,5 +1,4 @@
 #coding:utf-8
-
 from __future__ import absolute_import
 from GuessWhat.celery import app
 import smtplib
@@ -35,6 +34,7 @@ def send_email():
 			 "MIME-Version: 1.0",
 			 "Content-Type: text/html"]
 	headers = "\r\n".join(headers)
+
 
 	session = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
 

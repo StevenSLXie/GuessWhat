@@ -8,6 +8,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
+from __future__ import absolute_import
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -59,10 +61,26 @@ ROOT_URLCONF = 'GuessWhat.urls'
 
 WSGI_APPLICATION = 'GuessWhat.wsgi.application'
 
+
 import djcelery
+from celery.schedules import crontab
+from datetime import timedelta
 djcelery.setup_loader()
 
 BROKER_URL = 'redis://localhost:6379/0'
+
+'''
+CELERYBEAT_SCHEDULE = {
+	'add-every-20-seconds': {
+		'task': 'Guess.task.send_email',
+		'schedule': timedelta(seconds=20),
+		'args': (),
+		'relative': True,
+	},
+}
+
+CELERY_TIMEZONE = 'UTC'
+'''
 
 
 # Database
