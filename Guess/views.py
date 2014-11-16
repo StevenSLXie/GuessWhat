@@ -162,12 +162,10 @@ def profile(request):
 				b.clear()
 		elif 'sell_win_bets' in request.POST:
 			for b in bets:
-				if b.side:
-					if b.game.price_home > b.price_at_buy:
-						b.clear()
-				else:
-					if b.game.price_away > b.price_at_buy:
-						b.clear()
+				if b.side and b.game.price_home > b.price_at_buy:
+					b.clear()
+				elif (not b.side) and b.game.price_away > b.price_at_buy:
+					b.clear()
 		else:
 			for b in bets:
 				if str(b.pk) in request.POST:
