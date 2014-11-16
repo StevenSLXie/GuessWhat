@@ -1,0 +1,5 @@
+{% for games in gamess%}
+{% for game in games%}
+ Hello {{game.name_home}}
+{% endfor %}
+{% endfor %}
