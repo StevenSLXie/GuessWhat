@@ -34,13 +34,5 @@ def send_email():
 	msg.send()
 
 	image_dir = '/Users/xingmanjie/Applications/Python/GuessWhat/Guess/static/images'
-'''
-	for f in os.listdir(image_dir):
-		fp = open(os.path.join(image_dir, f), 'rb')
-		msg_img = MIMEImage(fp.read())
-		fp.close()
-		msg_img.add_header('Content-ID', '<{}>'.format(f))
-		msg.attach_alternative(msg_img, 'images/gif')
-'''
 
 

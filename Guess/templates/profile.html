@@ -72,7 +72,7 @@ function on_submit(e) {
             {% if b.side %}
                 <div><p>您之前认为“{{ b.game.name_home }}”，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_home b.price_at_buy %}。</p></div>
             {% else %}
-                <div><p>您之前不认为“{{ b.game.name_away }}”，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_away b.price_at_buy %}。</p></div>
+                <div><p>您之前认为“{{ b.game.name_away }}”，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_away b.price_at_buy %}。</p></div>
             {% endif %}
         {% endif %}
         </div>
