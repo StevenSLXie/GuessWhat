@@ -201,3 +201,9 @@ def proposal(request):
 	else:
 		return render(request, 'proposal.html')
 
+
+def email(request):
+	games = Game.objects.filter(ended=False, is_primary=True).order_by('-event')
+	person = Person.objects.get(pk=1)
+	return render(request,'email2.html',{'person':person, 'games':games})
+
