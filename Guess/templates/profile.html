@@ -10,6 +10,7 @@
 .progress-bar-c1 {background: rgba(233, 137,119 , 1);}
 .progress-bar-c2 {background: rgba(255,196,140,1);}
 .button-clear{background: rgba(255,78,80,0.1);}
+.well-frame-c {background: rgba(252,248,227,1);}
 </style>
 
 
@@ -17,6 +18,11 @@
 <script>
 function on_submit(e) {
     if (confirm("确定结算？") == false)
+        e.preventDefault();
+}
+
+function on_sell_all(e) {
+    if (confirm("确定卖出所有投注？！一旦确定，则此操作不能取消！") == false)
         e.preventDefault();
 }
 </script>
@@ -40,10 +46,18 @@ function on_submit(e) {
     </div>
 </div>
 
+<form method="POST">
+<div class="container col-md-6 col-md-offset-3">
+    <div class = "row well-frame-c spacer">
+        <div>
+            <div class="col-md-1 col-md-offset-3"><input class="btn button-clear" type="submit" value="卖出所有投注" name="sell_all" onclick="on_sell_all(event)"/></div>
+        </div>
+     </div>
+</div>
 {% for b in bets %}
 
 <div class = "row">
-    <form method="POST">
+
     {% csrf_token %}
     <div class="col-md-6 col-md-offset-3">
         {% if b.game.game_type == "体育" %}
@@ -75,21 +89,15 @@ function on_submit(e) {
                 <div><p>您之前认为“{{ b.game.name_away }}”，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_away b.price_at_buy %}。</p></div>
             {% endif %}
         {% endif %}
+
         </div>
-        <div class="col-md-1 col-md-offset-5"><input class="btn button-clear" type="submit" value="现在结算" name="{{ b.pk }}" onclick="on_submit(event)"/></div>
-    </div>
-    </form>
-</div>
-
-
-<div class="row spacer">
-    <form method="POST">
-        {% csrf_token %}
-
-
-
-    </form>
+            <div class="col-md-1 col-md-offset-5"><input class="btn button-clear" type="submit" value="现在结算" name="{{ b.pk }}" onclick="on_submit(event)"/></div>
+        </div>
 
 </div>
+
+</form>
+
+
 
 {% endfor %}

@@ -157,10 +157,14 @@ def profile(request):
 		else:
 			b.clear()
 	if request.method == 'POST':
-		for b in bets:
-			if str(b.pk) in request.POST:
+		if 'sell_all' in request.POST:
+			for b in bets:
 				b.clear()
-				break
+		else:
+			for b in bets:
+				if str(b.pk) in request.POST:
+					b.clear()
+					break
 		return redirect(reverse('profile'))
 
 	else:
