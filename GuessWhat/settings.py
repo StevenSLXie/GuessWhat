@@ -46,6 +46,7 @@ INSTALLED_APPS = (
 	'south',
 	'djcelery',
 	'redis',
+	'notifications'
 )
 
 MIDDLEWARE_CLASSES = (

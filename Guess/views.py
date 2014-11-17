@@ -8,6 +8,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User
 from Guess.models import Person, Game, Betting, Proposal
 from algorithm.data_processing import price_change
+from notifications import notify
 
 
 # Create your views here.
@@ -172,6 +173,8 @@ def profile(request):
 				if str(b.pk) in request.POST:
 					b.clear()
 					break
+
+		notify.send(request.user, recipient=request.user, verb='cleared.')
 		return redirect(reverse('profile'))
 
 	else:
