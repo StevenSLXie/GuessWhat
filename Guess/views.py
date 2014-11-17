@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User
-from Guess.models import Person, Game, Betting, Proposal
+from Guess.models import Person, Game, Betting, Proposal, Message
 from algorithm.data_processing import price_change
 from notifications import notify
 
@@ -65,16 +65,15 @@ def home(request):
 
 	temps = Game.objects.filter(ended=False).order_by('-event','-is_primary')
 	gamess = game_choose_and_sort(temps)
+	cur_person = Person.objects.get(user=request.user)
 
 	if request.method == 'POST':
-		cur_person = Person.objects.get(user=request.user)
-
 		for cur_game in temps:
 			accept_bet(request,cur_person,cur_game)
 
 		return redirect(reverse('home'))
 	else:
-		return render(request, 'home.html', {'gamess': gamess})
+		return render(request, 'home.html', {'gamess': gamess, 'unread':cal_unread(cur_person)})
 
 
 def sports(request):
@@ -83,16 +82,17 @@ def sports(request):
 
 	temps = Game.objects.filter(ended=False,game_type='体育').order_by('-event','-is_primary')
 	gamess = game_choose_and_sort(temps)
+	cur_person = Person.objects.get(user=request.user)
 
 	if request.method == 'POST':
-		cur_person = Person.objects.get(user=request.user)
+
 
 		for cur_game in temps:
 			accept_bet(request,cur_person,cur_game)
 
 		return redirect(reverse('sports'))
 	else:
-		return render(request, 'home.html', {'gamess': gamess})
+		return render(request, 'home.html', {'gamess': gamess, 'unread':cal_unread(cur_person)})
 
 def finance(request):
 	if not request.user.is_authenticated():
@@ -100,16 +100,15 @@ def finance(request):
 
 	temps = Game.objects.filter(ended=False,game_type='财经').order_by('-event','-is_primary')
 	gamess = game_choose_and_sort(temps)
+	cur_person = Person.objects.get(user=request.user)
 
 	if request.method == 'POST':
-		cur_person = Person.objects.get(user=request.user)
-
 		for cur_game in temps:
 			accept_bet(request,cur_person,cur_game)
 
 		return redirect(reverse('finance'))
 	else:
-		return render(request, 'home.html', {'gamess': gamess})
+		return render(request, 'home.html', {'gamess': gamess, 'unread':cal_unread(cur_person)})
 
 def game_choose_and_sort(temps):
 	gamess = []
@@ -172,24 +171,29 @@ def profile(request):
 			for b in bets:
 				if str(b.pk) in request.POST:
 					b.clear()
+					Message.objects.create(owner=person, betting=b, verbal='cleared'+b.game.headline)
 					break
 
-		notify.send(request.user, recipient=request.user, verb='cleared.')
+
 		return redirect(reverse('profile'))
 
 	else:
 		person = Person.objects.get(user=request.user)
-		return render(request,'profile.html',{'person': person, 'bets': bets})
+		return render(request,'profile.html',{'person': person, 'bets': bets, 'unread':cal_unread(person)})
+
+def cal_unread(person):
+	messages = Message.objects.filter(owner=person)
+	return len(messages)
 
 
 def leaderboard(request):
 	if not request.user.is_authenticated():
 		return redirect(reverse('login'))
 
-	#persons = []
+	cur_person = Person.objects.get(user=request.user)
 	persons = Person.objects.all().order_by('-point','-win')
 	#persons.append(p)
-	return render(request,'leaderboard.html',{'persons':persons})
+	return render(request,'leaderboard.html',{'persons':persons, 'unread':cal_unread(cur_person)})
 
 
 def more(request):
@@ -203,8 +207,8 @@ def more(request):
 
 
 def proposal(request):
+	proposer = Person.objects.get(user=request.user)
 	if request.method == 'POST':
-		proposer = Person.objects.get(user=request.user)
 		title = request.POST['title']
 		content = request.POST['content']
 		game_type = request.POST['type_select']
@@ -213,7 +217,7 @@ def proposal(request):
 		return redirect(reverse('home'))
 
 	else:
-		return render(request, 'proposal.html')
+		return render(request, 'proposal.html',{'unread':cal_unread(proposer)})
 
 
 def email(request):

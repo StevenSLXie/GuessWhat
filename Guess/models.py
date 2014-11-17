@@ -96,5 +96,13 @@ class Proposal(models.Model):
 	content = models.TextField()
 
 
+class Message(models.Model):
+	owner = models.ForeignKey(Person)
+	betting = models.ForeignKey(Betting)
+	verbal = models.CharField(max_length=300)
+	read = models.BooleanField(default=False)
+
+
+
 
 

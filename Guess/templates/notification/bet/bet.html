@@ -1,3 +1,0 @@
-{% load i18n %}
-{% blocktrans with invitation.from_user as invitation_from_user %}<a href="{% url 'profile_detail' username=invitation.from_user.username%}">{{ invitation_from_user }}</a> has requested to add you as a friend (see <a href="{%  url 'invitations' %}">invitations</a>)
-{% endblocktrans %}
