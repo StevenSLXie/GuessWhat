@@ -1,26 +1,59 @@
 {% load bootstrap3 %}
+{% load profile_tag %}
 
 {% include "nav_bar.html" %}
 
 <style type='text/css'>
-.spacer {
-    margin-bottom: 30px;
-}
-.progress-bar-c1 {background: rgba(233, 137,119 , 1);}
-.progress-bar-c2 {background: rgba(255,196,140,1);}
-.well-frame-c {background: rgba(252,248,227,1);}
+    .spacer {
+        margin-bottom: 10px;
+    }
+    .progress-bar-c1 {background: rgba(233, 137,119 , 1);}
+    .progress-bar-c2 {background: rgba(255,196,140,1);}
+    .well-frame-c1 {background: rgba(252,248,227,1);}
+    .well-frame-c3 {background: rgba(247,228,190,1);}
+    .well-frame-c2 {background: rgba(252,157,154,0.7);}
+    .well-frame-c4 {background: rgba(229,237,184,1);}
+    .well-frame-c5 {background: rgba(244,250,210,1);}
+    .well-frame-c6 {background: rgba(255,237,144,1);}
+    .well-frame-c7 {background: rgba(255,254,223,1);}
+    .well-frame-c8 {background: rgba(218,200,235,1);}
+    .well-frame-c9 {background: rgba(224,228,204,1);}
+    .well-frame-c10 {background: rgba(131,175,155,1);}
 </style>
 
 {% for games in gamess %}
 
-<div class="well well-frame-c col-md-10 col-md-offset-1">
+
+{% if forloop.counter == 1 %}
+<div class="well well-frame-c1 col-md-6">
+{% elif forloop.counter == 2 %}
+<div class="well well-frame-c2 col-md-6">
+{% elif forloop.counter == 3 %}
+<div class="well well-frame-c3 col-md-6">
+{% elif forloop.counter == 4 %}
+<div class="well well-frame-c4 col-md-6">
+{% elif forloop.counter == 5 %}
+<div class="well well-frame-c5 col-md-6">
+{% elif forloop.counter == 6 %}
+<div class="well well-frame-c6 col-md-6">
+{% elif forloop.counter == 7 %}
+<div class="well well-frame-c7 col-md-6">
+{% elif forloop.counter == 8 %}
+<div class="well well-frame-c8 col-md-6">
+{% elif forloop.counter == 9 %}
+<div class="well well-frame-c9 col-md-6">
+{% elif forloop.counter == 10 %}
+<div class="well well-frame-c10 col-md-6">
+{% endif %}
 
 {% for game in games %}
 {% if forloop.first %}
 <div class = "row">
-    <div class="col-md-6 col-xs-6 col-lg-offset-3 col-md-offset-3 col-xs-offset-3 col-lg-offset-3">
+    <div class="col-md-10 col-md-offset-1">
         {% if game.game_type == "财经" %}
             <h4 class="text-center">{{ game.headline }}</h4>
+        {% elif game.game_type == "体育" %}
+            <h4 class="text-center">{{ game.name_home }} 对阵 {{ game.name_away }}，看好哪一方？</h4>
         {% endif %}
         <div class="progress">
             <div class="progress-bar progress-bar-c1" style="width: {{ game.price_home }}%">{{ game.price_home }}</div>
@@ -33,25 +66,23 @@
     <form method="POST">
         {% csrf_token %}
 
-         <div class="col-md-1 col-md-offset-4 spacer"><input class="btn progress-bar-c1" type="submit" value={{ game.name_home }} name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
-         <div class="col-md-1 col-md-offset-2 spacer"><input class="btn progress-bar-c2" type="submit" value={{ game.name_away }} name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
-         {% if game.game_type == "体育" %}
-         <p class="col-md-3 col-md-offset-4"><i class="glyphicon glyphicon-play"></i> 开球时间：{{ game.begin }}</p>
-         {% endif %}
-         <p class="col-md-3 col-md-offset-4"><i class="glyphicon glyphicon-stop"></i> 结束投注时间：{{ game.expire }}</p>
+         <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c1" type="submit" value={{ game.name_home }} name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
+         <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c2" type="submit" value={{ game.name_away }} name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
+
+         <p class="col-md-8 col-md-offset-2"><i class="glyphicon glyphicon-stop"></i> 结束投注时间：{{ game.expire }}</p>
          <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user"  data-for=".{{ game.pk }}">
                 <i class="glyphicon glyphicon-chevron-down text-muted"></i>
          </div>
 
         <div class="row user-infos {{ game.pk }}">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading ">
                         <h3 class="panel-title">更多投注</h3>
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class=" col-md-11">
+                            <div class=" col-md-12">
                                 <br>
                                 <table class="table table-user-information">
                                     <tbody>
@@ -64,7 +95,9 @@
                                             <div class="progress-bar progress-bar-c1" style="width: {{ game.price_home }}%"> {{ game.price_home }}</div>
                                             <div class="progress-bar progress-bar-c2" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
                                         </div>
-                                        <div class="row spacer">
+                                    </tr>
+                                    <tr>
+                                        <div class="row">
                                         {% if game.game_type == "体育" %}
                                         <div class="col-md-1 col-md-offset-1"><input class="btn progress-bar-c1" type="submit" value="同意" name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
                                         <div class="col-md-1 col-md-offset-4"><input class="btn progress-bar-c2" type="submit" value="不同意" name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
