@@ -3,10 +3,21 @@
 <link href='static/bootstrap/css/bootstrap.min.css' rel='stylesheet'>
 <title>盖世 - 向世界展示你的判断力</title>
 
+
+<style type='text/css'>
+    .spacer {
+        margin-bottom: 5px;
+    }
+    .progress-bar-c1 {background: rgba(233, 137,119 , 1);}
+    .progress-bar-c2 {background: rgba(255,196,140,1);}
+    .well-frame-c {background: rgba(252,248,227,1);}
+</style>
+
+
  <div class="container">
 
-        <div id="signupbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                    <div class="panel panel-info">
+        <div id="signupbox" style="margin-top:20px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-warning">
                         <div class="panel-heading">
                             <div class="panel-title">新用户注册</div>
 
@@ -46,8 +57,8 @@
 
                                 <div class="form-group">
                                     <!-- Button -->
-                                    <div class="col-md-offset-3 col-md-9">
-                                        <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp 提交</button>
+                                    <div class="col-md-offset-3 col-md-9 spacer">
+                                        <button id="btn-signup" type="submit" class="btn well-frame-c">提交</button>
 
                                     </div>
                                 </div>
@@ -59,9 +70,34 @@
                             </form>
                          </div>
                     </div>
-
-
-
-
          </div>
+
+        <div class="well well-frame-c col-md-6 col-xs-6 col-lg-offset-3 col-md-offset-3 col-xs-offset-3 col-lg-offset-3">
+        {% if game.game_type == "财经" %}
+            <h4 class="text-center">{{ game.headline }}</h4>
+        {% elif game.game_type == "体育" %}
+            <h4 class="text-center">今晚，{{ game.name_home }} 对阵 {{ game.name_away }}，看好哪一方？</h4>
+        {% endif %}
+            <div class="progress">
+                <div class="progress-bar progress-bar-c1" style="width: {{ game.price_home }}%">{{ game.price_home }}</div>
+                <div class="progress-bar progress-bar-c2" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
+            </div>
+
+
+            <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c1" type="submit" value={{ game.name_home }} name="h:{{ game.pk }}" onclick="on_submit(1)"/></div>
+            <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c2" type="submit" value={{ game.name_away }} name="a:{{ game.pk }}" onclick="on_submit(2)"/></div>
+        </div>
     </div>
+
+
+<script>
+    function on_submit(y) {
+        if(y==1){
+            alert('哈哈！有{{ game.num_away }}人与你意见不一！注册个账号去看个究竟吧。');
+        }
+        else{
+            alert('哈哈！有{{ game.num_home }}人与你意见不一！注册个账号去看个究竟吧。');
+        }
+}
+
+</script>

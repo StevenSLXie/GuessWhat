@@ -40,6 +40,7 @@ def logout(request):
 
 def signup(request):
 
+	game = Game.objects.get(pk=2)
 
 	if request.method == 'POST':
 		if (not request.POST['email']) or (not request.POST['username']) or (not request.POST['password']) or (not request.POST['password_confirm']):
@@ -54,7 +55,7 @@ def signup(request):
 		auth_login(request,user)
 		return redirect(reverse('home'))
 	else:
-		return render(request,'signup.html')
+		return render(request,'signup.html',{'game':game})
 
 
 def home(request):
