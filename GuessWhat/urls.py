@@ -20,6 +20,6 @@ urlpatterns = patterns('',
 	url(r'^logout','Guess.views.logout', name='logout'),
 	url(r'^proposal$', 'Guess.views.proposal', name='proposal'),
 	url(r'^email$', 'Guess.views.email', name='email'),
-	url('^inbox/notifications/', include(notifications.urls)),
+	url(r'^inbox$', 'Guess.views.inbox', name='inbox'),
 	# url(r'^user/(?P<index>\d+)/$', 'Guess.views.user_profile', name='user_profile'), # \w+
 )

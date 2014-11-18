@@ -272,3 +272,9 @@ def email(request):
 	person = Person.objects.get(pk=1)
 	return render(request,'email2.html',{'person':person, 'games':games})
 
+def inbox(request):
+	para = {}
+	person = Person.objects.get(user=request.user)
+
+	para = encap_para(para, person)
+	return render(request, 'inbox.html', para)
