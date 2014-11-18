@@ -58,6 +58,11 @@ def signup(request):
 	else:
 		return render(request,'signup.html',{'game':game})
 
+def marked_all_as_read(person):
+	for m in Message.objects.filter(owner=person, read=False):
+		m.read = True
+		m.save()
+
 
 def home(request):
 	if not request.user.is_authenticated():
@@ -68,12 +73,18 @@ def home(request):
 	cur_person = Person.objects.get(user=request.user)
 
 	if request.method == 'POST':
+		if 'marked_all_as_read' in request.POST:
+			marked_all_as_read(cur_person)
+
 		for cur_game in temps:
 			accept_bet(request,cur_person,cur_game)
 
 		return redirect(reverse('home'))
 	else:
-		return render(request, 'home.html', {'gamess': gamess, 'unread':cal_unread(cur_person)})
+		para = {}
+		para['gamess'] = gamess
+		para = encap_para(para, cur_person)
+		return render(request, 'home.html', para)
 
 
 def sports(request):
@@ -85,14 +96,18 @@ def sports(request):
 	cur_person = Person.objects.get(user=request.user)
 
 	if request.method == 'POST':
-
+		if 'marked_all_as_read' in request.POST:
+			marked_all_as_read(cur_person)
 
 		for cur_game in temps:
 			accept_bet(request,cur_person,cur_game)
 
 		return redirect(reverse('sports'))
 	else:
-		return render(request, 'home.html', {'gamess': gamess, 'unread':cal_unread(cur_person)})
+		para = {}
+		para['gamess'] = gamess
+		para = encap_para(para, cur_person)
+		return render(request, 'home.html', para)
 
 def finance(request):
 	if not request.user.is_authenticated():
@@ -103,12 +118,18 @@ def finance(request):
 	cur_person = Person.objects.get(user=request.user)
 
 	if request.method == 'POST':
+		if 'marked_all_as_read' in request.POST:
+			marked_all_as_read(cur_person)
+
 		for cur_game in temps:
 			accept_bet(request,cur_person,cur_game)
 
 		return redirect(reverse('finance'))
 	else:
-		return render(request, 'home.html', {'gamess': gamess, 'unread':cal_unread(cur_person)})
+		para = {}
+		para['gamess'] = gamess
+		para = encap_para(para, cur_person)
+		return render(request, 'home.html', para)
 
 def game_choose_and_sort(temps):
 	gamess = []
@@ -158,15 +179,21 @@ def profile(request):
 		else:
 			b.clear()
 	if request.method == 'POST':
+		if 'marked_all_as_read' in request.POST:
+			marked_all_as_read(person)
+
 		if 'sell_all' in request.POST:
 			for b in bets:
 				b.clear()
+				Message.objects.create(owner=person, betting=b, verbal='cleared'+b.game.headline)
 		elif 'sell_win_bets' in request.POST:
 			for b in bets:
 				if b.side and b.game.price_home > b.price_at_buy:
 					b.clear()
+					Message.objects.create(owner=person, betting=b, verbal='cleared'+b.game.headline)
 				elif (not b.side) and b.game.price_away > b.price_at_buy:
 					b.clear()
+					Message.objects.create(owner=person, betting=b, verbal='cleared'+b.game.headline)
 		else:
 			for b in bets:
 				if str(b.pk) in request.POST:
@@ -179,11 +206,17 @@ def profile(request):
 
 	else:
 		person = Person.objects.get(user=request.user)
-		return render(request,'profile.html',{'person': person, 'bets': bets, 'unread':cal_unread(person)})
 
-def cal_unread(person):
-	messages = Message.objects.filter(owner=person)
-	return len(messages)
+		para = {}
+		para['person'] = person
+		para['bets'] = bets
+		para = encap_para(para, person)
+
+		return render(request,'profile.html', para)
+
+def find_unread(person):
+	return Message.objects.filter(owner=person, read=False)
+
 
 
 def leaderboard(request):
@@ -192,8 +225,11 @@ def leaderboard(request):
 
 	cur_person = Person.objects.get(user=request.user)
 	persons = Person.objects.all().order_by('-point','-win')
-	#persons.append(p)
-	return render(request,'leaderboard.html',{'persons':persons, 'unread':cal_unread(cur_person)})
+
+	para = {}
+	para['persons'] = persons
+	para = encap_para(para, cur_person)
+	return render(request,'leaderboard.html',para)
 
 
 def more(request):
@@ -209,6 +245,8 @@ def more(request):
 def proposal(request):
 	proposer = Person.objects.get(user=request.user)
 	if request.method == 'POST':
+		if 'marked_all_as_read' in request.POST:
+			marked_all_as_read(proposer)
 		title = request.POST['title']
 		content = request.POST['content']
 		game_type = request.POST['type_select']
@@ -217,7 +255,16 @@ def proposal(request):
 		return redirect(reverse('home'))
 
 	else:
-		return render(request, 'proposal.html',{'unread':cal_unread(proposer)})
+		para = {}
+		para = encap_para(para,proposer)
+		return render(request, 'proposal.html', para)
+
+
+def encap_para(para,person):
+	messages = find_unread(person)
+	para['unread'] = len(messages)
+	para['messages'] = messages
+	return para
 
 
 def email(request):
