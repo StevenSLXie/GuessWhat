@@ -36,3 +36,12 @@ def send_email():
 	image_dir = '/Users/xingmanjie/Applications/Python/GuessWhat/Guess/static/images'
 
 
+@app.task
+def ranking():
+	persons = Person.objects.all().order_by('-point','-win')
+	i = 1
+	for p in persons:
+		p.rank = i
+		p.save()
+		i += 1
+

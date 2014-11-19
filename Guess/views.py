@@ -224,7 +224,7 @@ def leaderboard(request):
 		return redirect(reverse('login'))
 
 	cur_person = Person.objects.get(user=request.user)
-	persons = Person.objects.all().order_by('-point','-win')
+	persons = Person.objects.all().order_by('rank','-point','-win')
 
 	para = {}
 	para['persons'] = persons
