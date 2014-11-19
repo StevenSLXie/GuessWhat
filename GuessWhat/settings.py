@@ -70,18 +70,12 @@ djcelery.setup_loader()
 
 BROKER_URL = 'redis://localhost:6379/0'
 
-'''
-CELERYBEAT_SCHEDULE = {
-	'add-every-20-seconds': {
-		'task': 'Guess.task.send_email',
-		'schedule': timedelta(seconds=20),
-		'args': (),
-		'relative': True,
-	},
-}
 
-CELERY_TIMEZONE = 'UTC'
-'''
+
+CELERYBEAT_SCHEDULE = 'djcelery.schedulers.DatabaseScheduler'
+
+CELERY_TIMEZONE = 'Asia/Shanghai'
+
 
 
 # Database
@@ -99,7 +93,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
