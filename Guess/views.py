@@ -63,12 +63,14 @@ def marked_all_as_read(person):
 		m.read = True
 		m.save()
 
-
-def home(request):
+def render_main(request, url, game_type=None):
 	if not request.user.is_authenticated():
 		return redirect(reverse('login'))
 
-	temps = Game.objects.filter(ended=False).order_by('-event','-is_primary')
+	if game_type is None:
+		temps = Game.objects.filter(ended=False).order_by('-event','-is_primary')
+	else:
+		temps = Game.objects.filter(ended=False,game_type=game_type).order_by('-event','-is_primary')
 	gamess = game_choose_and_sort(temps)
 	cur_person = Person.objects.get(user=request.user)
 
@@ -79,57 +81,25 @@ def home(request):
 		for cur_game in temps:
 			accept_bet(request,cur_person,cur_game)
 
-		return redirect(reverse('home'))
+		return redirect(reverse(url))
 	else:
 		para = {}
 		para['gamess'] = gamess
 		para = encap_para(para, cur_person)
 		return render(request, 'home.html', para)
+
+
+
+def home(request):
+	return render_main(request, 'home')
 
 
 def sports(request):
-	if not request.user.is_authenticated():
-		return redirect(reverse('login'))
+	return render_main(request, 'sports', '体育')
 
-	temps = Game.objects.filter(ended=False,game_type='体育').order_by('-event','-is_primary')
-	gamess = game_choose_and_sort(temps)
-	cur_person = Person.objects.get(user=request.user)
-
-	if request.method == 'POST':
-		if 'marked_all_as_read' in request.POST:
-			marked_all_as_read(cur_person)
-
-		for cur_game in temps:
-			accept_bet(request,cur_person,cur_game)
-
-		return redirect(reverse('sports'))
-	else:
-		para = {}
-		para['gamess'] = gamess
-		para = encap_para(para, cur_person)
-		return render(request, 'home.html', para)
 
 def finance(request):
-	if not request.user.is_authenticated():
-		return redirect(reverse('login'))
-
-	temps = Game.objects.filter(ended=False,game_type='财经').order_by('-event','-is_primary')
-	gamess = game_choose_and_sort(temps)
-	cur_person = Person.objects.get(user=request.user)
-
-	if request.method == 'POST':
-		if 'marked_all_as_read' in request.POST:
-			marked_all_as_read(cur_person)
-
-		for cur_game in temps:
-			accept_bet(request,cur_person,cur_game)
-
-		return redirect(reverse('finance'))
-	else:
-		para = {}
-		para['gamess'] = gamess
-		para = encap_para(para, cur_person)
-		return render(request, 'home.html', para)
+	return render_main(request, 'finance', '财经')
 
 def game_choose_and_sort(temps):
 	gamess = []
