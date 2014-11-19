@@ -17,7 +17,14 @@ app.conf.update(
 		'task': 'GuessWhat.task.ranking',
 		'schedule': timedelta(seconds=30),
 		'args': ()
-	},}
+	},
+						 'sending-to-inbox': {
+		'task': 'GuessWhat.task.send_profile_to_inbox',
+		'schedule': timedelta(seconds=20),
+		'args': ()
+	},
+
+						 }
 )
 
 if __name__ == '__main__':

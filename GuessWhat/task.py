@@ -3,11 +3,10 @@ from __future__ import absolute_import
 from GuessWhat.celery import app
 from django.template.loader import get_template
 from django.template import Context
-from Guess.models import Game, Person
+from Guess.models import Game, Person, Message, Betting
 from django.core.mail import EmailMultiAlternatives
 from django.utils.encoding import smart_text
-from email.mime.image import MIMEImage
-import os
+from datetime import datetime
 
 
 @app.task
@@ -38,10 +37,35 @@ def send_email():
 
 @app.task
 def ranking():
+	# tested
 	persons = Person.objects.all().order_by('-point','-win')
 	i = 1
 	for p in persons:
 		p.rank = i
 		p.save()
 		i += 1
+
+
+@app.task
+def detect_ended_game():
+	# need testing in the future
+	games = Game.objects.filter(ended = False).order_by('expire')
+	now = datetime.now()
+	for g in games:
+		if g.expire > now:
+			break
+		else:
+			g.ended = True
+			g.save()
+
+
+@app.task
+def send_profile_to_inbox():
+	# tested
+	persons = Person.objects.all()
+	betting = Betting.objects.get(pk=2)  # just a workaround
+	for p in persons:
+		Message.objects.create(owner=p, betting=betting, verbal='你目前的积分是'+str(p.point)+'分, 排名是第'+str(p.rank))
+
+
 
