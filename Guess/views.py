@@ -272,9 +272,20 @@ def email(request):
 	person = Person.objects.get(pk=1)
 	return render(request,'email2.html',{'person':person, 'games':games})
 
+
 def inbox(request):
 	para = {}
 	person = Person.objects.get(user=request.user)
+	messages = Message.objects.filter(owner=person, read=False)
+	if request.method == "POST":
+		if 'marked_all_as_read' in request.POST:
+			marked_all_as_read(person)
+		else:
+			for m in messages:
+				if str(m.pk) in request.POST:
+					m.read = True
+					m.save()
+					break
 
 	para = encap_para(para, person)
 	return render(request, 'inbox.html', para)

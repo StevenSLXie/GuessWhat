@@ -6,8 +6,8 @@
     .spacer {
         margin-bottom: 20px;
     }
-    .button-clear{background: rgba(255,78,80,0.1);}
-    .well-frame-c {background: rgba(252,248,227,1);}
+    .marked_all_as_read {background: rgba(252,248,227,1);}
+
 </style>
 
 <script>
@@ -23,18 +23,25 @@
 
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <div class="container col-md-6 col-md-offset-3">
+    <form method="POST">
 	<div class="panel panel-warning">
         <div class="panel-heading">
             <h3 class="panel-title">未读信息</h3>
         </div>
         <ul class="list-group">
+
+            {% csrf_token %}
             {% for m in messages %}
             <li class="list-group-item">
                 <div class="row toggle" id="dropdown-detail-{{ m.pk }}" data-toggle="detail-{{ m.pk }}">
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                         {{ m.betting.game.headline }}:{{ m.betting.game.name_home }} 还是 {{ m.betting.game.name_away }}
                     </div>
+
                     <div class="col-md-2"><i class="fa fa-chevron-down pull-right"></i></div>
+                    <div class="col-md-2">
+                        <input class="btn marked_all_as_read" type="submit" value="已读" name="{{ m.pk }}"/>
+                    </div>
                 </div>
                 <div id="detail-{{ m.pk }}">
                     <hr></hr>
@@ -45,6 +52,11 @@
             </li>
             {% endfor %}
 
+
         </ul>
 	</div>
+    <div class="col-md-2 col-md-offset-4">
+        <button class="btn marked_all_as_read" type="submit" name="marked_all_as_read">全部标为已读</button>
+    </div>
+    </form>
 </div>

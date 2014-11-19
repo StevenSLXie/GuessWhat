@@ -9,7 +9,7 @@
     }
     .progress-bar-c1 {background: rgba(233, 137,119 , 1);}
     .progress-bar-c2 {background: rgba(255,196,140,1);}
-    .well-frame-c1 {background: rgba(252,248,227,1);}
+    .well-frame-c1 {background: rgba(252,248,227,0.5);}
     .well-frame-c2 {background: rgba(247,228,190,1);}
     .well-frame-c7 {background: rgba(252,157,154,0.7);}
     .well-frame-c3 {background: rgba(229,237,184,1);}
@@ -27,23 +27,23 @@
 {% if forloop.counter == 1 %}
 <div class="well well-frame-c1 col-md-6">
 {% elif forloop.counter == 2 %}
-<div class="well well-frame-c2 col-md-6">
+<div class="well well-frame-c1 col-md-6">
 {% elif forloop.counter == 3 %}
-<div class="well well-frame-c3 col-md-6">
+<div class="well well-frame-c1 col-md-6">
 {% elif forloop.counter == 4 %}
-<div class="well well-frame-c4 col-md-6">
+<div class="well well-frame-c1 col-md-6">
 {% elif forloop.counter == 5 %}
-<div class="well well-frame-c5 col-md-6">
+<div class="well well-frame-c1 col-md-6">
 {% elif forloop.counter == 6 %}
-<div class="well well-frame-c6 col-md-6">
+<div class="well well-frame-c1 col-md-6">
 {% elif forloop.counter == 7 %}
-<div class="well well-frame-c7 col-md-6">
+<div class="well well-frame-c1 col-md-6">
 {% elif forloop.counter == 8 %}
-<div class="well well-frame-c8 col-md-6">
+<div class="well well-frame-c1 col-md-6">
 {% elif forloop.counter == 9 %}
-<div class="well well-frame-c9 col-md-6">
+<div class="well well-frame-c1 col-md-6">
 {% elif forloop.counter == 10 %}
-<div class="well well-frame-c10 col-md-6">
+<div class="well well-frame-c1 col-md-6">
 {% endif %}
 
 {% for game in games %}
