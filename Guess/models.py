@@ -103,6 +103,15 @@ class Message(models.Model):
 	verbal = models.CharField(max_length=300)
 	read = models.BooleanField(default=False)
 
+class History(models.Model):
+	# the historical price of a game, the home side price, the away side is just 100-home
+	cur_price = models.FloatField()
+	cur_time = models.DateTimeField()
+	game = models.ForeignKey(Game)
+
+
+
+
 
 
 
