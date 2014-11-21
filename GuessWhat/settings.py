@@ -24,7 +24,11 @@ os.path.join(BASE_DIR,'Guess/templatetags')
 SECRET_KEY = '=cx=bkx2=-d1ht0=hy-lus+4u!#9($x5*r0=9#798%r+h@-=#u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+import socket
+if socket.gethostname() == 'XINGs-MacBook-Pro.local':
+	DEBUG = True
+else:
+	DEBUG = False
 
 TEMPLATE_DEBUG = True
 
@@ -105,6 +109,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
+if socket.gethostname() is not 'XINGs-MacBook-Pro.local':
+	STATIC_ROOT = '/opt/myenv/static/'
 STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (
