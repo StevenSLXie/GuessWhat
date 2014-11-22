@@ -21,6 +21,8 @@
     .well-frame-c10 {background: rgba(131,175,155,1);}
 </style>
 
+<body>
+
 {% for games in gamess %}
 
 
@@ -131,6 +133,9 @@
 
 {% endfor %}
 
+{% include "footer.html" %}
+
+</body>
 <script>
 $(document).ready(function() {
     var panels = $('.user-infos');
