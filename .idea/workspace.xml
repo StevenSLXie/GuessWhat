@@ -4,9 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/Guess/templates/home.html" line="167" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7bea3e3-1277-4e1b-acfb-758256ad8cac" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-    </list>
+    <list default="true" id="c7bea3e3-1277-4e1b-acfb-758256ad8cac" name="Default" comment="" />
     <ignored path="GuessWhat.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
