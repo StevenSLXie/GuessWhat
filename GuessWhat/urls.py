@@ -10,7 +10,7 @@ urlpatterns = patterns('',
 
 	url(r'^admin/', include(admin.site.urls)),
 	url(r'^$', 'Guess.views.login', name='login'),
-	url(r'^signup', 'Guess.views.signup', name='signup'),
+	url(r'^signup$', 'Guess.views.signup', name='signup'),
 	url(r'^home$', 'Guess.views.home', name='home'),
 	url(r'^sports$', 'Guess.views.sports', name='sports'),
 	url(r'^finance$', 'Guess.views.finance', name='finance'),

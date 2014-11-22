@@ -48,6 +48,9 @@ def signup(request):
 	if request.method == 'POST':
 		if 'shuffle' in request.POST:
 			return render(request, 'signup.html')
+		#if 'i_have_an_account' in request.POST:
+		#	print 1
+		#	render(request, 'signup_login.html')
 		if (not request.POST['email']) or (not request.POST['username']) or (not request.POST['password']) or (not request.POST['password_confirm']):
 			return render(request, 'signup.html')
 		elif request.POST['password'] != request.POST['password_confirm']:
