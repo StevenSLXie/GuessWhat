@@ -8,7 +8,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User
 from Guess.models import Person, Game, Betting, Proposal, Message
 from algorithm.data_processing import price_change
-from notifications import notify
+import random
 
 
 # Create your views here.
@@ -41,13 +41,17 @@ def logout(request):
 
 def signup(request):
 
-	game = Game.objects.get(pk=2)
+	games = Game.objects.filter(ended=False, is_primary=1)
+	r = random.randint(0,len(games)-1)
+	game = games[r]
 
 	if request.method == 'POST':
+		if 'shuffle' in request.POST:
+			return render(request, 'signup.html')
 		if (not request.POST['email']) or (not request.POST['username']) or (not request.POST['password']) or (not request.POST['password_confirm']):
-			return render(request,'signup.html')
+			return render(request, 'signup.html')
 		elif request.POST['password'] != request.POST['password_confirm']:
-			return render(request,'signup.html')
+			return render(request, 'signup.html')
 
 		User.objects.create_user(request.POST['username'],request.POST['email'],request.POST['password'])
 		cur_user = User.objects.get(username=request.POST['username'])
@@ -56,7 +60,7 @@ def signup(request):
 		auth_login(request,user)
 		return redirect(reverse('home'))
 	else:
-		return render(request,'signup.html',{'game':game})
+		return render(request,'signup.html', {'game':game})
 
 def marked_all_as_read(person):
 	for m in Message.objects.filter(owner=person, read=False):

@@ -6,7 +6,7 @@
 
 <style type='text/css'>
     .spacer {
-        margin-bottom: 5px;
+        margin-bottom: 10px;
     }
     .progress-bar-c1 {background: rgba(233, 137,119 , 1);}
     .progress-bar-c2 {background: rgba(255,196,140,1);}
@@ -19,7 +19,7 @@
         <div id="signupbox" style="margin-top:20px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                     <div class="panel panel-warning">
                         <div class="panel-heading">
-                            <div class="panel-title">新用户注册</div>
+                            <div class="panel-title">盖世 新用户注册</div>
 
                         </div>
                         <div class="panel-body" >
@@ -58,7 +58,7 @@
                                 <div class="form-group">
                                     <!-- Button -->
                                     <div class="col-md-offset-3 col-md-9 spacer">
-                                        <button id="btn-signup" type="submit" class="btn well-frame-c">提交</button>
+                                        <button id="btn-signup" type="submit" class="btn well-frame-c">注册</button>
 
                                     </div>
                                 </div>
@@ -83,9 +83,13 @@
                 <div class="progress-bar progress-bar-c2" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
             </div>
 
-
+            <form>
+                {% csrf_token %}
             <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c1" type="submit" value={{ game.name_home }} name="h:{{ game.pk }}" onclick="on_submit(1)"/></div>
             <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c2" type="submit" value={{ game.name_away }} name="a:{{ game.pk }}" onclick="on_submit(2)"/></div>
+            <div class="col-md-1 col-md-offset-4 spacer"><input class="btn btn-success" type="submit" value="我要猜别的话题" name="shuffle"/></div>
+
+            </form>
         </div>
     </div>
 
@@ -93,10 +97,10 @@
 <script>
     function on_submit(y) {
         if(y==1){
-            alert('哈哈！有{{ game.num_away }}人与你意见不一！注册个账号去看个究竟吧。');
+            alert('有{{ game.num_away }}个盖世用户与你意见不一！注册个账号去看个究竟吧。');
         }
         else{
-            alert('哈哈！有{{ game.num_home }}人与你意见不一！注册个账号去看个究竟吧。');
+            alert('有{{ game.num_home }}个盖世用户与你意见不一！注册个账号去看个究竟吧。');
         }
 }
 
