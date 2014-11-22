@@ -40,6 +40,8 @@ def logout(request):
 
 
 def signup(request):
+	if request.user.is_authenticated():
+		return redirect(reverse('home'))
 
 	games = Game.objects.filter(ended=False, is_primary=1)
 	r = random.randint(0,len(games)-1)
