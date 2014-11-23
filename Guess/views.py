@@ -91,7 +91,7 @@ def render_main(request, url, game_type=None):
 		for cur_game in temps:
 			accept_bet(request, cur_person, cur_game)
 
-		return redirect(reverse(url))
+		return redirect(reverse(url)+'#success')
 	else:
 		para = {}
 		para['gamess'] = gamess

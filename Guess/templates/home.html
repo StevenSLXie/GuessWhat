@@ -22,158 +22,150 @@
 </style>
 
 <body>
-
-{% for games in gamess %}
-
-
-{% if forloop.counter == 1 %}
-<div class="well well-frame-c1 col-md-6 col-md-offset-3">
-{% elif forloop.counter == 2 %}
-<div class="well well-frame-c1 col-md-6 col-md-offset-3">
-{% elif forloop.counter == 3 %}
-<div class="well well-frame-c1 col-md-6 col-md-offset-3">
-{% elif forloop.counter == 4 %}
-<div class="well well-frame-c1 col-md-6 col-md-offset-3">
-{% elif forloop.counter == 5 %}
-<div class="well well-frame-c1 col-md-6 col-md-offset-3">
-{% elif forloop.counter == 6 %}
-<div class="well well-frame-c1 col-md-6 col-md-offset-3">
-{% elif forloop.counter == 7 %}
-<div class="well well-frame-c1 col-md-6 col-md-offset-3">
-{% elif forloop.counter == 8 %}
-<div class="well well-frame-c1 col-md-6 col-md-offset-3">
-{% elif forloop.counter == 9 %}
-<div class="well well-frame-c1 col-md-6 col-md-offset-3">
-{% elif forloop.counter == 10 %}
-<div class="well well-frame-c1 col-md-6 col-md-offset-3">
-{% endif %}
-
-{% for game in games %}
-{% if forloop.first %}
-<div class = "row">
-    <div class="col-md-10 col-md-offset-1">
-        {% if game.game_type == "财经" %}
-            <h4 class="text-center">{{ game.headline }}</h4>
-        {% elif game.game_type == "体育" %}
-            <h4 class="text-center">{{ game.name_home }} 对阵 {{ game.name_away }}，看好哪一方？</h4>
-        {% endif %}
-        <div class="progress">
-            <div class="progress-bar progress-bar-c1" style="width: {{ game.price_home }}%">{{ game.price_home }}</div>
-            <div class="progress-bar progress-bar-c2" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
+    <div class="col-md-6 col-md-offset-3">
+        <div class="alert alert-warning alert-dismissible" role="alert" id="alert" data-dismiss="alert">
+            <button type="button" href="{% url 'home' %}" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong>投注成功！</strong> 你可以到<a href="{% url 'profile' %}">我的猜测</a>里查看你的当前投注。
         </div>
     </div>
-</div>
 
-<div class="row">
-    <form method="POST">
-        {% csrf_token %}
+    {% for games in gamess %}
 
-         <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c1" type="submit" value={{ game.name_home }} name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
-         <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c2" type="submit" value={{ game.name_away }} name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
 
-         <p class="col-md-8 col-md-offset-2"><i class="glyphicon glyphicon-stop"></i> 结束投注时间：{{ game.expire }}</p>
-         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user"  data-for=".{{ game.pk }}">
-                <i class="glyphicon glyphicon-chevron-down text-muted"></i>
-         </div>
+    <div class="well well-frame-c1 col-md-6 col-md-offset-3">
 
-        <div class="row user-infos {{ game.pk }}">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading ">
-                        <h3 class="panel-title">更多投注</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class=" col-md-12">
-                                <br>
-                                <table class="table table-user-information">
-                                    <tbody>
-                                    {% else %}
-
-                                    <tr>
-                                        <p class="text-center">{{ game.headline }}</p>
-
-                                         <div class="progress">
-                                            <div class="progress-bar progress-bar-c1" style="width: {{ game.price_home }}%"> {{ game.price_home }}</div>
-                                            <div class="progress-bar progress-bar-c2" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
-                                        </div>
-                                    </tr>
-                                    <tr>
-                                        <div class="row">
-                                        {% if game.game_type == "体育" %}
-                                        <div class="col-md-1 col-md-offset-1"><input class="btn progress-bar-c1" type="submit" value="同意" name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
-                                        <div class="col-md-1 col-md-offset-4"><input class="btn progress-bar-c2" type="submit" value="不同意" name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
-                                        {% elif game.game_type == "财经" %}
-                                        <div class="col-md-1 col-md-offset-1"><input class="btn progress-bar-c1" type="submit" value="{{ game.name_home }}" name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
-                                        <div class="col-md-1 col-md-offset-4"><input class="btn progress-bar-c2" type="submit" value="{{ game.name_away }}" name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
-                                        {% endif %}
-                                        </div>
-                                    </tr>
-                                    {% endif %}
-{% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+    {% for game in games %}
+    {% if forloop.first %}
+    <div class = "row">
+        <div class="col-md-10 col-md-offset-1">
+            {% if game.game_type == "财经" %}
+                <h4 class="text-center">{{ game.headline }}</h4>
+            {% elif game.game_type == "体育" %}
+                <h4 class="text-center">{{ game.name_home }} 对阵 {{ game.name_away }}，看好哪一方？</h4>
+            {% endif %}
+            <div class="progress">
+                <div class="progress-bar progress-bar-c1" style="width: {{ game.price_home }}%">{{ game.price_home }}</div>
+                <div class="progress-bar progress-bar-c2" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
             </div>
         </div>
+    </div>
+
+    <div class="row">
+        <form method="POST">
+            {% csrf_token %}
+
+             <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c1" type="submit" value={{ game.name_home }} name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
+             <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c2" type="submit" value={{ game.name_away }} name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
+
+             <p class="col-md-8 col-md-offset-3"><i class="glyphicon glyphicon-stop"></i> 结束投注时间：{{ game.expire | date:"y-m-d h:m:s" }}</p>
+             <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user"  data-for=".{{ game.pk }}">
+                    <i class="glyphicon glyphicon-chevron-down text-muted"></i>
+             </div>
+
+            <div class="row user-infos {{ game.pk }}">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading ">
+                            <h3 class="panel-title">更多投注</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class=" col-md-12">
+                                    <br>
+                                    <table class="table table-user-information">
+                                        <tbody>
+                                        {% else %}
+
+                                        <tr>
+                                            <p class="text-center">{{ game.headline }}</p>
+
+                                             <div class="progress">
+                                                <div class="progress-bar progress-bar-c1" style="width: {{ game.price_home }}%"> {{ game.price_home }}</div>
+                                                <div class="progress-bar progress-bar-c2" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
+                                            </div>
+                                        </tr>
+                                        <tr>
+                                            <div class="row">
+                                            {% if game.game_type == "体育" %}
+                                            <div class="col-md-1 col-md-offset-1"><input class="btn progress-bar-c1" type="submit" value="同意" name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
+                                            <div class="col-md-1 col-md-offset-4"><input class="btn progress-bar-c2" type="submit" value="不同意" name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
+                                            {% elif game.game_type == "财经" %}
+                                            <div class="col-md-1 col-md-offset-1"><input class="btn progress-bar-c1" type="submit" value="{{ game.name_home }}" name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
+                                            <div class="col-md-1 col-md-offset-4"><input class="btn progress-bar-c2" type="submit" value="{{ game.name_away }}" name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
+                                            {% endif %}
+                                            </div>
+                                        </tr>
+                                        {% endif %}
+    {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
 
 
-    </form>
+        </form>
 
-</div>
-
-
-</div>
+    </div>
 
 
-{% endfor %}
+    </div>
 
-{% include "footer.html" %}
+
+    {% endfor %}
+
+    {% include "footer.html" %}
 
 </body>
 <script>
-$(document).ready(function() {
-    var panels = $('.user-infos');
-    var panelsButton = $('.dropdown-user');
-    panels.hide();
+    $(document).ready(function() {
 
-    //Click dropdown
+        var panels = $('.user-infos');
+        var panelsButton = $('.dropdown-user');
+        panels.hide();
 
-    panelsButton.click(function() {
-        //get data-for attribute
-        var dataFor = $(this).attr('data-for');
-        var idFor = $(dataFor);
+        $(".close").click(function(){
+            $(".alert").hide();
+        });
 
-        //current button
-        var currentButton = $(this);
-        idFor.slideToggle(1, function() {
-            //Completed slidetoggle
-            if(idFor.is(':visible'))
-            {
-                currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
-            }
-            else
-            {
-                currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
-            }
-        })
+        if (document.URL.indexOf('#success') == -1)
+            $('.alert').hide()
+
+        panelsButton.click(function() {
+            //get data-for attribute
+            var dataFor = $(this).attr('data-for');
+            var idFor = $(dataFor);
+
+            //current button
+            var currentButton = $(this);
+            idFor.slideToggle(1, function() {
+                if(idFor.is(':visible'))
+                {
+                    currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
+                }
+                else
+                {
+                    currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
+                }
+            })
+        });
+
+
+        $('[data-toggle="tooltip"]').tooltip();
+
     });
 
-
-    $('[data-toggle="tooltip"]').tooltip();
-
-
-});
-
-function on_submit(e) {
-    if (confirm("确定投注？") == false)
-        e.preventDefault();
-}
+    function on_submit(e) {
+        if (confirm("确定投注？") == false)
+            e.preventDefault();
+        else
+            $('.alert').toggle();
+    }
 
 
 </script>

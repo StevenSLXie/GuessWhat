@@ -35,7 +35,7 @@ function on_sell_all(e) {
         </div>
         <div class="col-sm-4 col-md-4 col-md-offset-1">
             <blockquote>
-                <p>彼岸</p> <small><cite title="Source Title">广东，潮州  <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                <p>彼岸</p> <small><cite title="Source Title">未知地域  <i class="glyphicon glyphicon-map-marker"></i></cite></small>
             </blockquote>
             <p> <i class="glyphicon glyphicon-screenshot"></i> 全球排名: {{ person.rank }}
                 <br /> <i class="glyphicon glyphicon-road"></i> 总积分 {{ person.point }} 分
@@ -47,10 +47,10 @@ function on_sell_all(e) {
 </div>
 
 <form method="POST">
-<div class="container col-md-6 col-md-offset-3">
-    <div class = "row well-frame-c spacer">
-        <div class="col-md-1 col-md-offset-1"><input class="btn button-clear" type="submit" value="卖出所有投注" name="sell_all" onclick="on_sell_all(event)"/></div>
-        <div class="col-md-1 col-md-offset-2"><input class="btn button-clear" type="submit" value="卖出所有盈利投注" name="sell_win_bets" onclick="on_submit(event)"/></div>
+<div class="well col-md-6 col-md-offset-3 well-frame-c">
+    <div class = "row">
+        <div class="col-md-1 col-md-offset-2"><input class="btn button-clear" type="submit" value="卖出所有投注" name="sell_all" onclick="on_sell_all(event)"/></div>
+        <div class="col-md-1 col-md-offset-3"><input class="btn button-clear" type="submit" value="卖出所有盈利投注" name="sell_win_bets" onclick="on_submit(event)"/></div>
      </div>
 </div>
 {% for b in bets %}
