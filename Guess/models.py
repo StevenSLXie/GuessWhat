@@ -1,3 +1,4 @@
+#coding:utf-8
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -7,7 +8,7 @@ from django.conf import settings
 class Person(models.Model):
 	user = models.OneToOneField(User)
 	point = models.IntegerField(default=1000)
-	photo = models.FileField(upload_to='%id', default='settings.MEDIA_ROOT/cat.jpg')
+	photo = models.FileField(upload_to='%Y/%m/%d/', default= 'cat.jpg')
 	expertise = models.TextField(default='N/A')
 
 	win = models.IntegerField(default=0)

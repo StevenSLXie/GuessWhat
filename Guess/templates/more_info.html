@@ -2,29 +2,60 @@
 {% include "nav_bar.html" %}
 
 
+<style type='text/css'>
+    .spacer {margin-bottom: 10px;}
+    .unread {color: rgba(254,67,101,1);}
+    .marked_all_as_read {background: rgba(252,248,227,1);}
+</style>
+
+
     <body>
     <!-- List of uploaded documents -->
 
-        <div>
-             <img src="/static/images/{{ person.photo.url }}"/><p>{{ person.photo.url }}</p>
+
+        <div class="container">
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-md-offset-4">
+
+                <img src="/static/images/{{ person.photo.url }}"
+                alt="" class="img-rounded img-responsive" />
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <blockquote>
+                    <p>{{ person.user.username }}</p> <small><cite title="Source Title">广东，潮州  <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                </blockquote>
+                <p> <i class="glyphicon glyphicon-screenshot"></i> 全球排名: {{ person.rank }}
+                    <br /> <i class="glyphicon glyphicon-road"></i> 总积分 {{ person.point }} 分
+                    <br /> <i class="glyphicon glyphicon-ok"></i> 猜对 {{ person.win }} 次
+                    <br /> <i class="glyphicon glyphicon-remove"></i> 猜错 {{ person.lose }} 次</p>
+            </div>
 
         </div>
+    </div>
 
 
 
 
-
+    <div class="container">
+        <div class="row">
+        <div class="col-md-4 col-md-offset-4">
         <!-- Upload form. Note enctype attribute! -->
         <form  method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <p>{{ form.non_field_errors }}</p>
-            <p>{{ form.image.label_tag }} {{ form.image.help_text }}</p>
-            <p>
-                {{ form.image.errors }}
-                {{ form.image }}
-            </p>
-            <p><input type="submit" value="Upload" /></p>
+
+            <div class="well spacer">
+                 <p class="spacer"><small>选择一个新头像</small></p>
+                 <p>{{ form.image }}</p>
+
+            </div>
+
+            <div class="col-md-1 col-md-offset-5">
+                <p><input class="btn btn-success" type="submit" value="更新" /></p>
+            </div>
         </form>
+        </div>
+        </div>
+    </div>
     </body>
 
 
