@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 # Create your models here.
 
 
 class Person(models.Model):
 	user = models.OneToOneField(User)
 	point = models.IntegerField(default=1000)
-	# photo = models.ImageField(max_length=1000)
+	photo = models.FileField(upload_to='%id', default='settings.MEDIA_ROOT/cat.jpg')
 	expertise = models.TextField(default='N/A')
 
 	win = models.IntegerField(default=0)

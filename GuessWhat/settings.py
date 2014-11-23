@@ -32,7 +32,7 @@ else:
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -109,8 +109,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-if socket.gethostname() is not 'XINGs-MacBook-Pro.local':
+if socket.gethostname() == 'XINGs-MacBook-Pro.local':
+	MEDIA_ROOT = os.path.join(BASE_DIR,  'Guess/static/images')
+else:
 	STATIC_ROOT = '/opt/myenv/static/'
+	MEDIA_ROOT = '/opt/myenv/static/images'
+
+
 STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (
@@ -126,3 +131,6 @@ EMAIL_HOST_USER = 'stevenslxie@gmail.com'
 EMAIL_HOST_PASSWORD = '2xiexing'
 EMAIL_USE_TLS   = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
+

@@ -1,5 +1,30 @@
 {% load bootstrap3 %}
-
-
 {% include "nav_bar.html" %}
+
+
+    <body>
+    <!-- List of uploaded documents -->
+
+        <div>
+             <img src="/static/images/{{ person.photo.url }}"/><p>{{ person.photo.url }}</p>
+
+        </div>
+
+
+
+
+
+        <!-- Upload form. Note enctype attribute! -->
+        <form  method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>{{ form.non_field_errors }}</p>
+            <p>{{ form.image.label_tag }} {{ form.image.help_text }}</p>
+            <p>
+                {{ form.image.errors }}
+                {{ form.image }}
+            </p>
+            <p><input type="submit" value="Upload" /></p>
+        </form>
+    </body>
+
 

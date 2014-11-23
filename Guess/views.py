@@ -7,6 +7,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User
 from Guess.models import Person, Game, Betting, Proposal, Message
+from Guess.form import ImageForm
 from algorithm.data_processing import price_change
 import random
 
@@ -88,7 +89,7 @@ def render_main(request, url, game_type=None):
 			marked_all_as_read(cur_person)
 
 		for cur_game in temps:
-			accept_bet(request,cur_person,cur_game)
+			accept_bet(request, cur_person, cur_game)
 
 		return redirect(reverse(url))
 	else:
@@ -215,10 +216,22 @@ def more(request):
 	if not request.user.is_authenticated():
 		return redirect(reverse('login'))
 
+	person = Person.objects.get(user=request.user)
+	form = ImageForm(request.POST, request.FILES)
 	if request.method == 'POST':
-		return render(request,'more_info.html')
+
+		if form.is_valid():
+			person.photo = request.FILES['image']
+			person.save()
+		return redirect(reverse('more'))
+
 	else:
-		return render(request,'more_info.html')
+		para = {}
+		para =encap_para(para, person)
+		para['person'] = person
+		para['form'] = form
+		return render(request, 'more_info.html', para)
+
 
 
 def proposal(request):
