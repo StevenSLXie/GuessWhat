@@ -43,20 +43,13 @@
         <li><a href="{% url 'sports' %}">体育</a></li>
         <li><a href="{% url 'finance' %}">财经</a></li>
         <li><a href="{% url 'leaderboard' %}">排行榜</a></li>
-        <li><a href="{% url 'proposal' %}">怎么玩</a></li>
         <li><a href="{% url 'proposal' %}">我要出题</a></li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="有什么想要找的吗">
-        </div>
-        <button type="submit" class="btn nav-frame-c">搜索</button>
-      </form>
       <ul class="nav navbar-nav navbar-right">
 
         <li class="dropdown">
             {% if unread == 0 %}
-            <a id="notifications" href="#" class="dropdown-toggle" data-toggle="dropdown">消息<span> ({{ unread }})</span> <span class="caret"></span></a>
+            <a id="notifications" href="#" class="dropdown-toggle" data-toggle="dropdown">消息<span class="caret"></span></a>
             {% else %}
             <a id="notifications" href="#" class="dropdown-toggle" data-toggle="dropdown">消息<span class="unread"> ({{ unread }})</span> <span class="caret"></span></a>
             {% endif %}
