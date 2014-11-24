@@ -165,20 +165,20 @@ def profile(request):
 		if 'sell_all' in request.POST:
 			for b in bets:
 				b.clear()
-				Message.objects.create(owner=person, betting=b, verbal='cleared'+b.game.headline)
+				# Message.objects.create(owner=person, betting=b, verbal='cleared'+b.game.headline)
 		elif 'sell_win_bets' in request.POST:
 			for b in bets:
 				if b.side and b.game.price_home > b.price_at_buy:
 					b.clear()
-					Message.objects.create(owner=person, betting=b, verbal='cleared'+b.game.headline)
+					# Message.objects.create(owner=person, betting=b, verbal='cleared'+b.game.headline)
 				elif (not b.side) and b.game.price_away > b.price_at_buy:
 					b.clear()
-					Message.objects.create(owner=person, betting=b, verbal='cleared'+b.game.headline)
+					# Message.objects.create(owner=person, betting=b, verbal='cleared'+b.game.headline)
 		else:
 			for b in bets:
 				if str(b.pk) in request.POST:
 					b.clear()
-					Message.objects.create(owner=person, betting=b, verbal='cleared'+b.game.headline)
+					# Message.objects.create(owner=person, betting=b, verbal='cleared'+b.game.headline)
 					break
 
 

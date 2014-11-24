@@ -5,28 +5,32 @@ from django.conf import settings
 # Create your models here.
 
 
+class GameTag(models.Model):
+	# the type of a game, but a more loose one
+	tag = models.CharField(max_length=30)
+
+
+class PersonTag(models.Model):
+	# the expertise of a person
+	tag = models.CharField(max_length=30)
+
+
 class Person(models.Model):
 	user = models.OneToOneField(User)
 	point = models.IntegerField(default=1000)
 	photo = models.FileField(upload_to='%Y/%m/%d/', default= 'cat.jpg')
-	expertise = models.TextField(default='N/A')
+	expertise = models.ManyToManyField(PersonTag)
 
 	win = models.IntegerField(default=0)
 	lose = models.IntegerField(default=0)
 	game = models.IntegerField(default=0)
-
-	point_per_game = models.FloatField(default=0.0)
-
-	index = models.IntegerField(default=0)
 	rank = models.IntegerField(default=0)
 
-
 	class Meta:
-		ordering = ('point','point_per_game',)
+		ordering = ('point', 'win',)
 
 
 class Game(models.Model):
-	index = models.IntegerField()
 	headline = models.TextField()
 	begin = models.DateTimeField(auto_now_add=True)
 	expire = models.DateTimeField()
@@ -45,7 +49,7 @@ class Game(models.Model):
 	event = models.IntegerField()
 	is_primary = models.IntegerField(default=0)
 
-	game_type = models.CharField(max_length=50)
+	game_tag = models.ManyToManyField(GameTag)
 
 	class Meta:
 		ordering = ('expire',)
@@ -69,10 +73,12 @@ class Betting(models.Model):
 		# clear this deal when game over or when the player ends the game earlier.
 		if self.game.ended:
 			if self.side == self.outcome:
+				Message.objects.create(owner=self.better, betting=self, verbal='竞猜 '+self.game.headline+'已结束，你猜对啦，盈利'+str(100-self.price_at_buy)+'点！')
 				self.better.point += 100
 				self.better.win += 1
 			else:
 				self.better.lose += 1
+				Message.objects.create(owner=self.better, betting=self, verbal='竞猜 '+self.game.headline+'已结束，你猜错啦，损失'+str(self.price_at_buy)+'点！')
 
 		else:
 			if self.side:
@@ -82,8 +88,11 @@ class Betting(models.Model):
 			self.better.point += self.price_at_sell
 			if self.price_at_buy-1 < self.price_at_sell:
 				self.better.win += 1
+				Message.objects.create(owner=self.better, betting=self, verbal='竞猜 '+self.game.headline+'已结束，你猜对啦，盈利'+str(self.price_at_sell-self.price_at_buy)+'点！')
+
 			else:
 				self.better.lose += 1
+				Message.objects.create(owner=self.better, betting=self, verbal='竞猜 '+self.game.headline+'已结束，你猜对啦，损失'+str(self.price_at_buy-self.price_at_sell)+'点！')
 
 		self.cleared = True
 		self.better.save()
@@ -105,11 +114,13 @@ class Message(models.Model):
 	verbal = models.CharField(max_length=300)
 	read = models.BooleanField(default=False)
 
+
 class History(models.Model):
 	# the historical price of a game, the home side price, the away side is just 100-home
 	cur_price = models.FloatField()
 	cur_time = models.DateTimeField()
 	game = models.ForeignKey(Game)
+
 
 
 
