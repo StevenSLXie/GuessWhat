@@ -10,20 +10,12 @@
     .progress-bar-c1 {background: rgba(233, 137,119 , 1);}
     .progress-bar-c2 {background: rgba(255,196,140,1);}
     .well-frame-c1 {background: rgba(252,248,227,0.5);}
-    .well-frame-c2 {background: rgba(247,228,190,1);}
-    .well-frame-c7 {background: rgba(252,157,154,0.7);}
-    .well-frame-c3 {background: rgba(229,237,184,1);}
-    .well-frame-c5 {background: rgba(244,250,210,1);}
-    .well-frame-c6 {background: rgba(255,237,144,1);}
-    .well-frame-c4 {background: rgba(255,254,223,1);}
-    .well-frame-c8 {background: rgba(218,200,235,1);}
-    .well-frame-c9 {background: rgba(224,228,204,1);}
-    .well-frame-c10 {background: rgba(131,175,155,1);}
+
 </style>
 
 <body>
     <div class="col-md-6 col-md-offset-3">
-        <div class="alert alert-warning alert-dismissible" role="alert" id="alert" data-dismiss="alert">
+        <div class="alert alert-success alert-dismissible" role="alert" id="alert" data-dismiss="alert">
             <button type="button" href="{% url 'home' %}" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             <strong>投注成功！</strong> 你可以到<a href="{% url 'profile' %}">我的猜测</a>里查看你的当前投注。
         </div>

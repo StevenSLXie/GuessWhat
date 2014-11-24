@@ -192,7 +192,7 @@ def profile(request):
 		para['bets'] = bets
 		para = encap_para(para, person)
 
-		return render(request,'profile.html', para)
+		return render(request, 'profile.html', para)
 
 def find_unread(person):
 	return Message.objects.filter(owner=person, read=False)
@@ -239,16 +239,17 @@ def proposal(request):
 	if request.method == 'POST':
 		if 'marked_all_as_read' in request.POST:
 			marked_all_as_read(proposer)
-		title = request.POST['title']
-		content = request.POST['content']
-		game_type = request.POST['type_select']
-		game_cate = request.POST['cate_select']
-		Proposal.objects.create(proposer=proposer, title=title, content=content, game_type=game_type, game_cate=game_cate)
+		else:
+			title = request.POST['title']
+			content = request.POST['content']
+			game_type = request.POST['type_select']
+			game_cate = request.POST['cate_select']
+			Proposal.objects.create(proposer=proposer, title=title, content=content, game_type=game_type, game_cate=game_cate)
 		return redirect(reverse('home'))
 
 	else:
 		para = {}
-		para = encap_para(para,proposer)
+		para = encap_para(para, proposer)
 		return render(request, 'proposal.html', para)
 
 
@@ -262,7 +263,7 @@ def encap_para(para,person):
 def email(request):
 	games = Game.objects.filter(ended=False, is_primary=True).order_by('-event')
 	person = Person.objects.get(pk=1)
-	return render(request,'email2.html',{'person':person, 'games':games})
+	return render(request, 'email2.html', {'person':person, 'games': games})
 
 
 def inbox(request):
