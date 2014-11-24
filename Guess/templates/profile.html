@@ -69,24 +69,10 @@ function on_sell_all(e) {
             <div class="progress-bar progress-bar-c2" style="width: {{ b.game.price_away }}%">{{ b.game.price_away }}</div>
         </div>
         <div class="col-md-offset-2">
-        {% if b.game.is_primary and b.game.game_type == "体育" %}
-            {% if b.side %}
-                <div><p>您之前推测{{ b.game.name_home }}会赢，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_home b.price_at_buy %}。</p></div>
-            {% else %}
-                <div><p>您之前推测{{ b.game.name_away }}会赢，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_away b.price_at_buy %}。</p></div>
-            {% endif %}
-        {% elif b.game.game_type == "体育" %}
-            {% if b.side %}
-                <div><p>您之前认为“{{ b.game.headline }}”，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_home b.price_at_buy %}。</p></div>
-            {% else %}
-                <div><p>您之前不认为“{{ b.game.headline }}”，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_away b.price_at_buy %}。</p></div>
-            {% endif %}
-        {% elif b.game.game_type == "财经" %}
-            {% if b.side %}
-                <div><p>您之前认为“{{ b.game.name_home }}”，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_home b.price_at_buy %}。</p></div>
-            {% else %}
-                <div><p>您之前认为“{{ b.game.name_away }}”，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_away b.price_at_buy %}。</p></div>
-            {% endif %}
+        {% if b.side %}
+            <div><p>您之前赞同“{{ b.game.headline }}”，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_home b.price_at_buy %}。</p></div>
+        {% else %}
+            <div><p>您之前不赞同“{{ b.game.headline }}”，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_away b.price_at_buy %}。</p></div>
         {% endif %}
 
         </div>

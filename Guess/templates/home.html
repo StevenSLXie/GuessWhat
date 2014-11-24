@@ -30,11 +30,7 @@
     {% if forloop.first %}
     <div class = "row">
         <div class="col-md-10 col-md-offset-1">
-            {% if game.game_type == "财经" %}
-                <h4 class="text-center">{{ game.headline }}</h4>
-            {% elif game.game_type == "体育" %}
-                <h4 class="text-center">{{ game.name_home }} 对阵 {{ game.name_away }}，看好哪一方？</h4>
-            {% endif %}
+            <h4 class="text-center">{{ game.headline }}</h4>
             <div class="progress">
                 <div class="progress-bar progress-bar-c1" style="width: {{ game.price_home }}%">{{ game.price_home }}</div>
                 <div class="progress-bar progress-bar-c2" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
@@ -46,8 +42,8 @@
         <form method="POST">
             {% csrf_token %}
 
-             <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c1" type="submit" value={{ game.name_home }} name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
-             <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c2" type="submit" value={{ game.name_away }} name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
+             <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c1" type="submit" value='赞同' name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
+             <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c2" type="submit" value='反对' name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
 
              <p class="col-md-8 col-md-offset-3"><i class="glyphicon glyphicon-stop"></i> 结束投注时间：{{ game.expire | date:"y-m-d h:m:s" }}</p>
              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user"  data-for=".{{ game.pk }}">
@@ -78,13 +74,8 @@
                                         </tr>
                                         <tr>
                                             <div class="row">
-                                            {% if game.game_type == "体育" %}
                                             <div class="col-md-1 col-md-offset-1"><input class="btn progress-bar-c1" type="submit" value="同意" name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
                                             <div class="col-md-1 col-md-offset-4"><input class="btn progress-bar-c2" type="submit" value="不同意" name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
-                                            {% elif game.game_type == "财经" %}
-                                            <div class="col-md-1 col-md-offset-1"><input class="btn progress-bar-c1" type="submit" value="{{ game.name_home }}" name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
-                                            <div class="col-md-1 col-md-offset-4"><input class="btn progress-bar-c2" type="submit" value="{{ game.name_away }}" name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
-                                            {% endif %}
                                             </div>
                                         </tr>
                                         {% endif %}

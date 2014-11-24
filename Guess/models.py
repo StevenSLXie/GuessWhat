@@ -73,12 +73,12 @@ class Betting(models.Model):
 		# clear this deal when game over or when the player ends the game earlier.
 		if self.game.ended:
 			if self.side == self.outcome:
-				Message.objects.create(owner=self.better, betting=self, verbal='竞猜 '+self.game.headline+'已结束，你猜对啦，盈利'+str(100-self.price_at_buy)+'点！')
+				Message.objects.create(owner=self.better, betting=self, verbal= self._verbal(1))
 				self.better.point += 100
 				self.better.win += 1
 			else:
 				self.better.lose += 1
-				Message.objects.create(owner=self.better, betting=self, verbal='竞猜 '+self.game.headline+'已结束，你猜错啦，损失'+str(self.price_at_buy)+'点！')
+				Message.objects.create(owner=self.better, betting=self, verbal= self._verbal(2))
 
 		else:
 			if self.side:
@@ -88,15 +88,34 @@ class Betting(models.Model):
 			self.better.point += self.price_at_sell
 			if self.price_at_buy-1 < self.price_at_sell:
 				self.better.win += 1
-				Message.objects.create(owner=self.better, betting=self, verbal='竞猜 '+self.game.headline+'已结束，你猜对啦，盈利'+str(self.price_at_sell-self.price_at_buy)+'点！')
+				Message.objects.create(owner=self.better, betting=self, verbal= self._verbal(3))
 
 			else:
 				self.better.lose += 1
-				Message.objects.create(owner=self.better, betting=self, verbal='竞猜 '+self.game.headline+'已结束，你猜对啦，损失'+str(self.price_at_buy-self.price_at_sell)+'点！')
+				Message.objects.create(owner=self.better, betting=self, verbal= self._verbal(4))
 
 		self.cleared = True
 		self.better.save()
 		self.save()
+
+	def _verbal(self, case):
+		s1 = u'竞猜'
+
+		s2 = (self.game.headline)
+		if case == 1 or case == 3:
+			s3 = u'已结束，你猜对啦，盈利'
+		else:
+			s3 = u'已结束，你猜错啦，损失'
+
+		if case == 1:
+			s4 = str(100-self.price_at_buy)
+		elif case == 2:
+			s4 = str(self.price_at_buy)
+		else:
+			s4 = str(abs(self.price_at_sell - self.price_at_buy))
+
+		return s1 + s2 + s3 + s4
+
 
 
 class Proposal(models.Model):
@@ -111,7 +130,7 @@ class Proposal(models.Model):
 class Message(models.Model):
 	owner = models.ForeignKey(Person)
 	betting = models.ForeignKey(Betting)
-	verbal = models.CharField(max_length=300)
+	verbal = models.TextField()
 	read = models.BooleanField(default=False)
 
 
