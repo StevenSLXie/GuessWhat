@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User
-from Guess.models import Person, Game, Betting, Proposal, Message
+from Guess.models import Person, Game, Betting, Proposal, Message, GameTag
 from Guess.form import ImageForm
 from algorithm.data_processing import price_change
 import random
@@ -59,7 +59,7 @@ def signup(request):
 		elif request.POST['password'] != request.POST['password_confirm']:
 			return render(request, 'signup.html')
 
-		User.objects.create_user(request.POST['username'],request.POST['email'],request.POST['password'])
+		User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
 		cur_user = User.objects.get(username=request.POST['username'])
 		Person.objects.create(user=cur_user)
 		user = authenticate(username=request.POST['username'],password=request.POST['password'])
@@ -80,7 +80,8 @@ def render_main(request, url, game_type=None):
 	if game_type is None:
 		temps = Game.objects.filter(ended=False).order_by('-event','-is_primary')
 	else:
-		temps = Game.objects.filter(ended=False,game_type=game_type).order_by('-event','-is_primary')
+		# temps = Game.objects.filter(ended=False,game_type=game_type).order_by('-event','-is_primary')
+		temps = Game.objects.filter(ended=False, game_tag__tag=game_type).order_by('-event', '-is_primary')
 	gamess = game_choose_and_sort(temps)
 	cur_person = Person.objects.get(user=request.user)
 
@@ -110,6 +111,7 @@ def sports(request):
 
 def finance(request):
 	return render_main(request, 'finance', '财经')
+
 
 def game_choose_and_sort(temps):
 	gamess = []

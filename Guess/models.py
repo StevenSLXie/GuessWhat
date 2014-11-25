@@ -2,6 +2,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+import datetime
 # Create your models here.
 
 
@@ -25,6 +26,9 @@ class Person(models.Model):
 	lose = models.IntegerField(default=0)
 	game = models.IntegerField(default=0)
 	rank = models.IntegerField(default=0)
+
+	joined = models.DateTimeField(default=datetime.datetime.now())
+	title = models.CharField(max_length=30, default="新人")
 
 	class Meta:
 		ordering = ('point', 'win',)
