@@ -161,26 +161,23 @@ def profile(request):
 		else:
 			b.clear()
 	if request.method == 'POST':
+
 		if 'marked_all_as_read' in request.POST:
 			marked_all_as_read(person)
 
 		if 'sell_all' in request.POST:
 			for b in bets:
 				b.clear()
-				# Message.objects.create(owner=person, betting=b, verbal='cleared'+b.game.headline)
 		elif 'sell_win_bets' in request.POST:
 			for b in bets:
 				if b.side and b.game.price_home > b.price_at_buy:
 					b.clear()
-					# Message.objects.create(owner=person, betting=b, verbal='cleared'+b.game.headline)
 				elif (not b.side) and b.game.price_away > b.price_at_buy:
 					b.clear()
-					# Message.objects.create(owner=person, betting=b, verbal='cleared'+b.game.headline)
 		else:
 			for b in bets:
 				if str(b.pk) in request.POST:
 					b.clear()
-					# Message.objects.create(owner=person, betting=b, verbal='cleared'+b.game.headline)
 					break
 
 
@@ -188,7 +185,6 @@ def profile(request):
 
 	else:
 		person = Person.objects.get(user=request.user)
-
 		para = {}
 		para['person'] = person
 		para['bets'] = bets

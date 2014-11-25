@@ -82,7 +82,7 @@
                     </form>
                     {% for m in messages %}
                         <li class="divider"></li>
-                        <li style="margin-left: 10px; margin-right: 10px"><a href="{% url 'inbox' %}">{{ m.verbal }}</a></li>
+                        <li style="margin-left: 10px; margin-right: 10px;"><a href="{% url 'inbox' %}" style="word-wrap: break-word;white-space: pre-wrap" >{{ m.verbal }}</a></li>
                     {% endfor %}
                 {% endif %}
             </ul>

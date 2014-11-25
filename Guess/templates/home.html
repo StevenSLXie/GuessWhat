@@ -45,7 +45,7 @@
              <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c1" type="submit" value='赞同' name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
              <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c2" type="submit" value='反对' name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
 
-             <p class="col-md-8 col-md-offset-3"><i class="glyphicon glyphicon-stop"></i> 结束投注时间：{{ game.expire | date:"y-m-d h:m:s" }}</p>
+             <p class="col-md-8 col-md-offset-3"><i class="glyphicon glyphicon-stop"></i> {{ game.expire | date:"y年m月d日 h时m分s秒" }}截止</p>
              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user"  data-for=".{{ game.pk }}">
                     <i class="glyphicon glyphicon-chevron-down text-muted"></i>
              </div>

@@ -51,23 +51,23 @@
 </div>
 
 <form method="POST">
+
+{% csrf_token %}
+
 <div class="well col-md-6 col-md-offset-3 well-frame-c">
     <div class = "row">
         <div class="col-md-1 col-md-offset-2"><input class="btn button-clear" type="submit" value="卖出所有投注" name="sell_all" onclick="on_sell_all(event)"/></div>
         <div class="col-md-1 col-md-offset-3"><input class="btn button-clear" type="submit" value="卖出所有盈利投注" name="sell_win_bets" onclick="on_submit(event)"/></div>
      </div>
 </div>
+
+
+{% csrf_token %}
+
 {% for b in bets %}
 
 <div class = "row">
-
-    {% csrf_token %}
     <div class="col-md-6 col-md-offset-3">
-        {% if b.game.game_type == "体育" %}
-        <h4 class="text-center">{{ b.game.name_home }} 对 {{ b.game.name_away }}</h4>
-        {% elif b.game.game_type == "财经" %}
-        <h4 class="text-center">{{ b.game.headline }}{{ b.game.name_home }} 还是 {{ b.game.name_away }} ？</h4>
-        {% endif %}
         <div class="progress">
             <div class="progress-bar progress-bar-c1" style="width: {{ b.game.price_home }}%">{{ b.game.price_home }}</div>
             <div class="progress-bar progress-bar-c2" style="width: {{ b.game.price_away }}%">{{ b.game.price_away }}</div>
@@ -78,15 +78,11 @@
         {% else %}
             <div><p>您之前不赞同“{{ b.game.headline }}”，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_away b.price_at_buy %}。</p></div>
         {% endif %}
-
         </div>
-            <div class="col-md-1 col-md-offset-5 spacer"><input class="btn button-clear" type="submit" value="现在结算" name="{{ b.pk }}" onclick="on_submit(event)"/></div>
-        </div>
+        <div class="col-md-1 col-md-offset-5 spacer"><input class="btn button-clear" type="submit" value="现在结算" name="{{ b.pk }}" onclick="on_submit(event)"/></div>
 
+    </div>
 </div>
+{% endfor %}
 
 </form>
-
-
-
-{% endfor %}
