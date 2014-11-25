@@ -21,21 +21,14 @@
           <ul class="list-inline list-unstyled">
             <li><span><i class="glyphicon glyphicon-screenshot"></i> 全球排名：{{ person.rank }} </span></li>
             <li>|</li>
-            <li><span><i class="glyphicon glyphicon-road"></i> {{ person.point }}</span></li>
+            <li><span><i class="glyphicon glyphicon-road"></i> 积分： {{ person.point }}</span></li>
             <li>|</li>
             <li><span><i class="glyphicon glyphicon-ok"></i> {{ person.win }}</span></li>
             <li>|</li>
             <li><span><i class="glyphicon glyphicon-remove"></i> {{ person.lose }}</span></li>
             <li>|</li>
-            <li><span><i class="glyphicon glyphicon-calendar"></i> 2014年11月6日加入 </span></li>
+            <li><span><i class="glyphicon glyphicon-calendar"></i> {{ person.joined | date:"y年m月d日" }} 加入<a href="{% url 'home' %}" style="color: #000000;">盖世</a> </span></li>
             <li>|</li>
-            <li>
-               <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-            </li>
 			</ul>
        </div>
     </div>

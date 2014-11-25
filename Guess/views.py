@@ -66,7 +66,7 @@ def signup(request):
 		auth_login(request,user)
 		return redirect(reverse('home'))
 	else:
-		return render(request,'signup.html', {'game':game})
+		return render(request, 'signup.html', {'game':game})
 
 def marked_all_as_read(person):
 	for m in Message.objects.filter(owner=person, read=False):
