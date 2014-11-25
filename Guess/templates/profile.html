@@ -4,27 +4,29 @@
 {% include "nav_bar.html" %}
 
 <style type='text/css'>
-.spacer {
-    margin-bottom: 20px;
-}
-.progress-bar-c1 {background: rgba(233, 137,119 , 1);}
-.progress-bar-c2 {background: rgba(255,196,140,1);}
-.button-clear{background: rgba(255,78,80,0.1);}
-.well-frame-c {background: rgba(252,248,227,1);}
+
+    .spacer {
+        margin-bottom: 20px;
+    }
+    .progress-bar-c1 {background: rgba(233, 137,119 , 1);}
+    .progress-bar-c2 {background: rgba(255,196,140,1);}
+    .button-clear{background: rgba(255,78,80,0.1);}
+    .well-frame-c {background: rgba(252,248,227,1);}
+
 </style>
 
-
-
 <script>
-function on_submit(e) {
-    if (confirm("确定结算？") == false)
-        e.preventDefault();
-}
 
-function on_sell_all(e) {
-    if (confirm("确定卖出所有投注？！一旦确定，则此操作不能取消！") == false)
-        e.preventDefault();
-}
+    function on_submit(e) {
+        if (confirm("确定结算？") == false)
+            e.preventDefault();
+    }
+
+    function on_sell_all(e) {
+        if (confirm("确定卖出所有投注？！一旦确定，则此操作不能取消！") == false)
+            e.preventDefault();
+    }
+
 </script>
 
 <div class="container">
