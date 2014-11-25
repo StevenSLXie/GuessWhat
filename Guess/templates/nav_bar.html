@@ -6,11 +6,17 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>
     $(document).ready(function(){
-    $("#account_dropdown").click(function(){
-        $("#account_info").toggle(100);
+    $("#account_dropdown").mouseenter(function(){
+        $("#account_info").show(100);
         });
-    $("#notifications").click(function(){
-        $("#notify_info").toggle(100);
+    $("#dropdown_list").mouseleave(function(){
+        $("#account_info").hide(100);
+        });
+    $("#notifications").mouseenter(function(){
+        $("#notify_info").show(100);
+    });
+    $("#notify_list").mouseleave(function(){
+        $("#notify_info").hide(100);
     });
     });
     </script>
@@ -39,19 +45,20 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="{% url 'home' %}">首页</a></li>
+        <li><a href="{% url 'home' %}"><i class="glyphicon glyphicon-eye-open"></i> 发现</a></li>
         <li><a href="{% url 'sports' %}">体育</a></li>
         <li><a href="{% url 'finance' %}">财经</a></li>
         <li><a href="{% url 'leaderboard' %}">排行榜</a></li>
         <li><a href="{% url 'proposal' %}">我要出题</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
 
-        <li class="dropdown">
+      <ul class="nav navbar-nav navbar-right" style="margin-right: 40px;">
+
+        <li id="notify_list" class="dropdown" style="margin-right: 10px;">
             {% if unread == 0 %}
-            <a id="notifications" href="#" class="dropdown-toggle" data-toggle="dropdown">消息<span class="caret"></span></a>
+            <a id="notifications" href="#" class="dropdown-toggle" data-toggle="dropdown">消息</a>
             {% else %}
-            <a id="notifications" href="#" class="dropdown-toggle" data-toggle="dropdown">消息<span class="unread"> ({{ unread }})</span> <span class="caret"></span></a>
+            <a id="notifications" href="#" class="dropdown-toggle" data-toggle="dropdown">消息<span class="unread"> ({{ unread }})</span></a>
             {% endif %}
             <ul id="notify_info" class="dropdown-menu col-md-6" role="menu">
                 {% if unread == 0 %}
@@ -70,8 +77,8 @@
         </li>
 
 
-        <li class="dropdown">
-          <a id="account_dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown">账号 <span class="caret"></span></a>
+        <li id='dropdown_list' class="dropdown">
+          <a id="account_dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="/static/images/{{ person.photo.url }} " style="width: 25px; height: 25px; margin-right: 5px; margin-bottom: 0px;"/>{{ person.user.username }}</a>
           <ul id="account_info" class="dropdown-menu" role="menu">
             <li><a href="{% url 'profile' %}">我的预测</a></li>
             <li><a href="{% url 'more' %}">我的资料</a></li>
