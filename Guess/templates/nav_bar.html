@@ -81,8 +81,12 @@
                     <li><button class="btn marked_all_as_read" style="margin-left: 20px" type="submit" name="marked_all_as_read" />全部标为已读</li>
                     </form>
                     {% for m in messages %}
+                        {% if forloop.counter <= 3 %}
                         <li class="divider"></li>
                         <li style="margin-left: 10px; margin-right: 10px;"><a href="{% url 'inbox' %}" style="word-wrap: break-word;white-space: pre-wrap" >{{ m.verbal }}</a></li>
+                        {%  elif forloop.last and forloop.counter >= 4 %}
+                        <li><a class=" col-md-6 btn marked_all_as_read" style="margin-left: 30px" href="{% url 'inbox' %}" >更多</a></li>
+                        {% endif %}
                     {% endfor %}
                 {% endif %}
             </ul>
