@@ -193,8 +193,7 @@ def profile(request):
 		return render(request, 'profile.html', para)
 
 def find_unread(person):
-	return Message.objects.filter(owner=person, read=False)
-
+	return person.message_set.filter(read=False)
 
 
 def leaderboard(request):
@@ -251,7 +250,7 @@ def proposal(request):
 		return render(request, 'proposal.html', para)
 
 
-def encap_para(para,person):
+def encap_para(para, person):
 	messages = find_unread(person)
 	para['messages'] = messages
 	para['person'] = person

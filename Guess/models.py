@@ -45,6 +45,8 @@ class Game(models.Model):
 	name_away = models.CharField(max_length=30)
 	price_away = models.IntegerField(default=50)
 	num_away = models.IntegerField(default=0)
+	weight_home = models.IntegerField(default=0)
+	weight_away = models.IntegerField(default=0)
 
 	outcome = models.BooleanField(default=False)   # True means home wins and vice versa
 
@@ -58,6 +60,23 @@ class Game(models.Model):
 	class Meta:
 		ordering = ('expire',)
 
+	def pricing(self):
+		# tentatively update every 60s
+		if self.num_away + self.num_away < 10:
+			return
+		bets = self.betting_set.filter(better__point__gt=0, cleared = False, buy_time__gt=datetime.datetime.now()-datetime.timedelta(seconds=60)).select_related('better')
+
+		for b in bets:
+			e = Expertise.objects.get(tag=self.game_tag, expert=b.better)
+			if b.side:
+				self.weight_home += e.score* b.price_at_buy
+			else:
+				self.weight_away += e.score*b.price_at_buy
+
+		self.price_home = self.weight_away/(self.weight_away+self.weight_home+0.001)*100
+		self.price_away = 100 - int(self.price_home)
+		self.save()
+
 
 class Betting(models.Model):
 	better = models.ForeignKey(Person)
@@ -70,17 +89,24 @@ class Betting(models.Model):
 	price_at_buy = models.FloatField()
 	price_at_sell = models.FloatField()
 
+	buy_time = models.DateTimeField(default=datetime.datetime.now())
+	sell_time = models.DateTimeField(default=datetime.datetime.now())
+
 	# end_when_clear = models.BooleanField(default=False) # when the bet is clear, is the game over?
 	cleared = models.BooleanField(default=False)  # cleared means the result of the betting has been updated to the person profile
+	win = models.BooleanField(default=False)
 
 	def clear(self):
 		# clear this deal when game over or when the player ends the game earlier.
 		if self.game.ended:
 			if self.side == self.outcome:
+				self.price_at_sell = 100
 				Message.objects.create(owner=self.better, betting=self, verbal= self._verbal(1))
-				self.better.point += 100
+				self.better.point += self.price_at_sell
 				self.better.win += 1
+				self.win = True
 			else:
+				self.price_at_sell = 0
 				self.better.lose += 1
 				Message.objects.create(owner=self.better, betting=self, verbal= self._verbal(2))
 
@@ -92,12 +118,14 @@ class Betting(models.Model):
 			self.better.point += self.price_at_sell
 			if self.price_at_buy-1 < self.price_at_sell:
 				self.better.win += 1
+				self.win = True
 				Message.objects.create(owner=self.better, betting=self, verbal= self._verbal(3))
 
 			else:
 				self.better.lose += 1
 				Message.objects.create(owner=self.better, betting=self, verbal= self._verbal(4))
 
+		self.sell_time = datetime.datetime.now()
 		self.cleared = True
 		self.better.save()
 		self.save()
@@ -143,6 +171,23 @@ class History(models.Model):
 	cur_price = models.FloatField()
 	cur_time = models.DateTimeField()
 	game = models.ForeignKey(Game)
+
+class Expertise(models.Model):
+	# show a person's expertise level in a type of game;
+	expert = models.ForeignKey(Person, db_index=True, related_name='expert')
+	tag = models.ForeignKey(GameTag, db_index=True)
+	score = models.FloatField(default=0)
+
+	def evaluate(self):
+		bets = Betting.objects.filter(better=self.expert, game__game_tag=self.tag, cleared=True, sell_time__gt=datetime.datetime.now())
+		if bets.count() != 0:
+			for b in bets:
+				if b.win:
+					self.score += (b.price_at_sell-b.price_at_buy)
+				else:
+					self.score -= (b.price_at_sell-b.price_at_buy)
+		self.save()
+
 
 
 
