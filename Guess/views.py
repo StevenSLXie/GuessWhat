@@ -253,7 +253,6 @@ def proposal(request):
 
 def encap_para(para,person):
 	messages = find_unread(person)
-	para['unread'] = len(messages)
 	para['messages'] = messages
 	para['person'] = person
 	return para

@@ -67,13 +67,13 @@
       <ul class="nav navbar-nav navbar-right" style="margin-right: 40px;">
 
         <li id="notify_list" class="dropdown" style="margin-right: 10px;">
-            {% if unread == 0 %}
+            {% if not messages|length %}
             <a id="notifications" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-inbox" style="margin-right: 3px;"></i>消息</a>
             {% else %}
-            <a id="notifications" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-inbox" style="margin-right: 3px;"></i>消息<span class="unread"> ({{ unread }})</span></a>
+            <a id="notifications" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-inbox" style="margin-right: 3px;"></i>消息<span class="unread"> ({{ messages|length }})</span></a>
             {% endif %}
             <ul id="notify_info" class="dropdown-menu col-md-6" role="menu">
-                {% if unread == 0 %}
+                {% if not messages|length %}
                 <li><p class="text-center">没有新消息</p></li>
                 {% else %}
                     <form method="POST">
