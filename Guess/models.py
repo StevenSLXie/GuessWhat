@@ -64,7 +64,7 @@ class Game(models.Model):
 		# tentatively update every 60s
 		if self.num_away + self.num_away < 10:
 			return
-		bets = self.betting_set.filter(better__point__gt=0, cleared = False, buy_time__gt=datetime.datetime.now()-datetime.timedelta(seconds=60)).select_related('better')
+		bets = self.betting_set.filter(better__point__gt=0, cleared=False, buy_time__gt=datetime.datetime.now()-datetime.timedelta(seconds=60)).select_related('better')
 
 		for b in bets:
 			e = Expertise.objects.get(tag=self.game_tag, expert=b.better)
@@ -172,6 +172,7 @@ class History(models.Model):
 	cur_price = models.FloatField()
 	cur_time = models.DateTimeField()
 	game = models.ForeignKey(Game)
+
 
 class Expertise(models.Model):
 	# show a person's expertise level in a type of game;

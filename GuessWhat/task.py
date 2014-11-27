@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from GuessWhat.celery import app
 from django.template.loader import get_template
 from django.template import Context
-from Guess.models import Game, Person, Message, Betting, History
+from Guess.models import Game, Person, Message, Betting, History, Expertise
 from django.core.mail import EmailMultiAlternatives
 from django.utils.encoding import smart_text
 from datetime import datetime
@@ -67,12 +67,29 @@ def send_profile_to_inbox():
 	for p in persons:
 		Message.objects.create(owner=p, betting=betting, verbal='你目前的积分是'+str(p.point)+'分, 排名是第'+str(p.rank))
 
+
 @app.task
 def record_history_data():
 	# partially tested, need to see how it run in the periodic mode
 	games = Game.objects.filter(ended=False)
 	for g in games:
 		History.objects.create(cur_price=g.price_home, cur_time=datetime.now(), game=g)
+
+
+@app.task
+def cal_expertise():
+	# need to optimise; cannot execute on all users at one time
+	for p in Person.objects.all():
+		for t in p.expertise.all():
+			e = Expertise.objects.get(expert=p, tag=t)
+			e.evaluate()
+
+
+def cal_price():
+	# this should be OK as the number of working
+	for g in Game.objects.filter(ended=False):
+		g.pricing()
+
 
 
 
