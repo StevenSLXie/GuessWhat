@@ -279,3 +279,10 @@ def inbox(request):
 
 	para = encap_para(para, person)
 	return render(request, 'inbox.html', para)
+
+
+def ack(request):
+	para = {}
+	person = Person.objects.get(user=request.user)
+	para = encap_para(para, person)
+	return render(request, 'ack.html', para)

@@ -28,14 +28,16 @@
         <div class="panel-heading">
             <h3 class="panel-title">未读信息</h3>
         </div>
+        {% if not messages|length %}
+        <p class="text-center">没有新消息</p>
+        {% else %}
         <ul class="list-group">
-
             {% csrf_token %}
             {% for m in messages %}
             <li class="list-group-item">
                 <div class="row toggle" id="dropdown-detail-{{ m.pk }}" data-toggle="detail-{{ m.pk }}">
                     <div class="col-md-8">
-                        {{ m.betting.game.headline }}:{{ m.betting.game.name_home }} 还是 {{ m.betting.game.name_away }}
+                        {{ m.verbal }}
                     </div>
 
                     <div class="col-md-2"><i class="fa fa-chevron-down pull-right"></i></div>
@@ -44,19 +46,17 @@
                     </div>
                 </div>
                 <div id="detail-{{ m.pk }}">
-                    <hr></hr>
                     <div class="container">
-
+                        <p>发送时间：{{ m.time | date:"y年m月d日, h时m分s秒" }}</p>
                     </div>
                 </div>
             </li>
             {% endfor %}
-
-
         </ul>
 	</div>
     <div class="col-md-2 col-md-offset-4">
         <button class="btn marked_all_as_read" type="submit" name="marked_all_as_read">全部标为已读</button>
     </div>
+        {% endif %}
     </form>
 </div>

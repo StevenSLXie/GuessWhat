@@ -21,5 +21,6 @@ urlpatterns = patterns('',
 	url(r'^proposal$', 'Guess.views.proposal', name='proposal'),
 	url(r'^email$', 'Guess.views.email', name='email'),
 	url(r'^inbox$', 'Guess.views.inbox', name='inbox'),
+	url(r'^ackonwledgement$', 'Guess.views.ack', name='ack')
 	# url(r'^user/(?P<index>\d+)/$', 'Guess.views.user_profile', name='user_profile'), # \w+
 )

@@ -164,6 +164,7 @@ class Message(models.Model):
 	betting = models.ForeignKey(Betting)
 	verbal = models.TextField()
 	read = models.BooleanField(default=False)
+	time = models.DateTimeField(default=datetime.datetime.now())
 
 
 class History(models.Model):
