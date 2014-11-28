@@ -63,9 +63,9 @@ def detect_ended_game():
 def send_profile_to_inbox():
 	# tested
 	persons = Person.objects.all()
-	betting = Betting.objects.get(pk=2)  # just a workaround
+	# betting = Betting.objects.get(pk=2)  # just a workaround
 	for p in persons:
-		Message.objects.create(owner=p, betting=betting, verbal='你目前的积分是'+str(p.point)+'分, 排名是第'+str(p.rank))
+		Message.objects.create(owner=p, betting=None, verbal='你目前的积分是'+str(p.point)+'分, 排名是第'+str(p.rank)+'。')
 
 
 @app.task
