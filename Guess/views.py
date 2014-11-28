@@ -137,16 +137,17 @@ def accept_bet(request, cur_person,cur_game):
 		cur_person.save()
 		cur_game.num_home += 1
 		cur_game.save()
-		Betting.objects.create(better=cur_person, game=cur_game, side=True, num=1, price_at_buy=cur_game.price_home, price_at_sell=cur_game.price_home)
-		price_change(cur_game.pk)
-
+		b = Betting.objects.create(better=cur_person, game=cur_game, side=True, num=1, price_at_buy=cur_game.price_home, price_at_sell=cur_game.price_home)
+		# price_change(cur_game.pk)
+		cur_game.pricing(b,cur_person)
 	elif 'a:'+str(cur_game.pk) in request.POST:
 		cur_person.point -= cur_game.price_away
 		cur_person.save()
 		cur_game.num_away += 1
 		cur_game.save()
-		Betting.objects.create(better=cur_person, game=cur_game, side=False, num=1, price_at_buy=cur_game.price_away, price_at_sell=cur_game.price_away)
-		price_change(cur_game.pk)
+		b = Betting.objects.create(better=cur_person, game=cur_game, side=False, num=1, price_at_buy=cur_game.price_away, price_at_sell=cur_game.price_away)
+		# price_change(cur_game.pk)
+		cur_game.pricing(b,cur_person)
 
 
 def profile(request):

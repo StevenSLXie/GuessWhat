@@ -60,22 +60,25 @@ class Game(models.Model):
 	class Meta:
 		ordering = ('expire',)
 
-	def pricing(self):
+	def pricing(self, bet, person):
 		# tentatively update every 60s
 		if self.num_away + self.num_away < 10:
 			return
-		bets = self.betting_set.filter(better__point__gt=0, cleared=False, buy_time__gt=datetime.datetime.now()-datetime.timedelta(seconds=60)).select_related('better')
+		# bets = self.betting_set.filter(better__point__gt=0, cleared=False, buy_time__gt=datetime.datetime.now()-datetime.timedelta(seconds=60)).select_related('better')
+		# print datetime.datetime.now()-datetime.timedelta(seconds=60)
 
-		for b in bets:
-			e = Expertise.objects.get(tag=self.game_tag, expert=b.better)
-			if b.side:
-				self.weight_home += e.score* b.price_at_buy
+		# for b in bets:
+		for tag in self.game_tag.all():
+			e = Expertise.objects.get(tag=tag, expert=person)
+			if bet.side:
+				self.weight_home += e.score*bet.price_at_buy
 			else:
-				self.weight_away += e.score*b.price_at_buy
+				self.weight_away += e.score*bet.price_at_buy
 
-		self.price_home = self.weight_away/(self.weight_away+self.weight_home+0.001)*100
+		self.price_home = self.weight_home/(self.weight_away+self.weight_home+0.001)*100
 		self.price_away = 100 - int(self.price_home)
 		self.save()
+		# print self.pk, self.price_home, self.price_away
 
 
 class Betting(models.Model):
@@ -178,7 +181,7 @@ class Expertise(models.Model):
 	# show a person's expertise level in a type of game;
 	expert = models.ForeignKey(Person, db_index=True, related_name='expert')
 	tag = models.ForeignKey(GameTag, db_index=True)
-	score = models.FloatField(default=0)
+	score = models.IntegerField(default=100)
 
 	def evaluate(self):
 		bets = Betting.objects.filter(better=self.expert, game__game_tag=self.tag, cleared=True, sell_time__gt=datetime.datetime.now())
@@ -189,6 +192,7 @@ class Expertise(models.Model):
 				else:
 					self.score -= (b.price_at_sell-b.price_at_buy)
 		self.save()
+		# print self.score
 
 
 

@@ -32,11 +32,11 @@ app.conf.update(
 		'schedule': crontab(),
 		'args': ()
 	},
-		'cal-price': {
-		'task': 'GuessWhat.task.cal_price',
-		'schedule': timedelta(seconds=60),
-		'args': ()
-	},
+	#	'cal-price': {
+	#	'task': 'GuessWhat.task.cal_price',
+	#	'schedule': timedelta(seconds=60),
+	#	'args': ()
+	#},
 
 						 }
 )

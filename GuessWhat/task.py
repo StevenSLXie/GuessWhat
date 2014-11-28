@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from GuessWhat.celery import app
 from django.template.loader import get_template
 from django.template import Context
-from Guess.models import Game, Person, Message, Betting, History, Expertise
+from Guess.models import Game, Person, Message, Betting, History, Expertise, GameTag
 from django.core.mail import EmailMultiAlternatives
 from django.utils.encoding import smart_text
 from datetime import datetime
@@ -84,11 +84,21 @@ def cal_expertise():
 			e = Expertise.objects.get(expert=p, tag=t)
 			e.evaluate()
 
+@app.task
+def add_expertise():
+	for p in Person.objects.all():
+		for t in GameTag.objects.all():
+			e = Expertise.objects.get_or_create(expert=p, tag=t)
 
-def cal_price():
-	# this should be OK as the number of working
+
+@app.task
+def add_game_weight():
+	# !!! just for one time use. To initialize the point of each game;
 	for g in Game.objects.filter(ended=False):
-		g.pricing()
+		g.weight_home += 100
+		g.weight_away += 100
+		g.save()
+
 
 
 
