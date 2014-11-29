@@ -17,7 +17,7 @@ app.conf.update(
 	CELERYBEAT_SCHEDULE={
 		'ranking-every-30-seconds': {
 		'task': 'GuessWhat.task.ranking',
-		'schedule': timedelta(seconds=30),
+		'schedule': timedelta(seconds=45),
 		'args': ()
 	},
 
@@ -29,7 +29,7 @@ app.conf.update(
 
 		'cal-expertise': {
 		'task': 'GuessWhat.task.cal_expertise',
-		'schedule': crontab(),
+		'schedule': crontab(minute='*/30'),
 		'args': ()
 	},
 	#	'cal-price': {

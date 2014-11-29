@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 import datetime
+from django.utils import timezone
 # Create your models here.
 
 
@@ -92,8 +93,8 @@ class Betting(models.Model):
 	price_at_buy = models.FloatField()
 	price_at_sell = models.FloatField()
 
-	buy_time = models.DateTimeField(default=datetime.datetime.now())
-	sell_time = models.DateTimeField(default=datetime.datetime.now())
+	buy_time = models.DateTimeField(default=timezone.now())
+	sell_time = models.DateTimeField(default=timezone.now())
 
 	# end_when_clear = models.BooleanField(default=False) # when the bet is clear, is the game over?
 	cleared = models.BooleanField(default=False)  # cleared means the result of the betting has been updated to the person profile
@@ -181,16 +182,16 @@ class Expertise(models.Model):
 	# show a person's expertise level in a type of game;
 	expert = models.ForeignKey(Person, db_index=True, related_name='expert')
 	tag = models.ForeignKey(GameTag, db_index=True)
-	score = models.IntegerField(default=100)
+	score = models.FloatField(default=10)
 
 	def evaluate(self):
-		bets = Betting.objects.filter(better=self.expert, game__game_tag=self.tag, cleared=True, sell_time__gt=datetime.datetime.now())
+		bets = Betting.objects.filter(better=self.expert, game__game_tag=self.tag, cleared=True, sell_time__gt=timezone.now()-timezone.timedelta(minutes=30))
 		if bets.count() != 0:
 			for b in bets:
 				if b.win:
-					self.score += (b.price_at_sell-b.price_at_buy)
+					self.score += (b.price_at_sell-b.price_at_buy)*0.1
 				else:
-					self.score -= (b.price_at_sell-b.price_at_buy)
+					self.score -= (b.price_at_sell-b.price_at_buy)*0.1
 		self.save()
 		# print self.score
 
