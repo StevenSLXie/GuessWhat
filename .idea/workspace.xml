@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7bea3e3-1277-4e1b-acfb-758256ad8cac" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/templates/signup.html" afterPath="$PROJECT_DIR$/Guess/templates/signup.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GuessWhat/task.py" afterPath="$PROJECT_DIR$/GuessWhat/task.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="GuessWhat.iws" />
@@ -49,12 +49,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="task.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="task.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GuessWhat/task.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="143" max-vertical-offset="1815">
-              <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.39839572" vertical-offset="1621" max-vertical-offset="2055">
+              <caret line="118" column="17" selection-start-line="118" selection-start-column="17" selection-end-line="118" selection-end-column="17" />
+              <folding>
+                <element signature="e#14#52#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -62,8 +64,8 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Guess/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1245" max-vertical-offset="3225">
-              <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2655" max-vertical-offset="3225">
+              <caret line="51" column="54" selection-start-line="51" selection-start-column="54" selection-end-line="51" selection-end-column="54" />
               <folding>
                 <element signature="e#14#42#0" expanded="true" />
               </folding>
@@ -71,17 +73,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="signup.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Guess/templates/signup.html">
+      <file leaf-file-name="20141130.csv" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Guess/games/20141130.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.55714285" vertical-offset="0" max-vertical-offset="1635">
-              <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#4;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105">
+              <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -96,22 +93,50 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footer.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Guess/templates/footer.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="225">
-              <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="home.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Guess/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-10.833333" vertical-offset="2140" max-vertical-offset="2490">
               <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1417270139000" expanded="true" signature="98:328" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="112:148" placeholder="{...}" />
+                <marker date="1417270139000" expanded="true" signature="336:4571" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="379:774" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="484:763" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="869:4510" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="949:1386" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="997:1375" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="1093:1360" placeholder="..." />
+                <marker date="1417270139000" expanded="false" signature="1160:1189" placeholder="..." />
+                <marker date="1417270139000" expanded="false" signature="1284:1313" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="1409:4497" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="1438:4485" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="2100:2200" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="2279:4466" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="2334:4447" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="2388:4424" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="2441:2534" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="2583:4396" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="2629:4365" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="2686:4330" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="2808:4291" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="2856:4246" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="2953:3523" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="3113:3477" placeholder="..." />
+                <marker date="1417270139000" expanded="false" signature="3212:3241" placeholder="..." />
+                <marker date="1417270139000" expanded="false" signature="3369:3398" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="3568:4128" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="3630:4082" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="4580:5764" placeholder="..." />
+                <marker date="1417270139000" expanded="true" signature="4615:5599" placeholder="{...}" />
+                <marker date="1417270139000" expanded="true" signature="4765:4808" placeholder="{...}" />
+                <marker date="1417270139000" expanded="true" signature="4934:5540" placeholder="{...}" />
+                <marker date="1417270139000" expanded="true" signature="5176:5529" placeholder="{...}" />
+                <marker date="1417270139000" expanded="true" signature="5235:5355" placeholder="{...}" />
+                <marker date="1417270139000" expanded="true" signature="5393:5515" placeholder="{...}" />
+                <marker date="1417270139000" expanded="true" signature="5629:5754" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -172,9 +197,10 @@
         <option value="$PROJECT_DIR$/Guess/templates/home.html" />
         <option value="$PROJECT_DIR$/GuessWhat/celery.py" />
         <option value="$PROJECT_DIR$/Guess/models.py" />
-        <option value="$PROJECT_DIR$/GuessWhat/task.py" />
         <option value="$PROJECT_DIR$/Guess/views.py" />
         <option value="$PROJECT_DIR$/Guess/templates/signup.html" />
+        <option value="$PROJECT_DIR$/Guess/games/20141130.csv" />
+        <option value="$PROJECT_DIR$/GuessWhat/task.py" />
       </list>
     </option>
   </component>
@@ -271,47 +297,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GuessWhat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GuessWhat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Guess" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GuessWhat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GuessWhat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Guess" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bootstrap" />
+              <option name="myItemId" value="games" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -580,7 +566,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="22" width="1260" height="690" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -591,7 +577,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33172303" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33172303" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -642,13 +628,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Guess/templates/inbox.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="632" max-vertical-offset="1005">
-          <caret line="60" column="4" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Guess/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3495">
@@ -693,7 +672,45 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="2775">
           <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
-          <folding />
+          <folding>
+            <marker date="1417270139000" expanded="true" signature="98:328" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="112:148" placeholder="{...}" />
+            <marker date="1417270139000" expanded="true" signature="336:4571" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="379:774" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="484:763" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="869:4510" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="949:1386" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="997:1375" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="1093:1360" placeholder="..." />
+            <marker date="1417270139000" expanded="false" signature="1160:1189" placeholder="..." />
+            <marker date="1417270139000" expanded="false" signature="1284:1313" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="1409:4497" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="1438:4485" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2100:2200" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2279:4466" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2334:4447" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2388:4424" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2441:2534" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2583:4396" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2629:4365" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2686:4330" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2808:4291" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2856:4246" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2953:3523" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="3113:3477" placeholder="..." />
+            <marker date="1417270139000" expanded="false" signature="3212:3241" placeholder="..." />
+            <marker date="1417270139000" expanded="false" signature="3369:3398" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="3568:4128" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="3630:4082" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="4580:5764" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="4615:5599" placeholder="{...}" />
+            <marker date="1417270139000" expanded="true" signature="4765:4808" placeholder="{...}" />
+            <marker date="1417270139000" expanded="true" signature="4934:5540" placeholder="{...}" />
+            <marker date="1417270139000" expanded="true" signature="5176:5529" placeholder="{...}" />
+            <marker date="1417270139000" expanded="true" signature="5235:5355" placeholder="{...}" />
+            <marker date="1417270139000" expanded="true" signature="5393:5515" placeholder="{...}" />
+            <marker date="1417270139000" expanded="true" signature="5629:5754" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -977,14 +994,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GuessWhat/task.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="773" max-vertical-offset="1815">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GuessWhat/celery.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="353" max-vertical-offset="750">
@@ -993,21 +1002,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1245" max-vertical-offset="3225">
-          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-          <folding>
-            <element signature="e#14#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Guess/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.833333" vertical-offset="2140" max-vertical-offset="2490">
           <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1417270139000" expanded="true" signature="98:328" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="112:148" placeholder="{...}" />
+            <marker date="1417270139000" expanded="true" signature="336:4571" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="379:774" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="484:763" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="869:4510" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="949:1386" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="997:1375" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="1093:1360" placeholder="..." />
+            <marker date="1417270139000" expanded="false" signature="1160:1189" placeholder="..." />
+            <marker date="1417270139000" expanded="false" signature="1284:1313" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="1409:4497" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="1438:4485" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2100:2200" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2279:4466" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2334:4447" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2388:4424" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2441:2534" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2583:4396" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2629:4365" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2686:4330" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2808:4291" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2856:4246" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="2953:3523" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="3113:3477" placeholder="..." />
+            <marker date="1417270139000" expanded="false" signature="3212:3241" placeholder="..." />
+            <marker date="1417270139000" expanded="false" signature="3369:3398" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="3568:4128" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="3630:4082" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="4580:5764" placeholder="..." />
+            <marker date="1417270139000" expanded="true" signature="4615:5599" placeholder="{...}" />
+            <marker date="1417270139000" expanded="true" signature="4765:4808" placeholder="{...}" />
+            <marker date="1417270139000" expanded="true" signature="4934:5540" placeholder="{...}" />
+            <marker date="1417270139000" expanded="true" signature="5176:5529" placeholder="{...}" />
+            <marker date="1417270139000" expanded="true" signature="5235:5355" placeholder="{...}" />
+            <marker date="1417270139000" expanded="true" signature="5393:5515" placeholder="{...}" />
+            <marker date="1417270139000" expanded="true" signature="5629:5754" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1021,13 +1058,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Guess/templates/signup.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55714285" vertical-offset="0" max-vertical-offset="1635">
-          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+        <state vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="1635">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Guess/games/20141130.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105">
+          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Guess/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="3225">
+          <caret line="51" column="54" selection-start-line="51" selection-start-column="54" selection-end-line="51" selection-end-column="54" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#4;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#14#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GuessWhat/task.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39839572" vertical-offset="1621" max-vertical-offset="2055">
+          <caret line="118" column="17" selection-start-line="118" selection-start-column="17" selection-end-line="118" selection-end-column="17" />
+          <folding>
+            <element signature="e#14#52#0" expanded="true" />
           </folding>
         </state>
       </provider>
