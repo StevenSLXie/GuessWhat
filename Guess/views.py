@@ -45,7 +45,7 @@ def signup(request):
 		return redirect(reverse('home'))
 
 	games = Game.objects.filter(ended=False, is_primary=1)
-	r = random.randint(0,len(games)-1)
+	r = random.randint(0, len(games)-1)
 	game = games[r]
 
 	if request.method == 'POST':
