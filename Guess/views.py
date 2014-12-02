@@ -66,7 +66,7 @@ def signup(request):
 		auth_login(request,user)
 		return redirect(reverse('home'))
 	else:
-		return render(request, 'signup.html', {'game':game})
+		return render(request, 'signup.html', {'game': game, 'person': False})
 
 def marked_all_as_read(person):
 	for m in Message.objects.filter(owner=person, read=False):
@@ -75,7 +75,10 @@ def marked_all_as_read(person):
 
 def render_main(request, url, game_type=None):
 	if not request.user.is_authenticated():
-		return redirect(reverse('login'))
+		cur_person = False
+	else:
+		cur_person = Person.objects.get(user=request.user)
+
 
 	if game_type is None:
 		temps = Game.objects.filter(ended=False).order_by('-event','-is_primary')
@@ -83,9 +86,8 @@ def render_main(request, url, game_type=None):
 		# temps = Game.objects.filter(ended=False,game_type=game_type).order_by('-event','-is_primary')
 		temps = Game.objects.filter(ended=False, game_tag__tag=game_type).order_by('-event', '-is_primary')
 	gamess = game_choose_and_sort(temps)
-	cur_person = Person.objects.get(user=request.user)
 
-	if request.method == 'POST':
+	if request.method == 'POST' and cur_person != False:
 		if 'marked_all_as_read' in request.POST:
 			marked_all_as_read(cur_person)
 
@@ -199,9 +201,9 @@ def find_unread(person):
 
 def leaderboard(request):
 	if not request.user.is_authenticated():
-		return redirect(reverse('login'))
-
-	cur_person = Person.objects.get(user=request.user)
+		cur_person = False
+	else:
+		cur_person = Person.objects.get(user=request.user)
 	persons = Person.objects.all().order_by('rank','-point','-win')
 
 	para = {}
@@ -233,7 +235,11 @@ def more(request):
 
 
 def proposal(request):
-	proposer = Person.objects.get(user=request.user)
+	if not request.user.is_authenticated():
+		proposer = False
+	else:
+		proposer = Person.objects.get(user=request.user)
+
 	if request.method == 'POST':
 		if 'marked_all_as_read' in request.POST:
 			marked_all_as_read(proposer)
@@ -242,7 +248,11 @@ def proposal(request):
 			content = request.POST['content']
 			game_type = request.POST['type_select']
 			game_cate = request.POST['cate_select']
-			Proposal.objects.create(proposer=proposer, title=title, content=content, game_type=game_type, game_cate=game_cate)
+			if not proposer:
+				Proposal.objects.create(proposer = Person.objects.get(pk=1), title=title, content=content, game_type=game_type, game_cate=game_cate)   # workaround
+			else:
+				Proposal.objects.create(proposer=proposer, title=title, content=content, game_type=game_type, game_cate=game_cate)
+
 		return redirect(reverse('home'))
 
 	else:
@@ -252,7 +262,10 @@ def proposal(request):
 
 
 def encap_para(para, person):
-	messages = find_unread(person)
+	if person:
+		messages = find_unread(person)
+	else:
+		messages = None
 	para['messages'] = messages
 	para['person'] = person
 	return para
@@ -283,7 +296,11 @@ def inbox(request):
 
 
 def ack(request):
+	if not request.user.is_authenticated():
+		person = False
+	else:
+		person = Person.objects.get(user=request.user)
+
 	para = {}
-	person = Person.objects.get(user=request.user)
 	para = encap_para(para, person)
 	return render(request, 'ack.html', para)

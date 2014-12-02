@@ -49,7 +49,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{% url 'home' %}">盖世</a>
+      <a class="navbar-brand" href="{% url 'home' %}">猜神</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -68,8 +68,9 @@
         <li><a href="{% url 'proposal' %}"><i class="glyphicon glyphicon-edit" style="margin-right: 3px;"></i>提问</a></li>
       </ul>
 
-      <ul class="nav navbar-nav navbar-right" style="margin-right: 40px;">
 
+      <ul class="nav navbar-nav navbar-right" style="margin-right: 40px;">
+            {% if person != False %}
         <li id="notify_list" class="dropdown" style="margin-right: 10px;">
             {% if not messages|length %}
             <a id="notifications" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-inbox" style="margin-right: 3px;"></i>消息</a>
@@ -106,6 +107,10 @@
             <li><a href="{% url 'logout' %}">退出</a></li>
           </ul>
         </li>
+            {% else %}
+            <li><a href="{% url 'login' %}"><i class="glyphicon glyphicon-user" style="margin-right: 3px;"></i>登录</a></li>
+            <li><a href="{% url 'signup' %}"><i class="glyphicon glyphicon-plus-sign" style="margin-right: 3px;"></i>注册</a></li>
+            {% endif %}
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

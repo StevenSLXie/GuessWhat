@@ -148,7 +148,14 @@
     });
 
     function on_submit(e) {
-        if (confirm("确定投注？") == false)
+
+        var user = {{ person | yesno:"true,false" }};
+
+        if (user == false){
+            e.preventDefault();
+            alert('注册个账号吧！');
+        }
+        else if (confirm("确定投注？") == false)
             e.preventDefault();
         else
             $('.alert').toggle();
