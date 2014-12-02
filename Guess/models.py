@@ -62,12 +62,6 @@ class Game(models.Model):
 		ordering = ('expire',)
 
 	def pricing(self, bet, person):
-		# tentatively update every 60s
-		if self.num_away + self.num_away < 10:
-			return
-		# bets = self.betting_set.filter(better__point__gt=0, cleared=False, buy_time__gt=datetime.datetime.now()-datetime.timedelta(seconds=60)).select_related('better')
-		# print datetime.datetime.now()-datetime.timedelta(seconds=60)
-
 		# for b in bets:
 		for tag in self.game_tag.all():
 			e = Expertise.objects.get(tag=tag, expert=person)
@@ -76,10 +70,10 @@ class Game(models.Model):
 			else:
 				self.weight_away += e.score*bet.price_at_buy
 
-		self.price_home = self.weight_home/(self.weight_away+self.weight_home+0.001)*100
-		self.price_away = 100 - int(self.price_home)
-		self.save()
-		# print self.pk, self.price_home, self.price_away
+		if self.num_away + self.num_away > 10:
+			self.price_home = self.weight_home/(self.weight_away+self.weight_home+0.001)*100
+			self.price_away = 100 - int(self.price_home)
+			self.save()
 
 
 class Betting(models.Model):
