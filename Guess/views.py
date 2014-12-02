@@ -204,7 +204,7 @@ def leaderboard(request):
 		cur_person = False
 	else:
 		cur_person = Person.objects.get(user=request.user)
-	persons = Person.objects.all().order_by('rank','-point','-win')
+	persons = Person.objects.filter(rank__gt=0, win__gt=1).order_by('rank','-point','-win')
 
 	para = {}
 	para['persons'] = persons
