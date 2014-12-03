@@ -56,8 +56,8 @@
 
 <div class="well col-md-6 col-md-offset-3 well-frame-c">
     <div class = "row">
-        <div class="col-md-1 col-md-offset-2"><input class="btn button-clear" type="submit" value="卖出所有投注" name="sell_all" onclick="on_sell_all(event)"/></div>
-        <div class="col-md-1 col-md-offset-3"><input class="btn button-clear" type="submit" value="卖出所有盈利投注" name="sell_win_bets" onclick="on_submit(event)"/></div>
+        <div class="col-md-1 col-md-offset-2 col-sm-1 col-sm-offset-2 col-xs-1 col-xs-offset-2"><input class="btn button-clear" type="submit" value="卖出所有投注" name="sell_all" onclick="on_sell_all(event)"/></div>
+        <div class="col-md-1 col-md-offset-3 col-sm-1 col-sm-offset-3 col-xs-1 col-xs-offset-3"><input class="btn button-clear" type="submit" value="卖出所有盈利投注" name="sell_win_bets" onclick="on_submit(event)"/></div>
      </div>
 </div>
 
@@ -72,17 +72,17 @@
             <div class="progress-bar progress-bar-c1" style="width: {{ b.game.price_home }}%">{{ b.game.price_home }}</div>
             <div class="progress-bar progress-bar-c2" style="width: {{ b.game.price_away }}%">{{ b.game.price_away }}</div>
         </div>
-        <div class="col-md-offset-2">
+        <div>
         {% if b.side %}
-            <div><p>您之前赞同“{{ b.game.headline }}”，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_home b.price_at_buy %}。</p></div>
+            <div><p class="text-center">您之前赞同“{{ b.game.headline }}”，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_home b.price_at_buy %}。</p></div>
         {% else %}
-            <div><p>您之前不赞同“{{ b.game.headline }}”，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_away b.price_at_buy %}。</p></div>
+            <div><p class="text-center">您之前不赞同“{{ b.game.headline }}”，买入时的点数为{{ b.price_at_buy }}，现在卖出盈亏为{% sub b.game.price_away b.price_at_buy %}。</p></div>
         {% endif %}
 
         </div>
 
-        <div class="col-md-1 col-md-offset-5 spacer"><input class="btn button-clear" type="submit" value="现在结算" name="{{ b.pk }}" onclick="on_submit(event)"/></div>
-        <div class="col-md-1 col-md-offset-4 spacer">
+        <div class="col-md-1 col-md-offset-5 col-sm-1 col-sm-offset-5 col-xs-1 col-xs-offset-5 spacer"><input class="btn button-clear" type="submit" value="现在结算" name="{{ b.pk }}" onclick="on_submit(event)"/></div>
+        <div class="col-md-1 col-md-offset-4 col-sm-1 col-sm-offset-5 col-xs-1 col-xs-offset-5 spacer">
                 {% if b.side %}
                 <wb:share-button appkey="6KfBb7" url="http://weguesso.com/home" addition="simple" type="button" default_text="我在{{ b.price_at_buy }}点的价位认为 &ldquo; {{ b.game.headline }}&ldquo;，你也来买一注吧！"></wb:share-button>
                 {% else %}

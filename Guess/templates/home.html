@@ -44,25 +44,25 @@
 
              <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c1" type="submit" value='赞同' name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
              <div class="col-md-1 col-md-offset-3 spacer"><input class="btn progress-bar-c2" type="submit" value='反对' name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
-             <p class="col-md-8 col-md-offset-3"><i class="glyphicon glyphicon-stop"></i> {{ game.expire | date:"y年m月d日 h时m分s秒" }}截止</p>
+             <p class="col-md-8 col-md-offset-3 col-sm-8 col-sm-offset-3 col-xs-8 col-xs-offset-3"><i class="glyphicon glyphicon-stop"></i> {{ game.expire | date:"y年m月d日 h时m分s秒" }}截止</p>
 
             {% if not forloop.last %}
              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user"  data-for=".{{ game.pk }}">
                     <i class="glyphicon glyphicon-chevron-down text-muted"></i>
              </div>
             {% endif %}
-            <div class="col-md-1 col-md-offset-10 spacer">
+            <div class="col-md-1 col-md-offset-10 col-sm-1 col-sm-offset-10 col-xs-1 col-xs-offset-10spacer">
                 <wb:share-button appkey="6KfBb7" addition="simple" type="button" default_text="事件 &ldquo; {{ game.headline }}&ldquo;的当前猜神价位是 {{ game.price_home }}，快来买一注吧！"></wb:share-button>
              </div>
             <div class="row user-infos {{ game.pk }}">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-heading ">
                             <h3 class="panel-title">更多投注</h3>
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class=" col-md-12">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
                                     <br>
                                     <table class="table table-user-information">
                                         <tbody>
@@ -78,8 +78,8 @@
                                         </tr>
                                         <tr>
                                             <div class="row">
-                                            <div class="col-md-1 col-md-offset-1"><input class="btn progress-bar-c1" type="submit" value="同意" name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
-                                            <div class="col-md-1 col-md-offset-4"><input class="btn progress-bar-c2" type="submit" value="不同意" name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
+                                                <div class="col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1 col-xs-2 col-xs-offset-1 spacer"><input class="btn progress-bar-c1" type="submit" value="同意" name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
+                                                <div class="col-md-2 col-md-offset-5 col-sm-2 col-sm-offset-5 col-xs-2 col-xs-offset-5 spacer"><input class="btn progress-bar-c2" type="submit" value="不同意" name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
                                             </div>
                                         </tr>
                                         {% endif %}
