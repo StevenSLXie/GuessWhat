@@ -40,8 +40,7 @@
                 <br /> <i class="glyphicon glyphicon-road"></i> 总积分 {{ person.point }} 分
                 <br /> <i class="glyphicon glyphicon-ok"></i> 猜对 {{ person.win }} 次
                 <br /> <i class="glyphicon glyphicon-remove"></i> 猜错 {{ person.lose }} 次
-                <br /> <i class="glyphicon glyphicon-calendar"></i>  {{ person.joined | date:"y年m月d日" }} 加入盖世</p>
-
+                <br /> <i class="glyphicon glyphicon-calendar"></i>  {{ person.joined | date:"y年m月d日" }} 加入猜神</p>
         </div>
 
     </div>
@@ -81,9 +80,9 @@
         <div class="col-md-1 col-md-offset-5 col-sm-1 col-sm-offset-5 col-xs-1 col-xs-offset-5 spacer"><input class="btn button-clear" type="submit" value="现在结算" name="{{ b.pk }}" onclick="on_submit(event)"/></div>
         <div class="col-md-1 col-md-offset-4 col-sm-1 col-sm-offset-4 col-xs-1 col-xs-offset-4 spacer">
                 {% if b.side %}
-                <wb:share-button appkey="6KfBb7" url="http://weguesso.com/home" addition="simple" type="button" default_text="我在{{ b.price_at_buy }}点的价位认为 &ldquo; {{ b.game.headline }}&ldquo;，你也来买一注吧！"></wb:share-button>
+                <wb:share-button appkey="6KfBb7" url="http://weguesso.com/home" addition="simple" type="button" default_text="在{{ b.price_at_buy }}点的价位，我认为 &ldquo; {{ b.game.headline }}&ldquo;，你也来买一注吧！"></wb:share-button>
                 {% else %}
-                <wb:share-button appkey="6KfBb7" url="http://weguesso.com/home" addition="simple" type="button" default_text="我在{{ b.price_at_buy }}点的价位不认为 &ldquo; {{ b.game.headline }}&ldquo;，你也来买一注吧！"></wb:share-button>
+                <wb:share-button appkey="6KfBb7" url="http://weguesso.com/home" addition="simple" type="button" default_text="在{{ b.price_at_buy }}点的价位，我不认为 &ldquo; {{ b.game.headline }}&ldquo;，你也来买一注吧！"></wb:share-button>
                 {% endif %}
         </div>
     </div>
@@ -94,22 +93,4 @@
 
 {% include "footer.html" %}
 
-
-<script type="text/javascript" charset="utf-8">
-(function(){
-  var _w = 90 , _h = 24;
-  var param = {
-    url: "weguesso.com/home",
-    type:'2',
-    count:'1', /**是否显示分享数，1显示(可选)*/
-    language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
-    rnd:new Date().valueOf()
-  }
-  var temp = [];
-  for( var p in param ){
-    temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
-  }
-  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
-})()
-</script>
 
