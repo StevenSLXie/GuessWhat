@@ -80,9 +80,9 @@
         <div class="col-md-1 col-md-offset-5 col-sm-1 col-sm-offset-5 col-xs-1 col-xs-offset-5 spacer"><input class="btn button-clear" type="submit" value="现在结算" name="{{ b.pk }}" onclick="on_submit(event)"/></div>
         <div class="col-md-1 col-md-offset-4 col-sm-1 col-sm-offset-4 col-xs-1 col-xs-offset-4 spacer">
                 {% if b.side %}
-                <wb:share-button appkey="6KfBb7" url="http://weguesso.com/home" addition="simple" type="button" default_text="在{{ b.price_at_buy }}点的价位，我认为 &ldquo; {{ b.game.headline }}&ldquo;，你也来买一注吧！"></wb:share-button>
+                <wb:share-button appkey="6KfBb7" url="http://weguesso.com/home" addition="simple" type="button" default_text="未来世界不可知，但我们可以对它下注。在{{ b.price_at_buy }}点的价位，我认为 &ldquo; {{ b.game.headline }}&ldquo;，你觉得呢？不如你也来投注吧，展示你的未卜先知。对未来的更多投注："></wb:share-button>
                 {% else %}
-                <wb:share-button appkey="6KfBb7" url="http://weguesso.com/home" addition="simple" type="button" default_text="在{{ b.price_at_buy }}点的价位，我不认为 &ldquo; {{ b.game.headline }}&ldquo;，你也来买一注吧！"></wb:share-button>
+                <wb:share-button appkey="6KfBb7" url="http://weguesso.com/home" addition="simple" type="button" default_text="未来世界不可知，但我们可以对它下注。在{{ b.price_at_buy }}点的价位，我不认为 &ldquo; {{ b.game.headline }}&ldquo;，你觉得呢？不如你也来投注吧，展示你的未卜先知。对未来的更多投注："></wb:share-button>
                 {% endif %}
         </div>
     </div>
