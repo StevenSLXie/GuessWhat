@@ -80,15 +80,9 @@
 
             <form>
                 {% csrf_token %}
-            <ul>
-                <li>
-                    <div class="col-md-1 col-md-offset-3 col-sm-1 col-sm-offset-3 col-xs-1 col-xs-offset-2 spacer"><input class="btn progress-bar-c1" type="submit" value='赞同' name="h:{{ game.pk }}" onclick="on_submit(1)"/></div>
-                    <div class="col-md-1 col-md-offset-3 col-sm-1 col-sm-offset-3 col-xs-1 col-xs-offset-2 spacer"><input class="btn progress-bar-c2" type="submit" value='反对' name="a:{{ game.pk }}" onclick="on_submit(2)"/></div>
-                </li>
-                <li>
-                    <div class="col-md-1 col-md-offset-4 col-sm-1 col-sm-offset-4 col-xs-1 col-xs-offset-2 spacer" style="text-align: center"><input class="btn btn-success" type="submit" value="我要猜别的话题" name="shuffle"/></div>
-                </li>
-            </ul>
+                <div class="col-md-1 col-md-offset-3 col-sm-1 col-sm-offset-3 col-xs-1 col-xs-offset-2 spacer"><input class="btn progress-bar-c1" type="submit" value='赞同' name="h:{{ game.pk }}" onclick="on_submit(1)"/></div>
+                <div class="col-md-1 col-md-offset-3 col-sm-1 col-sm-offset-3 col-xs-1 col-xs-offset-2 spacer"><input class="btn progress-bar-c2" type="submit" value='反对' name="a:{{ game.pk }}" onclick="on_submit(2)"/></div>
+                <div  style="text-align: center"><input class="btn btn-success btn-block" type="submit" value="我要猜别的话题" name="shuffle"/></div>
 
             </form>
         </div>
