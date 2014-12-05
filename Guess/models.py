@@ -18,6 +18,7 @@ class PersonTag(models.Model):
 
 
 class Person(models.Model):
+	# Users profiles
 	user = models.OneToOneField(User)
 	point = models.IntegerField(default=1000)
 	photo = models.FileField(upload_to='%Y/%m/%d/', default= 'cat.jpg')
@@ -36,6 +37,7 @@ class Person(models.Model):
 
 
 class Game(models.Model):
+	# Each game
 	headline = models.TextField()
 	begin = models.DateTimeField(auto_now_add=True)
 	expire = models.DateTimeField()
@@ -149,6 +151,7 @@ class Betting(models.Model):
 
 
 class Proposal(models.Model):
+	# Submit a question
 	proposer = models.ForeignKey(Person)
 
 	game_type = models.CharField(max_length=30)
@@ -158,6 +161,7 @@ class Proposal(models.Model):
 
 
 class Message(models.Model):
+	# In-site messages
 	owner = models.ForeignKey(Person)
 	betting = models.ForeignKey(Betting)
 	verbal = models.TextField()
@@ -188,6 +192,19 @@ class Expertise(models.Model):
 					self.score -= (b.price_at_sell-b.price_at_buy)*0.1
 		self.save()
 		# print self.score
+
+
+class Comments(models.Model):
+	# the comments associated with a game
+	from_whom = models.ForeignKey(Person)
+	game = models.ForeignKey(Game, db_index=True)
+	content = models.TextField()
+
+	liked = models.IntegerField(default=0)
+	disliked = models.IntegerField(default=0)
+
+
+
 
 
 
