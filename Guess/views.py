@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User
-from Guess.models import Person, Game, Betting, Proposal, Message, GameTag
+from Guess.models import Person, Game, Betting, Proposal, Message, GameTag, Comments
 from Guess.form import ImageForm
 from algorithm.data_processing import price_change
 import random
@@ -80,27 +80,47 @@ def render_main(request, url, game_type=None):
 		cur_person = Person.objects.get(user=request.user)
 
 
-	if game_type is None:
-		temps = Game.objects.filter(ended=False).order_by('-event','-is_primary')
-	else:
+	#if game_type is None:
+	#	temps = Game.objects.filter(ended=False).order_by('-event','-is_primary')
+	#else:
 		# temps = Game.objects.filter(ended=False,game_type=game_type).order_by('-event','-is_primary')
-		temps = Game.objects.filter(ended=False, game_tag__tag=game_type).order_by('-event', '-is_primary')
-	gamess = game_choose_and_sort(temps)
+	#	temps = Game.objects.filter(ended=False, game_tag__tag=game_type).order_by('-event', '-is_primary')
+	#gamess = game_choose_and_sort(temps)
+
+	comments = []
+
+	if game_type is None:
+		gamess = Game.objects.filter(ended=False).order_by('-pk')
+	else:
+		gamess = Game.objects.filter(ended=False, game_tag__tag=game_type).order_by('-event', '-is_primary')
+
+	for game in gamess:
+		cs = []
+		for c in game.comments_set.all().order_by('-point'):
+			cs.append(c)
+		comments.append(cs)
 
 	if request.method == 'POST' and cur_person != False:
 		if 'marked_all_as_read' in request.POST:
 			marked_all_as_read(cur_person)
 
-		for cur_game in temps:
+		for cur_game in gamess:
 			accept_bet(request, cur_person, cur_game)
+			process_comments(request, cur_game, cur_person)
 
 		return redirect(reverse(url)+'#success')
 	else:
 		para = {}
+		para['comments'] = comments
 		para['gamess'] = gamess
 		para = encap_para(para, cur_person)
 		return render(request, 'home.html', para)
 
+
+def process_comments(request, cur_game, cur_person):
+
+	if 'submit_comment_'+str(cur_game.pk) in request.POST:
+		Comments.objects.create(from_whom=cur_person, game=cur_game, content=request.POST['comment_content_'+str(cur_game.pk)])
 
 
 def home(request):

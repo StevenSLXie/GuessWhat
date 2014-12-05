@@ -1,5 +1,5 @@
 from django.contrib import admin
-from Guess.models import Game, Person, Betting, Proposal, PersonTag, GameTag, Message, Expertise
+from Guess.models import Game, Person, Betting, Proposal, PersonTag, GameTag, Message, Expertise, Comments
 
 # Register your models here.
 admin.site.register(Game)
@@ -10,3 +10,4 @@ admin.site.register(PersonTag)
 admin.site.register(GameTag)
 admin.site.register(Message)
 admin.site.register(Expertise)
+admin.site.register(Comments)

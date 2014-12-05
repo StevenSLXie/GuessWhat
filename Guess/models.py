@@ -201,6 +201,7 @@ class Comments(models.Model):
 	content = models.TextField()
 	post_time = models.DateTimeField(default=timezone.now())
 
+	point = models.IntegerField(default=0)
 
 	liked = models.IntegerField(default=0)
 	disliked = models.IntegerField(default=0)
