@@ -199,6 +199,8 @@ class Comments(models.Model):
 	from_whom = models.ForeignKey(Person)
 	game = models.ForeignKey(Game, db_index=True)
 	content = models.TextField()
+	post_time = models.DateTimeField(default=timezone.now())
+
 
 	liked = models.IntegerField(default=0)
 	disliked = models.IntegerField(default=0)
