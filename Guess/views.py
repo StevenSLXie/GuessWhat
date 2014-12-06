@@ -10,6 +10,7 @@ from Guess.models import Person, Game, Betting, Proposal, Message, GameTag, Comm
 from Guess.form import ImageForm
 from algorithm.data_processing import price_change
 import random
+from django.utils import timezone
 
 
 # Create your views here.
@@ -79,14 +80,6 @@ def render_main(request, url, game_type=None):
 	else:
 		cur_person = Person.objects.get(user=request.user)
 
-
-	#if game_type is None:
-	#	temps = Game.objects.filter(ended=False).order_by('-event','-is_primary')
-	#else:
-		# temps = Game.objects.filter(ended=False,game_type=game_type).order_by('-event','-is_primary')
-	#	temps = Game.objects.filter(ended=False, game_tag__tag=game_type).order_by('-event', '-is_primary')
-	#gamess = game_choose_and_sort(temps)
-
 	comments = []
 
 	if game_type is None:
@@ -120,7 +113,26 @@ def render_main(request, url, game_type=None):
 def process_comments(request, cur_game, cur_person):
 
 	if 'submit_comment_'+str(cur_game.pk) in request.POST:
-		Comments.objects.create(from_whom=cur_person, game=cur_game, content=request.POST['comment_content_'+str(cur_game.pk)])
+		Comments.objects.create(from_whom=cur_person, game=cur_game, content=request.POST['comment_content_'+str(cur_game.pk)],post_time=timezone.now())
+	else:
+		for c in cur_game.comments_set.all():
+			if 'up_' +str(c.pk)  in request.POST:
+				cur_person.point -= 10;
+				cur_person.save()
+				c.liked += 1
+				c.save()
+				return
+			elif 'down_' +str(c.pk) in request.POST:
+				cur_person.point -= 10;
+				cur_person.save()
+				c.disliked += 1
+				c.save()
+				return
+			elif 'remove_' +str(c.pk) in request.POST:
+				c.delete()
+				return
+			elif 'plane_' +str(c.pk) in request.POST:
+				return
 
 
 def home(request):
