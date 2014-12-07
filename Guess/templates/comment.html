@@ -30,11 +30,11 @@
                                        <button class="btn btn-default btn-xs" name="up_{{ c.pk }}" style="border: none;">
                                           <span class="glyphicon glyphicon-thumbs-up"></span>
                                        </button>
-                                       <label>{{ c.liked }}</label>
+                                       <label id="label_up_{{ c.pk }}">{{ c.liked }}</label>
                                        <button class="btn btn-default  btn-xs " name="down_{{ c.pk }}" style="border: none;">
                                           <span class="glyphicon glyphicon-thumbs-down"></span>
                                        </button>
-                                       <label>{{ c.disliked }}</label>
+                                       <label id="label_down_{{ c.pk }}">{{ c.disliked }}</label>
                                        {% if c.from_whom != person %}
                                        <button class="btn btn-default  btn-xs" name="remove_{{ c.pk }}" style="border: none;">
                                           <span class="glyphicon glyphicon-remove"></span>
@@ -51,8 +51,8 @@
                     {% endif %}
                     {% endfor %}
                     {% endwith %}
+
                     <li class="list-group-item">
-                        {% csrf_token %}
                         <div class="row">
                             <div class="input-group col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
                                 <input type="text" class="form-control col-md-12" name="comment_content_{{ game.pk }}" style="margin-bottom: 10px;"/>

@@ -21,8 +21,13 @@
         </div>
     </div>
 
+    <form method="POST" id="combine">
+        {% csrf_token %}
 
     {% for game in gamess %}
+
+
+
 
     <div class="well well-frame-c1 col-md-6 col-md-offset-3">
 
@@ -37,8 +42,6 @@
     </div>
 
     <div class="row">
-        <form method="POST">
-            {% csrf_token %}
 
              <div class="col-md-1 col-md-offset-3 col-sm-1 col-sm-offset-3 col-xs-1 col-xs-offset-3 spacer"><input class="btn progress-bar-c1" type="submit" value='赞同' name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
              <div class="col-md-1 col-md-offset-3 col-sm-1 col-sm-offset-3 col-xs-1 col-xs-offset-3 spacer"><input class="btn progress-bar-c2" type="submit" value='反对' name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
@@ -53,11 +56,6 @@
             <div class="row user-infos {{ game.pk }}">
                 {% include 'comment.html' %}
             </div>
-
-
-
-        </form>
-
     </div>
 
 
@@ -65,6 +63,8 @@
 
 
     {% endfor %}
+
+    </form>
 
     {% include "footer.html" %}
 
@@ -102,10 +102,39 @@
             })
         });
 
+        $('#combined').on('submit',function(event){
+            console.log('Form submitted!');
+            event.preventDefault();
+            create_post();
+        });
+
 
         $('[data-toggle="tooltip"]').tooltip();
 
     });
+
+
+
+
+    function create_post(){
+        console.log('Create post is working!');
+        $.ajax({
+            type:'POST',
+            url:window.location.href,
+            data: $('#combined').serialize(),
+
+            success:function(json){
+                alert(json.label_down_3)
+                $('#label_down_3').text(json.label_down_3)
+                console.log('success')
+            },
+
+            error: function(xhr, errmsg, err){
+                console.log('error')
+                console.log(err)
+            }
+        });
+    }
 
     function on_submit(e) {
 

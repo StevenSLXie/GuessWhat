@@ -8,9 +8,10 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User
 from Guess.models import Person, Game, Betting, Proposal, Message, GameTag, Comments
 from Guess.form import ImageForm
-from algorithm.data_processing import price_change
 import random
+import json
 from django.utils import timezone
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -94,14 +95,19 @@ def render_main(request, url, game_type=None):
 		comments.append(cs)
 
 	if request.method == 'POST' and cur_person != False:
+		res_data = {}
+		print request.POST
+
 		if 'marked_all_as_read' in request.POST:
 			marked_all_as_read(cur_person)
 
 		for cur_game in gamess:
 			accept_bet(request, cur_person, cur_game)
-			process_comments(request, cur_game, cur_person)
+			res_data = process_comments(request, cur_game, cur_person, res_data)
 
-		return redirect(reverse(url)+'#success')
+		print res_data
+		# return redirect(reverse(url)+'#success')
+		return HttpResponse(json.dumps(res_data), content_type='application/json')
 	else:
 		para = {}
 		para['comments'] = comments
@@ -110,29 +116,33 @@ def render_main(request, url, game_type=None):
 		return render(request, 'home.html', para)
 
 
-def process_comments(request, cur_game, cur_person):
+def process_comments(request, cur_game, cur_person, res_data):
 
 	if 'submit_comment_'+str(cur_game.pk) in request.POST:
 		Comments.objects.create(from_whom=cur_person, game=cur_game, content=request.POST['comment_content_'+str(cur_game.pk)],post_time=timezone.now())
 	else:
 		for c in cur_game.comments_set.all():
-			if 'up_' +str(c.pk)  in request.POST:
-				cur_person.point -= 10;
+			if 'up_' +str(c.pk) in request.POST:
+				cur_person.point -= 10
 				cur_person.save()
 				c.liked += 1
 				c.save()
-				return
-			elif 'down_' +str(c.pk) in request.POST:
-				cur_person.point -= 10;
+				res_data['label_up_'+str(c.pk)] = c.liked
+				return res_data
+			elif 'down_'+str(c.pk) in request.POST:
+				cur_person.point -= 10
 				cur_person.save()
 				c.disliked += 1
 				c.save()
-				return
+				res_data['label_down_'+str(c.pk)] = c.disliked
+				return res_data
 			elif 'remove_' +str(c.pk) in request.POST:
 				c.delete()
-				return
+				return res_data
 			elif 'plane_' +str(c.pk) in request.POST:
-				return
+				return res_data
+
+		return res_data
 
 
 def home(request):
