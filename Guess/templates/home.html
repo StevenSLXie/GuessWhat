@@ -106,12 +106,13 @@
         var form_data = {};
 
 
-        $('#submit_form').on('submit',function(event){
-
+        $(":input").on('click',function(event){
+            //alert($(this).attr('name'));
             form_data = $('#submit_form').serializeArray();
-            form_data.push({name:$(this).find("#just-clicked").attr('name'),value:$(this).find("#just-clicked").attr('value')});
-            $(this).find("input").removeAttr('id');
-            $(this).find("button").removeAttr('id');
+            form_data.push({name:$(this).attr('name'),value:$(this).attr('value')});
+            //form_data.push({name:$(this).find("#just-clicked").attr('name'),value:$(this).find("#just-clicked").attr('value')});
+            //$(this).find("input").removeAttr('id');
+            //$(this).find("button").removeAttr('id');
             console.log('Form submitted!');
             event.preventDefault();
 
@@ -125,8 +126,8 @@
                         $('#'+key).text(data[key]);
                     }
 
-                    alert(key);
-                    alert(data[key]);
+                    //alert(key);
+                    //alert(data[key]);
                     console.log(data);
                 },
 
@@ -153,7 +154,6 @@
         else if (confirm("确定投注？") == false)
             e.preventDefault();
         else{
-            e.target.id =  "just-clicked";
             $('.alert').toggle();
         }
     }
