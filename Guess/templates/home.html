@@ -21,13 +21,10 @@
         </div>
     </div>
 
-    <form method="POST" id="combine">
+     <form method="POST" id="submit_form">
         {% csrf_token %}
 
     {% for game in gamess %}
-
-
-
 
     <div class="well well-frame-c1 col-md-6 col-md-offset-3">
 
@@ -43,6 +40,7 @@
 
     <div class="row">
 
+
              <div class="col-md-1 col-md-offset-3 col-sm-1 col-sm-offset-3 col-xs-1 col-xs-offset-3 spacer"><input class="btn progress-bar-c1" type="submit" value='赞同' name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
              <div class="col-md-1 col-md-offset-3 col-sm-1 col-sm-offset-3 col-xs-1 col-xs-offset-3 spacer"><input class="btn progress-bar-c2" type="submit" value='反对' name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
              <p class="col-md-8 col-md-offset-3 col-sm-8 col-sm-offset-3 col-xs-8 col-xs-offset-3"><i class="glyphicon glyphicon-stop"></i> {{ game.expire | date:"y年m月d日 h时i分s秒" }}截止</p>
@@ -53,18 +51,21 @@
             <div class="col-md-1 col-md-offset-10 col-sm-1 col-sm-offset-10 col-xs-1 col-xs-offset-9 spacer">
                 <wb:share-button appkey="6KfBb7" addition="simple" type="button" default_text="事件 &ldquo; {{ game.headline }}&ldquo;的当前猜神价位是 {{ game.price_home }}，快来买一注吧！"></wb:share-button>
              </div>
+
             <div class="row user-infos {{ game.pk }}">
                 {% include 'comment.html' %}
             </div>
+
     </div>
 
 
     </div>
+
 
 
     {% endfor %}
+     </form>
 
-    </form>
 
     {% include "footer.html" %}
 
@@ -102,10 +103,36 @@
             })
         });
 
-        $('#combined').on('submit',function(event){
+        var form_data = $('#submit_form').serializeArray();
+
+        // the method should be right. Keep digging!
+
+        $('#submit_form').on('submit',function(event){
+            //alert(event.name);
+            //$("button").each(function(){
+            //    if($(this).hasClass('just-clicked'))
+            //        form_data.push({name:$(this).attr('name'), value:$(this).attr('value')});
+            //});
+            form_data.push({name:$(this).find("#just-clicked").attr('name'),value:$(this).find("#just-clicked").attr('value')});
+            $(this).find("input").removeAttr('id');
+            $(this).find("button").removeAttr('id');
             console.log('Form submitted!');
             event.preventDefault();
-            create_post();
+            $.ajax({
+                type: 'POST',
+                url: window.location.href,
+                data: form_data,
+                //data:values,
+
+                success: function(data){
+                    console.log(data);
+                },
+
+                error : function(xhr,errmsg,err){
+                    console.log(err)
+                }
+            });
+            //create_post();
         });
 
 
@@ -113,32 +140,10 @@
 
     });
 
-
-
-
-    function create_post(){
-        console.log('Create post is working!');
-        $.ajax({
-            type:'POST',
-            url:window.location.href,
-            data: $('#combined').serialize(),
-
-            success:function(json){
-                alert(json.label_down_3)
-                $('#label_down_3').text(json.label_down_3)
-                console.log('success')
-            },
-
-            error: function(xhr, errmsg, err){
-                console.log('error')
-                console.log(err)
-            }
-        });
-    }
-
     function on_submit(e) {
 
         var user = {{ person | yesno:"true,false" }};
+
 
         if (user == false){
             e.preventDefault();
@@ -146,8 +151,12 @@
         }
         else if (confirm("确定投注？") == false)
             e.preventDefault();
-        else
+        else{
+            e.target.id =  "just-clicked";
+            alert(e.target.name);
+
             $('.alert').toggle();
+        }
     }
 
 </script>

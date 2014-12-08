@@ -106,7 +106,8 @@ def render_main(request, url, game_type=None):
 			res_data = process_comments(request, cur_game, cur_person, res_data)
 
 		print res_data
-		# return redirect(reverse(url)+'#success')
+
+ 		# return redirect(reverse(url)+'#success')
 		return HttpResponse(json.dumps(res_data), content_type='application/json')
 	else:
 		para = {}
@@ -127,14 +128,14 @@ def process_comments(request, cur_game, cur_person, res_data):
 				cur_person.save()
 				c.liked += 1
 				c.save()
-				res_data['label_up_'+str(c.pk)] = c.liked
+				res_data['label_up_'+str(c.pk)] = str(c.liked)
 				return res_data
 			elif 'down_'+str(c.pk) in request.POST:
 				cur_person.point -= 10
 				cur_person.save()
 				c.disliked += 1
 				c.save()
-				res_data['label_down_'+str(c.pk)] = c.disliked
+				res_data["label_down_"+str(c.pk)] = str(c.disliked)
 				return res_data
 			elif 'remove_' +str(c.pk) in request.POST:
 				c.delete()
