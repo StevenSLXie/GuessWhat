@@ -103,28 +103,27 @@
             })
         });
 
-        var form_data = $('#submit_form').serializeArray();
+        var form_data = {};
 
-        // the method should be right. Keep digging!
 
         $('#submit_form').on('submit',function(event){
-            //alert(event.name);
-            //$("button").each(function(){
-            //    if($(this).hasClass('just-clicked'))
-            //        form_data.push({name:$(this).attr('name'), value:$(this).attr('value')});
-            //});
+
+            form_data = $('#submit_form').serializeArray();
             form_data.push({name:$(this).find("#just-clicked").attr('name'),value:$(this).find("#just-clicked").attr('value')});
             $(this).find("input").removeAttr('id');
             $(this).find("button").removeAttr('id');
             console.log('Form submitted!');
             event.preventDefault();
+
             $.ajax({
                 type: 'POST',
                 url: window.location.href,
                 data: form_data,
-                //data:values,
 
                 success: function(data){
+                    for(var key in data){
+                        $('#'+key).text(data[key]);
+                    }
                     console.log(data);
                 },
 
@@ -132,7 +131,6 @@
                     console.log(err)
                 }
             });
-            //create_post();
         });
 
 
@@ -153,8 +151,6 @@
             e.preventDefault();
         else{
             e.target.id =  "just-clicked";
-            alert(e.target.name);
-
             $('.alert').toggle();
         }
     }
