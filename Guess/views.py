@@ -121,6 +121,10 @@ def process_comments(request, cur_game, cur_person, res_data):
 
 	if 'submit_comment_'+str(cur_game.pk) in request.POST:
 		Comments.objects.create(from_whom=cur_person, game=cur_game, content=request.POST['comment_content_'+str(cur_game.pk)],post_time=timezone.now())
+		res_data['type'] = 'submit_comment'
+		res_data['game'] = str(cur_game.pk)
+		return res_data
+
 	else:
 		for c in cur_game.comments_set.all():
 			if 'up_' +str(c.pk) in request.POST:
@@ -129,6 +133,7 @@ def process_comments(request, cur_game, cur_person, res_data):
 				c.liked += 1
 				c.save()
 				res_data['label_up_'+str(c.pk)] = str(c.liked)
+				res_data['type'] = 'in_comment_items'
 				return res_data
 			elif 'down_'+str(c.pk) in request.POST:
 				cur_person.point -= 10
@@ -136,6 +141,7 @@ def process_comments(request, cur_game, cur_person, res_data):
 				c.disliked += 1
 				c.save()
 				res_data["label_down_"+str(c.pk)] = str(c.disliked)
+				res_data['type'] = 'in_comment_items'
 				return res_data
 			elif 'remove_' +str(c.pk) in request.POST:
 				c.delete()

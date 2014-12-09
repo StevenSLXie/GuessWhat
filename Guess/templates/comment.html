@@ -7,7 +7,7 @@
 
             </div>
             <div class="panel-body">
-                <ul class="list-group">
+                <ul class="list-group" id="comment-group-{{ game.pk }}">
                     {% with counter=forloop.counter0 %}
                     {% for cs in comments %}
                     {% if forloop.counter0 == counter %}
@@ -35,7 +35,7 @@
                                           <span class="glyphicon glyphicon-thumbs-down"></span>
                                        </button>
                                        <label id="label_down_{{ c.pk }}">{{ c.disliked }}</label>
-                                       {% if c.from_whom != person %}
+                                       {% if c.from_whom == person %}
                                        <button type="submit" class="btn btn-default  btn-xs" name="remove_{{ c.pk }}" style="border: none;">
                                           <span class="glyphicon glyphicon-remove"></span>
                                        </button>
