@@ -107,12 +107,8 @@
 
 
         $(":input").on('click',function(event){
-            //alert($(this).attr('name'));
             form_data = $('#submit_form').serializeArray();
             form_data.push({name:$(this).attr('name'),value:$(this).attr('value')});
-            //form_data.push({name:$(this).find("#just-clicked").attr('name'),value:$(this).find("#just-clicked").attr('value')});
-            //$(this).find("input").removeAttr('id');
-            //$(this).find("button").removeAttr('id');
             console.log('Form submitted!');
             event.preventDefault();
 
@@ -130,29 +126,33 @@
                     }
                     else if(data['type'] == 'submit_comment'){
                         delete data['type'];
+                        var photo = data['photo'];
+                        var content = data['content'];
+                        var username = data['username'];
+                        var pk = data['pk'];
                         var block = '<li class="list-group-item"> \
                                         <div class="row"> \
                                             <div class="col-xs-2 col-md-1"> \
-                                            <img class="media-object" src="/static/images/{{ c.from_whom.photo.url }}" height="30" width="30"> \
+                                            <img class="media-object" src="/static/images/' + photo +
+                                             '" height="30" width="30"> \
                                             </div> \
                                             <div class="col-xs-10 col-md-11"> \
                                                 <div> \
-                                                    <div class="comment-text"> \
-                                                        {{ c.content }} \
-                                                    </div> \
+                                                    <div class="comment-text">' + content +
+                                                    '</div> \
                                                     <div class="pull-left mic-info"> \
                                                     </div> \
                                                     <div class="mic-info pull-right"> \
-                                                       <div class="text-muted"><a href="#">{{ c.from_whom.user.username }}</a>, {{ c.post_time | date:"m月d日 h时i分" }} \
-                                                       <button type="submit" class="btn btn-default btn-xs" name="up_{{ c.pk }}" style="border: none;"> \
+                                                       <div class="text-muted"><a href="#">' + username + '</a>, 刚刚发表 \
+                                                       <button type="submit" class="btn btn-default btn-xs" name="up_'+pk+'" style="border: none;"> \
                                                           <span class="glyphicon glyphicon-thumbs-up"></span> \
                                                        </button> \
-                                                       <label id="label_up_{{ c.pk }}">{{ c.liked }}</label> \
-                                                       <button type="submit" class="btn btn-default  btn-xs " name="down_{{ c.pk }}" style="border: none;"> \
+                                                       <label id="label_up_'+pk+'">0</label> \
+                                                       <button type="submit" class="btn btn-default  btn-xs " name="down_'+pk+'" style="border: none;"> \
                                                           <span class="glyphicon glyphicon-thumbs-down"></span> \
                                                        </button> \
-                                                       <label id="label_down_{{ c.pk }}">{{ c.disliked }}</label> \
-                                                       <button type="submit" class="btn btn-default  btn-xs" name="remove_{{ c.pk }}" style="border: none;"> \
+                                                       <label id="label_down_'+pk+'">0</label> \
+                                                       <button type="submit" class="btn btn-default  btn-xs" name="remove_'+pk+'" style="border: none;"> \
                                                           <span class="glyphicon glyphicon-remove"></span> \
                                                        </button> \
                                                        </div> \
@@ -161,13 +161,9 @@
                                             </div> \
                                         </div> \
                                     </li>'
-                        $('#comment-group-'+data['game']).append(block);
+                        $('#comment-group-'+data['game']).prepend(block);
+                        $('input[type="text"]').val('');
                     }
-
-
-
-                    //alert(key);
-                    //alert(data[key]);
                     console.log(data);
                 },
 

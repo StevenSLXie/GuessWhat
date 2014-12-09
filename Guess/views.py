@@ -120,9 +120,13 @@ def render_main(request, url, game_type=None):
 def process_comments(request, cur_game, cur_person, res_data):
 
 	if 'submit_comment_'+str(cur_game.pk) in request.POST:
-		Comments.objects.create(from_whom=cur_person, game=cur_game, content=request.POST['comment_content_'+str(cur_game.pk)],post_time=timezone.now())
+		c = Comments.objects.create(from_whom=cur_person, game=cur_game, content=request.POST['comment_content_'+str(cur_game.pk)],post_time=timezone.now())
 		res_data['type'] = 'submit_comment'
 		res_data['game'] = str(cur_game.pk)
+		res_data['pk'] = c.pk
+		res_data['username'] = c.from_whom.user.username
+		res_data['photo'] = c.from_whom.photo.url
+		res_data['content'] = c.content
 		return res_data
 
 	else:
@@ -145,8 +149,6 @@ def process_comments(request, cur_game, cur_person, res_data):
 				return res_data
 			elif 'remove_' +str(c.pk) in request.POST:
 				c.delete()
-				return res_data
-			elif 'plane_' +str(c.pk) in request.POST:
 				return res_data
 
 		return res_data
