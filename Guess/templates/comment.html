@@ -12,7 +12,7 @@
                     {% for cs in comments %}
                     {% if forloop.counter0 == counter %}
                     {% for c in cs %}
-                    <li class="list-group-item">
+                    <li class="list-group-item" id="comment-detail-{{ c.pk }}">
                         <div class="row">
                             <div class="col-xs-2 col-md-1">
                             <img class="media-object" src="/static/images/{{ c.from_whom.photo.url }}" height="30" width="30">

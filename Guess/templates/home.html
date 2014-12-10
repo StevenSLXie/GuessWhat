@@ -106,7 +106,7 @@
         var form_data = {};
 
 
-        $(":input").on('click',function(event){
+        $(":input[type='submit']").on('click',function(event){
             form_data = $('#submit_form').serializeArray();
             form_data.push({name:$(this).attr('name'),value:$(this).attr('value')});
             console.log('Form submitted!');
@@ -130,7 +130,7 @@
                         var content = data['content'];
                         var username = data['username'];
                         var pk = data['pk'];
-                        var block = '<li class="list-group-item"> \
+                        var block = '<li class="list-group-item" id="comment-detail-'+pk+'"> \
                                         <div class="row"> \
                                             <div class="col-xs-2 col-md-1"> \
                                             <img class="media-object" src="/static/images/' + photo +
@@ -163,6 +163,9 @@
                                     </li>'
                         $('#comment-group-'+data['game']).prepend(block);
                         $('input[type="text"]').val('');
+                    }
+                    else if(data['type']=='delete_comment'){
+                        $('#comment-detail-'+data['pk']).remove();
                     }
                     console.log(data);
                 },

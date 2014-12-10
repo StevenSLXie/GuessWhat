@@ -148,6 +148,8 @@ def process_comments(request, cur_game, cur_person, res_data):
 				res_data['type'] = 'in_comment_items'
 				return res_data
 			elif 'remove_' +str(c.pk) in request.POST:
+				res_data['type'] = 'delete_comment'
+				res_data['pk'] = str(c.pk)
 				c.delete()
 				return res_data
 
