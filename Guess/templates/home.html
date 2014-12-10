@@ -106,7 +106,8 @@
         var form_data = {};
 
 
-        $(":input[type='submit']").on('click',function(event){
+        //$(":input[type='submit']").on('click',function(event){
+        $("#submit_form").on('click', '[type="submit"]',function(event){
             form_data = $('#submit_form').serializeArray();
             form_data.push({name:$(this).attr('name'),value:$(this).attr('value')});
             console.log('Form submitted!');
