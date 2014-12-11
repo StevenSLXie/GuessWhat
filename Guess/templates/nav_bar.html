@@ -35,32 +35,33 @@
 </head>
 
 <style type='text/css'>
-    .nav-frame-c {background: rgba(252,248,227,1);}
-    .unread {color: rgba(254,67,101,1);}
-    .marked_all_as_read {background: rgba(252,248,227,1);}
+    .nav-frame-c {background: rgba(252,248,227,1); }
+    .guesso-background {background:rgba(116, 0, 15, 1);}
+    .guesso-frame {background: rgba(234,217,168,0.5);}
+
 </style>
 
 
-<nav class="navbar navbar-default nav-frame-c">
+<nav class="navbar navbar-default guesso-background">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <a class="navbar-brand hidden-xs" href="{% url 'home' %}" >猜神</a>
+    <div class="navbar-header ">
+      <a class="navbar-brand hidden-xs" style="color: #ffffff;"  href="{% url 'home' %}" >猜神</a>
     </div>
 
     <div class="">
       <ul class="nav navbar-nav">
-        <li><a href="{% url 'home' %}"><i class="glyphicon glyphicon-eye-open"></i> 发现</a></li>
+        <li><a style="color: #ffffff;" href="{% url 'home' %}"><i class="glyphicon glyphicon-eye-open"></i> 发现</a></li>
         <li id="tag_list" class="dropdown">
-            <a id="tags" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-fire" style="margin-right: 3px;"></i>话题</a>
-            <ul id="tag_info" class="dropdown-menu col-md-6" role="menu">
+            <a id="tags" style="color: #ffffff;" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-fire" style="margin-right: 3px;"></i>话题</a>
+            <ul id="tag_info" style="color: #ffffff;" class="dropdown-menu col-md-6" role="menu">
                 <li><a href="{% url 'sports' %}">体育</a></li>
                 <li><a href="{% url 'finance' %}">财经</a></li>
                 <li><a href="#">娱乐</a></li>
             </ul>
         </li>
-        <li><a href="{% url 'leaderboard' %}"><i class="glyphicon glyphicon-stats" style="margin-right: 3px;"></i>排行榜</a></li>
-        <li class="hidden-xs"><a href="{% url 'proposal' %}"><i class="glyphicon glyphicon-edit" style="margin-right: 3px;"></i>提问</a></li>
+        <li><a style="color: #ffffff;" href="{% url 'leaderboard' %}"><i class="glyphicon glyphicon-stats" style="margin-right: 3px;"></i>排行榜</a></li>
+        <li class="hidden-xs"><a style="color: #ffffff;" href="{% url 'proposal' %}"><i class="glyphicon glyphicon-edit" style="margin-right: 3px;"></i>提问</a></li>
       </ul>
 
 
@@ -68,9 +69,9 @@
             {% if person != False %}
         <li id="notify_list" class="dropdown" style="margin-right: 10px;">
             {% if not messages|length %}
-            <a id="notifications" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-inbox" style="margin-right: 3px;"></i>消息</a>
+            <a style="color: #ffffff;" id="notifications" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-inbox" style="margin-right: 3px;"></i>消息</a>
             {% else %}
-            <a id="notifications" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-inbox" style="margin-right: 3px;"></i>消息<span class="unread"> ({{ messages|length }})</span></a>
+            <a style="color: #ffffff;" id="notifications" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-inbox" style="margin-right: 3px;"></i>消息<span class="unread"> ({{ messages|length }})</span></a>
             {% endif %}
             <ul id="notify_info" class="dropdown-menu col-md-6" role="menu">
                 {% if not messages|length %}
@@ -78,14 +79,14 @@
                 {% else %}
                     <form method="POST">
                     {% csrf_token %}
-                    <li><button class="btn marked_all_as_read" style="margin-left: 20px" type="submit" name="marked_all_as_read" />全部标为已读</li>
+                    <li><button class="btn guesso-background" style="color:#ffffff;margin-left: 20px" type="submit" name="marked_all_as_read" />全部标为已读</li>
                     </form>
                     {% for m in messages %}
                         {% if forloop.counter <= 3 %}
                         <li class="divider"></li>
                         <li style="margin-left: 10px; margin-right: 10px;"><a href="{% url 'inbox' %}" style="word-wrap: break-word;white-space: pre-wrap" >{{ m.verbal }}</a></li>
                         {%  elif forloop.last and forloop.counter >= 4 %}
-                        <li><a class=" col-md-6 btn marked_all_as_read" style="margin-left: 30px" href="{% url 'inbox' %}" >更多</a></li>
+                        <li><a class=" col-md-6 btn guesso-background" style="color:#ffffff; margin-left: 30px" href="{% url 'inbox' %}" >更多</a></li>
                         {% endif %}
                     {% endfor %}
                 {% endif %}
@@ -94,7 +95,7 @@
 
 
         <li id='dropdown_list' class="dropdown">
-          <a id="account_dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="/static/images/{{ person.photo.url }} " style="width: 25px; height: 25px; margin-right: 5px; margin-bottom: 0px;margin-top: 0px;"/>{{ person.user.username }}</a>
+          <a style="color: #ffffff;" id="account_dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="/static/images/{{ person.photo.url }} " style="width: 25px; height: 25px; margin-right: 5px; margin-bottom: 0px;margin-top: 0px;"/>{{ person.user.username }}</a>
           <ul id="account_info" class="dropdown-menu" role="menu">
             <li><a href="{% url 'profile' %}">我的预测</a></li>
             <li><a href="{% url 'more' %}">我的资料</a></li>
