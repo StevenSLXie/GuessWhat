@@ -24,7 +24,7 @@ def login(request):
 	elif request.user.is_authenticated():
 		return redirect(reverse('home'))
 	else:
-		return render(request,'signup_login.html')
+		return render(request,'signup_login.html',{'person': False})
 	if user is not None:
 		if user.is_active:
 			auth_login(request,user)

@@ -57,8 +57,8 @@
                                 <div class="form-group">
                                     <!-- Button -->
                                     <div class="col-md-offset-3 col-md-9 spacer">
-                                        <button id="btn-signup" type="submit" class="btn well-frame-c">注册</button>
-                                        <div class="btn btn-success"><a href="{% url 'login' %}" style="text-decoration: none; color:#ffffff">我有账号</a></div>
+                                        <button id="btn-signup" type="submit" class="btn guesso-frame">注册</button>
+                                        <div class="btn guesso-background"><a href="{% url 'login' %}" style="text-decoration: none; color:#ffffff">我有账号</a></div>
                                     </div>
                                 </div>
 
@@ -71,8 +71,8 @@
                     </div>
          </div>
 
-        <div class="well well-frame-c col-md-6 col-xs-8 col-sm-8 col-lg-offset-3 col-md-offset-3 col-xs-offset-2 col-sm-offset-2 col-lg-offset-3">
-            <h4 class="text-center text-muted">{{ game.headline }}</h4>
+        <div class="well guesso-frame col-md-6 col-xs-8 col-sm-8 col-lg-offset-3 col-md-offset-3 col-xs-offset-2 col-sm-offset-2 col-lg-offset-3">
+            <h4 class="text-center">{{ game.headline }}</h4>
             <div class="progress">
                 <div class="progress-bar progress-bar-c1" style="width: {{ game.price_home }}%">{{ game.price_home }}</div>
                 <div class="progress-bar progress-bar-c2" style="width: {{ game.price_away }}%">{{ game.price_away }}</div>
@@ -82,7 +82,7 @@
                 {% csrf_token %}
                 <div class="col-md-1 col-md-offset-3 col-sm-1 col-sm-offset-3 col-xs-1 col-xs-offset-2 spacer"><input class="btn progress-bar-c1" type="submit" value='赞同' name="h:{{ game.pk }}" onclick="on_submit(1)"/></div>
                 <div class="col-md-1 col-md-offset-3 col-sm-1 col-sm-offset-3 col-xs-1 col-xs-offset-2 spacer"><input class="btn progress-bar-c2" type="submit" value='反对' name="a:{{ game.pk }}" onclick="on_submit(2)"/></div>
-                <div  style="text-align: center"><input class="btn btn-success btn-block" type="submit" value="我要猜别的话题" name="shuffle"/></div>
+                <div  style="text-align: center"><input style="color: #ffffff;" class="btn guesso-background btn-block" type="submit" value="我要猜别的话题" name="shuffle"/></div>
 
             </form>
         </div>

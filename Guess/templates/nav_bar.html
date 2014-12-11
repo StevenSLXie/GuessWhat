@@ -3,7 +3,7 @@
 <head>
 
     <link href='static/bootstrap/css/bootstrap.min.css' rel='stylesheet'>
-    <title>猜神 - 向世界展示你的判断力 </title>
+    <title>猜神--向世界展示你的未卜先知 </title>
     <meta property="wb:webmaster" content="e91e2c426033db5b" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
@@ -66,13 +66,13 @@
 
 
       <ul class="nav navbar-nav navbar-right" style="margin-right: 40px;">
-            {% if person != False %}
+        {% if person != False %}
         <li id="notify_list" class="dropdown" style="margin-right: 10px;">
-            {% if not messages|length %}
+                {% if not messages|length %}
             <a style="color: #ffffff;" id="notifications" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-inbox" style="margin-right: 3px;"></i>消息</a>
-            {% else %}
+                {% else %}
             <a style="color: #ffffff;" id="notifications" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-inbox" style="margin-right: 3px;"></i>消息<span class="unread"> ({{ messages|length }})</span></a>
-            {% endif %}
+                {% endif %}
             <ul id="notify_info" class="dropdown-menu col-md-6" role="menu">
                 {% if not messages|length %}
                 <li><p class="text-center">没有新消息</p></li>
@@ -93,7 +93,6 @@
             </ul>
         </li>
 
-
         <li id='dropdown_list' class="dropdown">
           <a style="color: #ffffff;" id="account_dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="/static/images/{{ person.photo.url }} " style="width: 25px; height: 25px; margin-right: 5px; margin-bottom: 0px;margin-top: 0px;"/>{{ person.user.username }}</a>
           <ul id="account_info" class="dropdown-menu" role="menu">
@@ -103,10 +102,10 @@
             <li><a href="{% url 'logout' %}">退出</a></li>
           </ul>
         </li>
-            {% else %}
-            <li><a href="{% url 'login' %}"><i class="glyphicon glyphicon-user" style="margin-right: 3px;"></i>登录</a></li>
-            <li><a href="{% url 'signup' %}"><i class="glyphicon glyphicon-plus-sign" style="margin-right: 3px;"></i>注册</a></li>
-            {% endif %}
+        {% else %}
+            <li><a style="color: #ffffff;" href="{% url 'login' %}"><i class="glyphicon glyphicon-user" style="margin-right: 3px;"></i>登录</a></li>
+            <li><a style="color: #ffffff;" href="{% url 'signup' %}"><i class="glyphicon glyphicon-plus-sign" style="margin-right: 3px;"></i>注册</a></li>
+        {% endif %}
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
