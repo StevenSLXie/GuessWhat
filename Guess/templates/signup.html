@@ -58,7 +58,7 @@
                                     <!-- Button -->
                                     <div class="col-md-offset-3 col-md-9 spacer">
                                         <button id="btn-signup" type="submit" class="btn guesso-frame">注册</button>
-                                        <div class="btn guesso-background"><a href="{% url 'login' %}" style="text-decoration: none; color:#ffffff">我有账号</a></div>
+                                        <div class="btn guesso-background" style="opacity: 0.8;"><a href="{% url 'login' %}" style="text-decoration: none; color:#ffffff">我有账号</a></div>
                                     </div>
                                 </div>
 
@@ -82,7 +82,7 @@
                 {% csrf_token %}
                 <div class="col-md-1 col-md-offset-3 col-sm-1 col-sm-offset-3 col-xs-1 col-xs-offset-2 spacer"><input class="btn progress-bar-c1" type="submit" value='赞同' name="h:{{ game.pk }}" onclick="on_submit(1)"/></div>
                 <div class="col-md-1 col-md-offset-3 col-sm-1 col-sm-offset-3 col-xs-1 col-xs-offset-2 spacer"><input class="btn progress-bar-c2" type="submit" value='反对' name="a:{{ game.pk }}" onclick="on_submit(2)"/></div>
-                <div  style="text-align: center"><input style="color: #ffffff;" class="btn guesso-background btn-block" type="submit" value="我要猜别的话题" name="shuffle"/></div>
+                <div  style="text-align: center"><input style="color: #ffffff; opacity: 0.8;" class="btn guesso-background btn-block" type="submit" value="我要猜别的话题" name="shuffle"/></div>
 
             </form>
         </div>

@@ -54,13 +54,17 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+	'django.middleware.cache.UpdateCacheMiddleware',
 	'django.contrib.sessions.middleware.SessionMiddleware',
 	'django.middleware.common.CommonMiddleware',
 	'django.middleware.csrf.CsrfViewMiddleware',
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'django.middleware.cache.FetchFromCacheMiddleware',
 )
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 ROOT_URLCONF = 'GuessWhat.urls'
 
@@ -92,6 +96,16 @@ DATABASES = {
 	}
 }
 
+
+# Caches
+
+CACHES = {
+	'default': {
+		'BACKEND': 'redis_cache.RedisCache',
+		'LOCATION': 'localhost:6379',
+	},
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
@@ -104,7 +118,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/

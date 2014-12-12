@@ -120,6 +120,10 @@ def render_main(request, url, game_type=None):
 def process_comments(request, cur_game, cur_person, res_data):
 
 	if 'submit_comment_'+str(cur_game.pk) in request.POST:
+		#if request.session.get('has_commented', False):
+		#	return res_data
+
+		#request.session['has_commented'] = True
 		c = Comments.objects.create(from_whom=cur_person, game=cur_game, content=request.POST['comment_content_'+str(cur_game.pk)],post_time=timezone.now())
 		res_data['type'] = 'submit_comment'
 		res_data['game'] = str(cur_game.pk)
@@ -132,6 +136,10 @@ def process_comments(request, cur_game, cur_person, res_data):
 	else:
 		for c in cur_game.comments_set.all():
 			if 'up_' +str(c.pk) in request.POST:
+				if request.session.get('up_'+str(c.pk), False):
+					return res_data
+
+				request.session['up_'+str(c.pk)] = True
 				cur_person.point -= 10
 				cur_person.save()
 				c.liked += 1
@@ -140,6 +148,10 @@ def process_comments(request, cur_game, cur_person, res_data):
 				res_data['type'] = 'in_comment_items'
 				return res_data
 			elif 'down_'+str(c.pk) in request.POST:
+				if request.session.get('down_'+str(c.pk), False):
+					return res_data
+
+				request.session['down_'+str(c.pk)] = True
 				cur_person.point -= 10
 				cur_person.save()
 				c.disliked += 1
