@@ -12,8 +12,7 @@ import random
 import json
 from django.utils import timezone
 from django.http import HttpResponse
-from django.views.decorators.cache import cache_page
-
+from django.core.cache import cache
 
 # Create your views here.
 
@@ -46,6 +45,8 @@ def logout(request):
 def signup(request):
 	if request.user.is_authenticated():
 		return redirect(reverse('home'))
+
+	
 
 	games = Game.objects.filter(ended=False, is_primary=1)
 	r = random.randint(0, len(games)-1)
@@ -82,9 +83,16 @@ def render_main(request, url, game_type=None):
 	comments = []
 
 	if game_type is None:
-		gamess = Game.objects.filter(ended=False).order_by('-pk')
+		gamess = cache.get('all_gamess')
+		print gamess
+		if gamess is None:
+			gamess = Game.objects.filter(ended=False).order_by('-pk')
+			cache.set('all_gamess', gamess, 60)
 	else:
-		gamess = Game.objects.filter(ended=False, game_tag__tag=game_type).order_by('-event', '-is_primary')
+		gamess = cache.get(game_type+'_gamess')
+		if gamess is None:
+			gamess = Game.objects.filter(ended=False, game_tag__tag=eng_to_chn(game_type)).order_by('-event', '-is_primary')
+			cache.set(game_type+'_gamess',gamess, 60)
 
 	for game in gamess:
 		cs = []
@@ -170,11 +178,18 @@ def home(request):
 
 
 def sports(request):
-	return render_main(request, 'sports', '体育')
+	return render_main(request, 'sports', 'sports')
 
 
 def finance(request):
-	return render_main(request, 'finance', '财经')
+	return render_main(request, 'finance', 'finance')
+
+def eng_to_chn(game_type):
+
+	if game_type == 'finance':
+		return '财经'
+	elif game_type == 'sports':
+		return '体育'
 
 
 def game_choose_and_sort(temps):
