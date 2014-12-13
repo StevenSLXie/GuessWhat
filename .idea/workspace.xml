@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7bea3e3-1277-4e1b-acfb-758256ad8cac" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/templates/ack.html" afterPath="$PROJECT_DIR$/Guess/templates/ack.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/templates/leaderboard.html" afterPath="$PROJECT_DIR$/Guess/templates/leaderboard.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/templates/more_info.html" afterPath="$PROJECT_DIR$/Guess/templates/more_info.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/templates/nav_bar.html" afterPath="$PROJECT_DIR$/Guess/templates/nav_bar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/templates/proposal.html" afterPath="$PROJECT_DIR$/Guess/templates/proposal.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GuessWhat/settings.py" afterPath="$PROJECT_DIR$/GuessWhat/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/templates/signup.html" afterPath="$PROJECT_DIR$/Guess/templates/signup.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/views.py" afterPath="$PROJECT_DIR$/Guess/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="GuessWhat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,8 +39,8 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Guess/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1005" max-vertical-offset="5655">
-              <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="631" max-vertical-offset="5610">
+              <caret line="51" column="19" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="19" />
               <folding>
                 <element signature="e#15#59#0" expanded="true" />
               </folding>
@@ -41,21 +48,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GuessWhat/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.503876" vertical-offset="1770" max-vertical-offset="2370">
-              <caret line="131" column="43" selection-start-line="131" selection-start-column="43" selection-end-line="131" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="645" max-vertical-offset="2370">
+              <caret line="63" column="5" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nav_bar.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="nav_bar.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Guess/templates/nav_bar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="1755">
-              <caret line="39" column="53" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.27142859" vertical-offset="895" max-vertical-offset="1800">
+              <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -64,18 +71,8 @@
       <file leaf-file-name="profile.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Guess/templates/profile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="955" max-vertical-offset="1515">
+            <state vertical-scroll-proportion="-8.958333" vertical-offset="955" max-vertical-offset="1515">
               <caret line="78" column="147" selection-start-line="78" selection-start-column="147" selection-end-line="78" selection-end-column="147" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="signup.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Guess/templates/signup.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.7083333" vertical-offset="835" max-vertical-offset="1620">
-              <caret line="60" column="95" selection-start-line="60" selection-start-column="95" selection-end-line="60" selection-end-column="95" />
               <folding />
             </state>
           </provider>
@@ -91,10 +88,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ack.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Guess/templates/ack.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-16.875" vertical-offset="0" max-vertical-offset="540">
+              <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="comment.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Guess/templates/comment.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="970" max-vertical-offset="1320">
+            <state vertical-scroll-proportion="-43.958332" vertical-offset="130" max-vertical-offset="1320">
               <caret line="79" column="195" selection-start-line="79" selection-start-column="195" selection-end-line="79" selection-end-column="195" />
               <folding />
             </state>
@@ -142,17 +149,17 @@
         <option value="$PROJECT_DIR$/Guess/templates/comment_unit.html" />
         <option value="$PROJECT_DIR$/Guess/templates/footer.html" />
         <option value="$PROJECT_DIR$/Guess/templates/home.html" />
-        <option value="$PROJECT_DIR$/Guess/templates/leaderboard.html" />
-        <option value="$PROJECT_DIR$/Guess/templates/ack.html" />
         <option value="$PROJECT_DIR$/Guess/templates/profile.html" />
-        <option value="$PROJECT_DIR$/Guess/templates/proposal.html" />
         <option value="$PROJECT_DIR$/Guess/templates/comment.html" />
-        <option value="$PROJECT_DIR$/Guess/templates/more_info.html" />
-        <option value="$PROJECT_DIR$/Guess/templates/nav_bar.html" />
         <option value="$PROJECT_DIR$/Guess/templates/signup_login.html" />
-        <option value="$PROJECT_DIR$/Guess/templates/signup.html" />
-        <option value="$PROJECT_DIR$/GuessWhat/settings.py" />
+        <option value="$PROJECT_DIR$/Guess/templates/ack.html" />
+        <option value="$PROJECT_DIR$/Guess/templates/proposal.html" />
+        <option value="$PROJECT_DIR$/Guess/templates/leaderboard.html" />
+        <option value="$PROJECT_DIR$/Guess/templates/more_info.html" />
         <option value="$PROJECT_DIR$/Guess/views.py" />
+        <option value="$PROJECT_DIR$/GuessWhat/settings.py" />
+        <option value="$PROJECT_DIR$/Guess/templates/signup.html" />
+        <option value="$PROJECT_DIR$/Guess/templates/nav_bar.html" />
       </list>
     </option>
   </component>
@@ -897,72 +904,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/templates/ack.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17142858" vertical-offset="0" max-vertical-offset="510">
-          <caret line="4" column="54" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/templates/proposal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="1455">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/templates/leaderboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="660">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/templates/more_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3" vertical-offset="675" max-vertical-offset="1065">
-          <caret line="52" column="78" selection-start-line="52" selection-start-column="78" selection-end-line="52" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/templates/comment.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="970" max-vertical-offset="1320">
-          <caret line="79" column="195" selection-start-line="79" selection-start-column="195" selection-end-line="79" selection-end-column="195" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/templates/profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="955" max-vertical-offset="1515">
-          <caret line="78" column="147" selection-start-line="78" selection-start-column="147" selection-end-line="78" selection-end-column="147" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/templates/nav_bar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="1755">
-          <caret line="39" column="53" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Guess/templates/signup_login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.55714285" vertical-offset="480" max-vertical-offset="1260">
           <caret line="45" column="70" selection-start-line="45" selection-start-column="70" selection-end-line="45" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/templates/signup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.7083333" vertical-offset="835" max-vertical-offset="1620">
-          <caret line="60" column="95" selection-start-line="60" selection-start-column="95" selection-end-line="60" selection-end-column="95" />
           <folding />
         </state>
       </provider>
@@ -975,6 +920,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Guess/templates/proposal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.0285714" vertical-offset="1180" max-vertical-offset="1530">
+          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Guess/templates/leaderboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25714287" vertical-offset="0" max-vertical-offset="720">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Guess/templates/more_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5714286" vertical-offset="730" max-vertical-offset="1110">
+          <caret line="62" column="1" selection-start-line="62" selection-start-column="1" selection-end-line="62" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Guess/templates/comment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-43.958332" vertical-offset="130" max-vertical-offset="1320">
+          <caret line="79" column="195" selection-start-line="79" selection-start-column="195" selection-end-line="79" selection-end-column="195" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Guess/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.25" vertical-offset="270" max-vertical-offset="3180">
@@ -983,10 +960,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Guess/templates/ack.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.875" vertical-offset="0" max-vertical-offset="540">
+          <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Guess/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1155" max-vertical-offset="5655">
-          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="631" max-vertical-offset="5610">
+          <caret line="51" column="19" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="19" />
           <folding>
             <element signature="e#15#59#0" expanded="true" />
           </folding>
@@ -995,8 +980,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GuessWhat/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.503876" vertical-offset="1770" max-vertical-offset="2370">
-          <caret line="131" column="43" selection-start-line="131" selection-start-column="43" selection-end-line="131" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="645" max-vertical-offset="2370">
+          <caret line="63" column="5" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Guess/templates/signup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.64285713" vertical-offset="870" max-vertical-offset="1665">
+          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#form#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#2;n#form#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Guess/templates/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.958333" vertical-offset="955" max-vertical-offset="1515">
+          <caret line="78" column="147" selection-start-line="78" selection-start-column="147" selection-end-line="78" selection-end-column="147" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Guess/templates/nav_bar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27142859" vertical-offset="895" max-vertical-offset="1800">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -6,6 +6,9 @@
     .btn-submit-proposal-c {background: rgba(252,248,227,1);}
 </style>
 
+{% load cache %}
+{% cache 86400 proposal %}
+
 <div class="well col-md-8 col-md-offset-2 guesso-frame">
     <h4>温馨提示</h4>
     <p>我们非常欢迎各种有趣的事件预测，在您写下您的点子之前，请关注以下几点：</p>
@@ -82,6 +85,8 @@
 </div>
 
 {% include "footer.html" %}
+
+{% endcache %}
 
 
 <script>

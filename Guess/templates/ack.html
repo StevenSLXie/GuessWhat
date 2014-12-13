@@ -1,6 +1,8 @@
 {% load bootstrap3 %}
 {% include "nav_bar.html" %}
 
+{% load cache %}
+{% cache 86400 ack %}
 
 <div class="well col-md-6 col-md-offset-3 guesso-frame">
     <h3 class="text-center" style="margin-top: 5px">大感谢</h3>
@@ -21,8 +23,8 @@
 
 </div>
 
-
-
 {% include "footer.html" %}
+
+{% endcache %}
 
 

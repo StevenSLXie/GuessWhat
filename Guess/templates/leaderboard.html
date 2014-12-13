@@ -3,6 +3,8 @@
 
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
 
+{% load cache%}
+{% cache 300 leaderboard %}
 
 {% for person in persons %}
 
@@ -36,3 +38,5 @@
 {% endfor %}
 
 {% include "footer.html" %}
+
+{% endcache %}

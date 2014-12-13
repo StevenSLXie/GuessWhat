@@ -34,7 +34,8 @@
     </div>
 
 
-
+{% load cache %}
+{% cache 86400 change_photo %}
 
     <div class="container">
         <div class="row">
@@ -59,7 +60,9 @@
     </body>
 
 
-    {% include "footer.html" %}
+ {% include "footer.html" %}
+
+{% endcache %}
 
 
 
