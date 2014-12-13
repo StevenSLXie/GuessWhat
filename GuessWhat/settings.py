@@ -64,6 +64,9 @@ MIDDLEWARE_CLASSES = (
 	'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
+CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
+CACHE_MIDDLEWARE_SECONDS = 60
+
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 ROOT_URLCONF = 'GuessWhat.urls'

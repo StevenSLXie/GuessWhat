@@ -12,6 +12,7 @@ import random
 import json
 from django.utils import timezone
 from django.http import HttpResponse
+#from django.views.decorators.cache import cache_page
 
 
 # Create your views here.
@@ -166,7 +167,6 @@ def process_comments(request, cur_game, cur_person, res_data):
 				return res_data
 
 		return res_data
-
 
 def home(request):
 	return render_main(request, 'home')
