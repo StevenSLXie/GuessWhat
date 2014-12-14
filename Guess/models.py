@@ -75,7 +75,7 @@ class Game(models.Model):
 		if self.num_away + self.num_away > 10:
 			self.price_home = self.weight_home/(self.weight_away+self.weight_home+0.001)*100
 			self.price_away = 100 - int(self.price_home)
-			self.save()
+		self.save()
 
 
 class Betting(models.Model):

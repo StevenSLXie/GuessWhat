@@ -32,11 +32,13 @@ app.conf.update(
 		'schedule': crontab(minute='*/30'),
 		'args': ()
 	},
-	#	'cal-price': {
-	#	'task': 'GuessWhat.task.cal_price',
-	#	'schedule': timedelta(seconds=60),
-	#	'args': ()
-	#},
+
+		'detect-ended-game':{
+		'task': 'GuessWhat.task.detect_ended_game',
+		'schedule': timedelta(seconds = 60),
+		'args':()
+	}
+
 
 						 }
 )
