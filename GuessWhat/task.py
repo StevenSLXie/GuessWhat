@@ -50,7 +50,7 @@ def ranking():
 
 @app.task
 def detect_ended_game():
-	# need testing in the future
+	# partially tested.
 	games = Game.objects.filter(ended=False).order_by('expire')
 	# now = datetime.now()
 	now = timezone.make_aware(datetime.now(), timezone.get_default_timezone())
@@ -60,7 +60,6 @@ def detect_ended_game():
 		else:
 			g.ended = True
 			g.save()
-
 
 @app.task
 def send_profile_to_inbox():
@@ -115,12 +114,20 @@ def add_games(file_name):
 	with open(file_name) as csvfile:
 		reader = csv.DictReader(csvfile)
 		for r in reader:
-			g = Game.objects.create(
-				headline=r['headline'], expire=datetime.strptime(r['expire'], "%Y-%m-%d %H:%M:%S"), price_home=int(r['price_home']), price_away=int(r['price_away']),
-				name_home='赞同', name_away='反对', weight_home=int(r['weight_home']), weight_away=int(r['weight_away']), event=int(r['event']), is_primary=int(r['is_primary']))
-			t = GameTag.objects.get(tag=r['game_tag'])
-			g.game_tag.add(t)
-			g.save()
+			time =timezone.make_aware(datetime.strptime(r['expire'], "%Y-%m-%d %H:%M:%S"), timezone.get_default_timezone())
+			if time > timezone.make_aware(datetime.now(), timezone.get_default_timezone()):
+				g = Game.objects.create(
+					headline=r['headline'], expire=time, price_home=int(r['price_home']), price_away=int(r['price_away']),
+					name_home='赞同', name_away='反对', weight_home=int(r['weight_home']), weight_away=int(r['weight_away']), event=int(r['event']), is_primary=int(r['is_primary']))
+				t = GameTag.objects.get(tag=r['game_tag'])
+				g.game_tag.add(t)
+				g.save()
+				print g.headline
+
+
+
+
+
 
 
 

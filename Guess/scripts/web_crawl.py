@@ -33,6 +33,11 @@ def scrapy(url):
 				away = td.a['title']
 				game['away'] = away
 				# print away
+			elif i == 4:
+				# extract the result, if any
+				result = td.text
+				game['result'] = result
+
 			elif i == 5:
 				# home price
 				home_price = float(td.span.text)
@@ -67,7 +72,7 @@ def generate_table(url, filename):
 			headline = g['home'] + word_shuffle() + g['away']
 			expire = '20' + g['time'] + ':00'
 			price_home, price_away, weight_home, weight_away = pricing(g['home_price'], g['away_price'], g['even_price'])
-			writer.writerow([headline.encode('utf-8'), expire, price_home, price_away, weight_home, weight_away, i, 1, u'体育'.encode('utf-8')])
+			writer.writerow([headline.encode('utf-8'), expire, price_home, price_away, weight_home, weight_away, i, 1, u'体育'.encode('utf-8'), g['result']])
 			i += 1
 
 

@@ -2,7 +2,11 @@ from django.contrib import admin
 from Guess.models import Game, Person, Betting, Proposal, PersonTag, GameTag, Message, Expertise, Comments
 
 # Register your models here.
-admin.site.register(Game)
+
+class GameAdmin(admin.ModelAdmin):
+	list_display = ('headline', 'expire', 'ended')
+
+admin.site.register(Game, GameAdmin)
 admin.site.register(Person)
 admin.site.register(Betting)
 admin.site.register(Proposal)

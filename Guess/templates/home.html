@@ -43,7 +43,7 @@
 
              <div class="col-md-1 col-md-offset-3 col-sm-1 col-sm-offset-3 col-xs-1 col-xs-offset-3 spacer"><input class="btn progress-bar-c1" type="submit" value='赞同' name="h:{{ game.pk }}" onclick="on_submit(event)"/></div>
              <div class="col-md-1 col-md-offset-3 col-sm-1 col-sm-offset-3 col-xs-1 col-xs-offset-3 spacer"><input class="btn progress-bar-c2" type="submit" value='反对' name="a:{{ game.pk }}" onclick="on_submit(event)"/></div>
-             <p class="col-md-8 col-md-offset-3 col-sm-8 col-sm-offset-3 col-xs-8 col-xs-offset-3"><i class="glyphicon glyphicon-stop"></i> {{ game.expire | date:"y年m月d日 h时i分s秒" }}截止</p>
+             <p class="col-md-8 col-md-offset-3 col-sm-8 col-sm-offset-3 col-xs-8 col-xs-offset-3"><i class="glyphicon glyphicon-stop"></i> {{ game.expire | date:"y年m月d日 H时i分s秒" }}截止</p>
 
              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user"  data-for=".{{ game.pk }}">
                     <i class="glyphicon glyphicon-chevron-down text-muted"></i>
