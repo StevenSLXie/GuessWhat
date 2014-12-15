@@ -49,18 +49,6 @@ def ranking():
 		i += 1
 
 
-@app.task
-def detect_ended_game():
-	# partially tested.
-	games = Game.objects.filter(ended=False).order_by('expire')
-	# now = datetime.now()
-	now = timezone.make_aware(datetime.now(), timezone.get_default_timezone())
-	for g in games:
-		if g.expire > now:
-			break
-		else:
-			g.ended = True
-			g.save()
 
 @app.task
 def send_profile_to_inbox():
@@ -109,15 +97,44 @@ def add_game_weight():
 		g.weight_away += 100
 		g.save()
 
+# The usage of the following 3 functions:
+# game_management: initialize and update the csv files and the game result; Periodic/ 15 mins
+# add_games: one time use for adding game to Models.
+# detect_ended_games: periodic/ 1 min
+
+
 @app.task
 def game_management():
-	event = 90
+	event = 230
 	for i in range(9, 15):
 		url = 'http://saishi.caipiao.163.com/'+str(i)+'.html'
 		filename = 'Guess/games/'+str(i)+'.csv'
 		event = web_crawl.generate_game_table(url, filename, event)
-		web_crawl.add_games(filename)
 		web_crawl.scan_game_result(filename)
+
+
+@app.task
+def add_games():
+	for i in range(9, 15):
+		filename = 'Guess/games/'+str(i)+'.csv'
+		web_crawl.add_games(filename)
+
+
+@app.task
+def detect_ended_game():
+	# tested.
+	games = Game.objects.filter(ended=False).order_by('expire')
+	# now = datetime.now()
+	now = timezone.make_aware(datetime.now(), timezone.get_default_timezone())
+	for g in games:
+		if g.expire > now:
+			break
+		else:
+			g.ended = True
+			g.save()
+
+
+
 
 
 # need to think about the logic;

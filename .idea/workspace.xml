@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c7bea3e3-1277-4e1b-acfb-758256ad8cac" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/games/20141130.csv" afterPath="$PROJECT_DIR$/Guess/games/20141130.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/models.py" afterPath="$PROJECT_DIR$/Guess/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/admin.py" afterPath="$PROJECT_DIR$/Guess/admin.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GuessWhat/celery.py" afterPath="$PROJECT_DIR$/GuessWhat/celery.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GuessWhat/task.py" afterPath="$PROJECT_DIR$/GuessWhat/task.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Guess/scripts/web_crawl.py" afterPath="$PROJECT_DIR$/Guess/scripts/web_crawl.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="GuessWhat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,11 +32,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="celery.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GuessWhat/celery.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="258" max-vertical-offset="795">
+              <caret line="37" column="38" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="task.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GuessWhat/task.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="946" max-vertical-offset="2145">
-              <caret line="119" column="44" selection-start-line="119" selection-start-column="44" selection-end-line="119" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1501" max-vertical-offset="2400">
+              <caret line="111" column="32" selection-start-line="111" selection-start-column="32" selection-end-line="111" selection-end-column="32" />
               <folding>
                 <element signature="e#14#52#0" expanded="true" />
               </folding>
@@ -69,25 +79,12 @@
       <file leaf-file-name="web_crawl.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Guess/scripts/web_crawl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.28877" vertical-offset="1516" max-vertical-offset="2205">
-              <caret line="44" column="31" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
+            <state vertical-scroll-proportion="1.3208556" vertical-offset="991" max-vertical-offset="2220">
+              <caret line="99" column="32" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
               <folding>
                 <element signature="e#14#43#0" expanded="true" />
               </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="20141130.csv" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Guess/games/20141130.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.4444447" vertical-offset="0" max-vertical-offset="240">
-              <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-            <state />
           </provider>
         </entry>
       </file>
@@ -147,13 +144,13 @@
         <option value="$PROJECT_DIR$/Guess/templates/signup.html" />
         <option value="$PROJECT_DIR$/Guess/templates/nav_bar.html" />
         <option value="$PROJECT_DIR$/Guess/views.py" />
-        <option value="$PROJECT_DIR$/GuessWhat/celery.py" />
         <option value="$PROJECT_DIR$/Guess/games/20141130.csv" />
-        <option value="$PROJECT_DIR$/Guess/admin.py" />
         <option value="$PROJECT_DIR$/Guess/templates/home.html" />
         <option value="$PROJECT_DIR$/Guess/models.py" />
-        <option value="$PROJECT_DIR$/GuessWhat/task.py" />
         <option value="$PROJECT_DIR$/Guess/scripts/web_crawl.py" />
+        <option value="$PROJECT_DIR$/GuessWhat/task.py" />
+        <option value="$PROJECT_DIR$/Guess/admin.py" />
+        <option value="$PROJECT_DIR$/GuessWhat/celery.py" />
       </list>
     </option>
   </component>
@@ -523,14 +520,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="22" width="1260" height="690" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -585,16 +582,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Guess/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2580" max-vertical-offset="3375">
-          <caret line="172" column="25" selection-start-line="172" selection-start-column="25" selection-end-line="172" selection-end-column="25" />
-          <folding>
-            <element signature="e#15#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Guess/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1590">
@@ -869,18 +856,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GuessWhat/celery.py">
+    <entry file="file://$PROJECT_DIR$/Guess/games/9.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="720">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Guess/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3585" max-vertical-offset="5835">
+          <caret line="257" column="26" selection-start-line="257" selection-start-column="26" selection-end-line="257" selection-end-column="26" />
+          <folding>
+            <element signature="e#15#59#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Guess/games/20141130.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.4444447" vertical-offset="0" max-vertical-offset="240">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="0" max-vertical-offset="360">
           <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Guess/games/10.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.6666665" vertical-offset="1170" max-vertical-offset="1545">
+          <caret line="90" column="40" selection-start-line="90" selection-start-column="40" selection-end-line="90" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -890,7 +901,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Guess/games/12.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48961425" vertical-offset="0" max-vertical-offset="337">
+        <state vertical-scroll-proportion="0.45833334" vertical-offset="0" max-vertical-offset="360">
           <caret line="11" column="59" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="59" />
           <folding />
         </state>
@@ -910,18 +921,7 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/games/10.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2916667" vertical-offset="1185" max-vertical-offset="1545">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/games/9.csv">
+    <entry file="file://$PROJECT_DIR$/Guess/games/14.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -932,6 +932,32 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/GuessWhat/task.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1501" max-vertical-offset="2400">
+          <caret line="111" column="32" selection-start-line="111" selection-start-column="32" selection-end-line="111" selection-end-column="32" />
+          <folding>
+            <element signature="e#14#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GuessWhat/celery.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="258" max-vertical-offset="795">
+          <caret line="37" column="38" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Guess/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
+          <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Guess/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1335" max-vertical-offset="3375">
@@ -940,38 +966,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3585" max-vertical-offset="5835">
-          <caret line="257" column="26" selection-start-line="257" selection-start-column="26" selection-end-line="257" selection-end-column="26" />
-          <folding>
-            <element signature="e#15#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Guess/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
-          <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GuessWhat/task.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="946" max-vertical-offset="2145">
-          <caret line="119" column="44" selection-start-line="119" selection-start-column="44" selection-end-line="119" selection-end-column="44" />
-          <folding>
-            <element signature="e#14#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Guess/scripts/web_crawl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.28877" vertical-offset="1516" max-vertical-offset="2205">
-          <caret line="44" column="31" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
+        <state vertical-scroll-proportion="1.3208556" vertical-offset="991" max-vertical-offset="2220">
+          <caret line="99" column="32" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
           <folding>
             <element signature="e#14#43#0" expanded="true" />
           </folding>

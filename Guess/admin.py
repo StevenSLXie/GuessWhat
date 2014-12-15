@@ -4,7 +4,7 @@ from Guess.models import Game, Person, Betting, Proposal, PersonTag, GameTag, Me
 # Register your models here.
 
 class GameAdmin(admin.ModelAdmin):
-	list_display = ('headline', 'expire', 'ended')
+	list_display = ('headline', 'expire', 'ended','event')
 
 admin.site.register(Game, GameAdmin)
 admin.site.register(Person)

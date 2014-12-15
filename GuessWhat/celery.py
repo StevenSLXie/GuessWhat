@@ -17,7 +17,7 @@ app.conf.update(
 	CELERYBEAT_SCHEDULE={
 		'ranking-every-30-seconds': {
 		'task': 'GuessWhat.task.ranking',
-		'schedule': timedelta(seconds=45),
+		'schedule': timedelta(seconds=120),
 		'args': ()
 	},
 
@@ -35,7 +35,12 @@ app.conf.update(
 
 		'detect-ended-game':{
 		'task': 'GuessWhat.task.detect_ended_game',
-		'schedule': timedelta(seconds = 60),
+		'schedule': timedelta(seconds=60),
+		'args':()
+	},
+		'game-management':{
+		'task': 'GuessWhat.task.game_management',
+		'schedule': crontab(minute='*/15'),
 		'args':()
 	}
 

@@ -107,13 +107,14 @@ def scan_game_result(filename):
 			if is_number(r['result'][0]):
 				# ideally there should be only one game
 				games = Game.objects.filter(event=r['event'], ended=True)
-				for g in games:
-					if int(r['result'][0]) > int(r['result'][2]):
-						g.outcome = True
-					g.save()
-					bets = g.betting_set.filter(cleared=False)
-					for b in bets:
-						b.clear()
+				if games is not None:
+					for g in games:
+						if int(r['result'][0]) > int(r['result'][2]):
+							g.outcome = True
+						g.save()
+						bets = g.betting_set.filter(cleared=False)
+						for b in bets:
+							b.clear()
 
 
 def pricing(home, away, even=0.0):
