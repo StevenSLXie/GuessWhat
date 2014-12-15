@@ -131,13 +131,13 @@ class Betting(models.Model):
 		self.save()
 
 	def _verbal(self, case):
-		s1 = u'竞猜'
+		s1 = u'竞猜 '
 
 		s2 = (self.game.headline)
 		if case == 1 or case == 3:
-			s3 = u'已结束，你猜对啦，盈利'
+			s3 = u' 已清算，你猜对啦，盈利'
 		else:
-			s3 = u'已结束，你猜错啦，损失'
+			s3 = u' 已清算，你猜错啦，损失'
 
 		if case == 1:
 			s4 = str(100-self.price_at_buy)
