@@ -6,9 +6,12 @@ from Guess.models import Game, Person, Betting, Proposal, PersonTag, GameTag, Me
 class GameAdmin(admin.ModelAdmin):
 	list_display = ('headline', 'expire', 'ended','event')
 
+class BetAdmin(admin.ModelAdmin):
+	list_display = ('game','side')
+
 admin.site.register(Game, GameAdmin)
 admin.site.register(Person)
-admin.site.register(Betting)
+admin.site.register(Betting, BetAdmin)
 admin.site.register(Proposal)
 admin.site.register(PersonTag)
 admin.site.register(GameTag)
