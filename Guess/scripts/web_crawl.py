@@ -9,12 +9,83 @@ from Guess.models import Game, Betting, GameTag
 
 
 
-def scrapy(url):
+def scrapy(url, source):
 	# a simple web crawling function to extract info from NetEase Caipiao
 	r = requests.get(url)
 	data = r.text
 	soup = BeautifulSoup(data)
 
+
+	if source == 'db':
+		games = from_net_ease_db(soup)
+	elif source == 'everyday':
+		games = from_net_ease_every_day(soup)
+
+	# print '456'
+	return games
+
+
+def from_net_ease_every_day(soup):
+	games = []
+
+	for link in soup.find_all('dd'):
+		j = 0
+		game = {}
+		flag = True
+		for span in link.find_all('span'):
+
+			if j == 2:
+				time = span.i['inf'][-16:]
+				game['time'] = time
+			elif j == 3:
+				z = 0
+				for em in link.find_all('em'):
+					if z == 0:
+						home = em['title']
+					elif z == 1:
+						away = em['title']
+					z += 1
+				game['home'] = home
+				game['away'] = away
+			elif j == 4:
+				z = 0
+				for em in span.div:
+					# print span.div
+					if z >= 1 and z<=3:
+						if not is_float(em.text):
+							flag = False
+							break
+					if z == 2:
+						home_price = float(em.text)
+						game['home_price'] = home_price
+					elif z == 3:
+						even_price = float(em.text)
+						game['even_price'] = even_price
+					elif z == 4:
+						away_price = float(em.text)
+						game['away_price'] = away_price
+
+					z += 1
+
+				game['result'] = '-'
+
+			j += 1
+
+		if flag and game != {}:
+			games.append(game)
+
+	return games
+
+
+def is_float(s):
+	try:
+		float(s)
+		return True
+	except ValueError:
+		return False
+
+
+def from_net_ease_db(soup):
 	games = []
 
 	# for link in soup(attrs={'class', 'even'}):
@@ -25,7 +96,7 @@ def scrapy(url):
 			if i == 0:
 				# extract the start time
 				time = td.text
-				game['time'] = time
+				game['time'] = '20' + time
 				# print time
 			elif i == 1:
 				# extract the name of home team
@@ -70,15 +141,15 @@ def scrapy(url):
 	return games
 
 
-def generate_game_table(url, filename, event):
-	games = scrapy(url)
+def generate_game_table(url, filename, event, source):
+	games = scrapy(url, source)
 	with open(filename, 'wb') as file:
 		writer = csv.writer(file)
 		writer.writerow(['headline','expire','price_home','price_away','weight_home','weight_away','event','is_primary','game_tag','result'])
 		for g in games:
 			print g
 			headline = g['home'] + word_shuffle() + g['away']
-			expire = '20' + g['time'] + ':00'
+			expire = g['time']
 			price_home, price_away, weight_home, weight_away = pricing(g['home_price'], g['away_price'], g['even_price'])
 			writer.writerow([headline.encode('utf-8'), expire, price_home, price_away, weight_home, weight_away, event, 1, u'体育'.encode('utf-8'), g['result']])
 			event += 1
@@ -89,7 +160,7 @@ def add_games(filename):
 	with open(filename) as csvfile:
 		reader = csv.DictReader(csvfile)
 		for r in reader:
-			time =timezone.make_aware(datetime.strptime(r['expire'], "%Y-%m-%d %H:%M:%S"), timezone.get_default_timezone())
+			time =timezone.make_aware(datetime.strptime(r['expire'], "%Y-%m-%d %H:%M"), timezone.get_default_timezone())
 			if time > timezone.make_aware(datetime.now(), timezone.get_default_timezone()):
 				g = Game.objects.create(
 					headline=r['headline'], expire=time, price_home=int(r['price_home']), price_away=int(r['price_away']),

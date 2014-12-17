@@ -105,18 +105,30 @@ def add_game_weight():
 
 @app.task
 def game_management():
-	event = 230
-	for i in range(9, 15):
-		url = 'http://saishi.caipiao.163.com/'+str(i)+'.html'
-		filename = 'Guess/games/'+str(i)+'.csv'
-		event = web_crawl.generate_game_table(url, filename, event)
+	event = 260
+	source = 'everyday'
+	if source == 'db':
+		for i in range(9, 15):
+			url = 'http://saishi.caipiao.163.com/'+str(i)+'.html'
+			filename = 'Guess/games/'+str(i)+'.csv'
+			event = web_crawl.generate_game_table(url, filename, event, source)
+			web_crawl.scan_game_result(filename)
+	elif source == 'everyday':
+		url = 'http://caipiao.163.com/order/preBet_jczqspfmixp.html'
+		filename = 'Guess/games/everyday.csv'
+		event = web_crawl.generate_game_table(url, filename, event, source)
 		web_crawl.scan_game_result(filename)
 
 
 @app.task
 def add_games():
-	for i in range(9, 15):
-		filename = 'Guess/games/'+str(i)+'.csv'
+	source = 'everyday'
+	if source == 'db':
+		for i in range(9, 15):
+			filename = 'Guess/games/'+str(i)+'.csv'
+			web_crawl.add_games(filename)
+	elif source == 'everyday':
+		filename = 'Guess/games/everyday.csv'
 		web_crawl.add_games(filename)
 
 

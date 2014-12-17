@@ -7,7 +7,7 @@ class GameAdmin(admin.ModelAdmin):
 	list_display = ('headline', 'expire', 'ended','event')
 
 class BetAdmin(admin.ModelAdmin):
-	list_display = ('game','side')
+	list_display = ('game', 'side')
 
 admin.site.register(Game, GameAdmin)
 admin.site.register(Person)

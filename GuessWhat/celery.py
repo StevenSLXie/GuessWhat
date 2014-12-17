@@ -38,11 +38,11 @@ app.conf.update(
 		'schedule': timedelta(seconds=60),
 		'args':()
 	},
-		'game-management':{
-		'task': 'GuessWhat.task.game_management',
-		'schedule': crontab(minute='*/15'),
-		'args':()
-	}
+		#'game-management':{
+		#'task': 'GuessWhat.task.game_management',
+		# 'schedule': crontab(minute='*/2'),
+		#'args':()
+	#}
 
 
 						 }
