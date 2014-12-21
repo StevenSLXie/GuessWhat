@@ -1,37 +1,16 @@
-<html xmlns:wb="http://open.weibo.com/wb">
+<!--html xmlns:wb="http://open.weibo.com/wb"-->
 
 <head>
 
     <link href='static/bootstrap/css/bootstrap.min.css' rel='stylesheet'>
-    <title>猜神--向世界展示你的未卜先知 </title>
-    <meta property="wb:webmaster" content="e91e2c426033db5b" />
+    <title>猜神--展示你的未卜先知 </title>
+    <!--meta property="wb:webmaster" content="e91e2c426033db5b" /-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
     <script src="static/JS/jquery-1.11.1.min.js"></script>
-    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
-    <script>
-    $(document).ready(function(){
-    $("#account_dropdown").mouseenter(function(){
-        $("#account_info").show(100);
-        });
-    $("#dropdown_list").mouseleave(function(){
-        $("#account_info").hide(100);
-        });
-    $("#notifications").mouseenter(function(){
-        $("#notify_info").show(100);
-    });
-    $("#notify_list").mouseleave(function(){
-        $("#notify_info").hide(100);
-    });
-    $("#tags").mouseenter(function(){
-        $("#tag_info").show(100);
-    });
-    $("#tag_list").mouseleave(function(){
-        $("#tag_info").hide(100);
-    });
-    });
-    </script>
+    <!--script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script-->
+
 </head>
 
 <style type='text/css'>
@@ -40,6 +19,29 @@
     .guesso-frame {background: rgba(234,217,168,0.5);}
 
 </style>
+
+<script>
+        $(document).ready(function(){
+        $("#account_dropdown").mouseenter(function(){
+            $("#account_info").show(100);
+            });
+        $("#dropdown_list").mouseleave(function(){
+            $("#account_info").hide(100);
+            });
+        $("#notifications").mouseenter(function(){
+            $("#notify_info").show(100);
+        });
+        $("#notify_list").mouseleave(function(){
+            $("#notify_info").hide(100);
+        });
+        $("#tags").mouseenter(function(){
+            $("#tag_info").show(100);
+        });
+        $("#tag_list").mouseleave(function(){
+            $("#tag_info").hide(100);
+        });
+        });
+ </script>
 
 
 <nav class="navbar navbar-default guesso-background">

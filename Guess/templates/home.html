@@ -1,4 +1,3 @@
-{% load bootstrap3 %}
 {% load profile_tag %}
 
 {% include "nav_bar.html" %}
@@ -48,9 +47,9 @@
              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user"  data-for=".{{ game.pk }}">
                     <i class="glyphicon glyphicon-chevron-down text-muted"></i>
              </div>
-            <div class="col-md-1 col-md-offset-10 col-sm-1 col-sm-offset-10 col-xs-1 col-xs-offset-9 spacer">
+            <!--<div class="col-md-1 col-md-offset-10 col-sm-1 col-sm-offset-10 col-xs-1 col-xs-offset-9 spacer">
                 <wb:share-button appkey="6KfBb7" addition="simple" type="button" default_text="事件 &ldquo; {{ game.headline }}&ldquo;的当前猜神价位是 {{ game.price_home }}，快来买一注吧！"></wb:share-button>
-             </div>
+             </div> -->
 
             <div class="row user-infos {{ game.pk }}">
                 {% include 'comment.html' %}
