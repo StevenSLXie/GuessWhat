@@ -47,6 +47,13 @@ def from_net_ease_every_day(soup):
 					z += 1
 				game['home'] = home
 				game['away'] = away
+
+
+				if span.div is None:
+					game['result'] = '-'
+				else:
+					game['result'] = span.div.text
+
 			elif j == 4:
 				z = 0
 				for em in span.div:
@@ -66,8 +73,6 @@ def from_net_ease_every_day(soup):
 						game['away_price'] = away_price
 
 					z += 1
-
-				game['result'] = '-'
 
 			j += 1
 
@@ -171,7 +176,42 @@ def add_games(filename):
 				print g.headline
 
 
+def update_game_result(filename, url):
+	# This is used to update result to everyday.csv
+	r = requests.get(url)
+	data = r.text
+	soup = BeautifulSoup(data)
+
+	result = []
+
+	for link in soup.find_all('dd'):
+		j = 0
+		for span in link.find_all('span'):
+			if j == 3:
+				if span.div is None:
+					result.append('-')
+				else:
+					result.append(span.div.text)
+			j += 1
+
+	rows = []
+	with open(filename) as csvfile:
+		reader = csv.DictReader(csvfile)
+		i = 0
+		for r in reader:
+			r['result'] = result[i]
+			i += 1
+			rows.append(r)
+
+	with open(filename,'wb') as csvfile:
+		writer = csv.writer(file)
+		writer.writerow(['headline','expire','price_home','price_away','weight_home','weight_away','event','is_primary','game_tag','result'])
+		for r in rows:
+			writer.writerow(r)
+
+
 def scan_game_result(filename):
+	# This is used to fetch results from the everyday.csv file; The
 	with open(filename) as csvfile:
 		reader = csv.DictReader(csvfile)
 		for r in reader:
@@ -211,3 +251,11 @@ def is_number(s):
 		return True
 	except ValueError:
 		return False
+
+
+# usage updated: 22-Dec
+# generate_game_table() and add_game(), one time use.as
+
+#Then the next day:
+# use update game result
+# the use scan game result

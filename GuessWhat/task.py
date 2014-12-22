@@ -98,13 +98,17 @@ def add_game_weight():
 		g.save()
 
 # The usage of the following 3 functions:
-# game_management: initialize and update the csv files and the game result; Periodic/ 15 mins
-# add_games: one time use for adding game to Models.
-# detect_ended_games: periodic/ 1 min
+# game_management: initialize csv files with results undetermined;
+# add_games: added the game to db;
+# The above 2 are for one time use;
 
+# detect_ended_games: Take the ended game off the shelf; periodic/ 1 min
+# write_result_to_csv: update result to the csv file
+# clear_game_result: clear each 'have result' game.
 
 @app.task
 def game_management():
+	# This is to use for generating the first everyday.csv; One time use.
 	event = 260
 	source = 'everyday'
 	if source == 'db':
@@ -112,12 +116,24 @@ def game_management():
 			url = 'http://saishi.caipiao.163.com/'+str(i)+'.html'
 			filename = 'Guess/games/'+str(i)+'.csv'
 			event = web_crawl.generate_game_table(url, filename, event, source)
-			web_crawl.scan_game_result(filename)
+			# web_crawl.scan_game_result(filename)
 	elif source == 'everyday':
 		url = 'http://caipiao.163.com/order/preBet_jczqspfmixp.html'
 		filename = 'Guess/games/everyday.csv'
 		event = web_crawl.generate_game_table(url, filename, event, source)
-		web_crawl.scan_game_result(filename)
+		# web_crawl.scan_game_result(filename)
+
+
+@app.task
+def write_result_to_csv(url):
+	filename = 'Guess/games/everyday.csv'
+	web_crawl.update_game_result(filename, url)
+
+
+@app.task
+def clear_game_result():
+	filename = 'Guess/games/everyday.csv'
+	web_crawl.scan_game_result(filename)
 
 
 @app.task
